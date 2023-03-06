@@ -1,0 +1,57 @@
+<form [formGroup]="reactiveForm" (ngSubmit)="edit()">
+  <input type="hidden" formControlName="id">
+  <p>
+    <lable for="name">Name</lable>
+    <input type="text" id="name" formControlName="name">
+  </p>
+  <p>
+    <lable for="area">Area</lable>
+    <input type="text" id="area" formControlName="area">
+  </p>
+  <p>
+    <lable for="image">Img</lable>
+    <input type="text" id="image" formControlName="image" placeholder="dán link ảnh bạn muốn">
+  </p>
+  <p>
+    <lable for="cost">Cost</lable>
+    <input type="text" id="cost" formControlName="cost">
+  </p>
+  <p>
+    <lable for="maxPeople">Max People</lable>
+    <input type="number" id="maxPeople" formControlName="maxPeople">
+  </p>
+  <p>
+    <lable for="standardRoom">standardRoom</lable>
+    <input type="number" id="standardRoom" formControlName="standardRoom">
+  </p>
+  <p>
+    <lable for="rentType">Rent Type</lable>
+    <select formControlName="rentType">
+      <option *ngFor="let rentType of rentType" [ngValue]="rentType">{{rentType.name}}}</option>
+    </select>
+  </p>
+  <p>
+    <lable for="facilityType">Facility Type</lable>
+    <select formControlName="rentType">
+      <option *ngFor="let facilityType of facilityType" [ngValue]="facilityType">{{facilityType.name}}}</option>
+    </select>
+  </p>
+  <p>
+    <lable for="descriptionOfOtherConvenience">Description</lable>
+    <input type="text" id="descriptionOfOtherConvenience" formControlName="descriptionOfOtherConvenience">
+  </p>
+  <p>
+    <lable for="poolArea">Area of pool</lable>
+    <input type="number" id="poolArea" formControlName="poolArea">
+  </p>
+  <p>
+    <lable for="numberOfFloors">Number of Floors</lable>
+    <input type="number" id="numberOfFloors" formControlName="numberOfFloors">
+  </p>
+  <p>
+    <lable for="attachFacility">Attach Facility</lable>
+    <input type="text" id="attachFacility" formControlName="attachFacility">
+  </p>
+  <button type="submit" value="edit">
+</form>
+
