@@ -1,0 +1,19 @@
+<p>calculator works!</p>
+<p>Number First</p>
+<label>
+  <input type="number" #numberFirst>
+</label>
+<label>
+  <select #operator >
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+</label>
+<p>Number Second</p>
+<label>
+  <input type="number" #numberSecond>
+</label>
+<button (click)="calculator(numberFirst.value,operator.value,numberSecond.value)">Cal</button>
+<p>result:{{result}}</p>
