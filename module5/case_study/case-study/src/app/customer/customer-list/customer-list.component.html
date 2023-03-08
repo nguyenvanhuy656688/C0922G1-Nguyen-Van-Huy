@@ -1,0 +1,94 @@
+<h2 style="font-size: 60px; text-align: center">Customer Management</h2>
+<div class="row">
+  <form class="d-flex animationTop delay-02" role="search" style="float: left; font-size: 17px; margin-top: 57px">
+    <input class="form-control me-2" #nameSearch type="search" placeholder="Search By Name" aria-label="Search">
+    <select class="form-select animationTop delay-03" aria-label="Default select example" #customerSearch
+            style="padding-right: 10px">
+      <option selected value="">CustomerType :</option>
+      <option *ngFor="let customerType of customerType" [ngValue]="customerType">{{customerType.name}}</option>
+    </select>
+    <button style="margin-left: 10px" class="btn btn-primary animationTop delay-04"
+            (click)="searchForCustomerTypeAndName(nameSearch.value,customerSearch.value)" type="submit">Search
+    </button>
+  </form>
+</div>
+<br>
+<div id="main" class="row">
+  <div class="container">
+    <header class="major">
+      <h5>
+        <button class="btn btn-danger" routerLink="/customer/create">Create</button>
+      </h5>
+    </header>
+    <section id="content">
+      <div class="table-responsive">
+        <div class="table-wrapper">
+          <table class="alt table table-danger table-hover">
+            <thead>
+            <tr>
+              <th>NO</th>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Customer Type</th>
+              <th>Id Card</th>
+              <th>Phone Number</th>
+              <th colspan="2">Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let customer of customerList, let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{customer.name}}</td>
+              <td>
+                <ng-container *ngIf="customer.gender==1">Nam</ng-container>
+                <ng-container *ngIf="customer.gender==2">Nữ</ng-container>
+                <ng-container *ngIf="customer.gender==3">Khác</ng-container>
+              </td>
+              <td>{{customer.address}}</td>
+              <td>{{customer.email}}</td>
+              <td>{{customer.customerType.name}}</td>
+              <td>{{customer.idCard}}</td>
+              <td>{{customer.phoneNumber}}</td>
+              <td>
+                <button style="margin-right: 50px" class="btn btn-primary"
+                        [routerLink]="['/customer/edit',customer.id]">Edit
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)=" removeCustomer = customer"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Delete
+                </button>
+              </td>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                   aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <span>Do you want to delete  </span><span style="color: red">{{removeCustomer.name}}</span><span>  ?</span>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" (click)="deleteCustomer()" data-bs-dismiss="modal" class="btn btn-danger">
+                        Xóa
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+

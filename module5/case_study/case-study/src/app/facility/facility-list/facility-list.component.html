@@ -1,76 +1,95 @@
-<form class="d-flex animationTop delay-02" role="search"  style="float: left; font-size: 17px; margin-top: 57px">
-  <input class="form-control me-2" #nameSearch type="search" placeholder="Search By Name" aria-label="Search" >
-  <select class="form-select animationTop delay-03" aria-label="Default select example" #typeSearch
-          style="padding-right: 10px">
-    <option selected value="">Facility Type :</option>
-    <option *ngFor="let facilityType of facilityType" [ngValue]="facilityType">{{facilityType.name}}</option>
-  </select>
-  <button style="margin-left: 10px" class="btn btn-primary animationTop delay-04" (click)="searchForFacilityTypeAndName(nameSearch.value,typeSearch.value)" type="submit" >Search</button>
-</form>
-<table style="margin-left: 200px">
-  <div class="container">
-    <div class="list" style="margin-left: 90px">
-      <div class="item" *ngFor="let facility of facilityList">
-        <div class="img">
-          <img src="https://cdn.cet.edu.vn/wp-content/uploads/2019/02/villa-khong-gian-sang-trong.jpg">
-        </div>
-        <div class="content">
-            <div class="category">Facility</div>
-            <div class="title">Facility Name: {{facility.name}}</div>
-            <div class="title">Area: {{facility.area}}</div>
-            <div class="price">Price: {{facility.cost}}</div>
-          <button data-bs-toggle="modal" data-bs-target="#exampleModal1" style="cursor: pointer" (click)="temp = facility">Xem Thêm</button>
-          <button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="temp = facility" type="button" class="addCard">Delete</button>
-          <button type="button" routerLink="facility/edit:/id">Update</button>
-        </div>
+<h2 style="font-size: 60px; text-align: center">Facility Management</h2>
+<div class="row">
+  <form>
+    <input type="hidden" value="create" name="action">
+    <button routerLink="/facility/create" class="btn btn-outline-primary">Thêm Mới</button>
+  </form>
+</div>
+<div class="row">
+  <form class="d-flex animationTop delay-02" role="search" style="float: left; font-size: 17px; margin-top: 14px">
+    <input class="form-control me-2" #nameSearch type="search" placeholder="Search By Name" aria-label="Search">
+    <select class="form-select animationTop delay-03" aria-label="Default select example" #typeSearch
+            style="padding-right: 10px">
+      <option selected value="">Facility Type :</option>
+      <option *ngFor="let facilityType of facilityType" [ngValue]="facilityType">{{facilityType.name}}</option>
+    </select>
+    <button style="margin-left: 10px" class="btn btn-primary animationTop delay-04"
+            (click)="searchForFacilityTypeAndName(nameSearch.value,typeSearch.value)" type="submit">Search
+    </button>
+  </form>
+</div>
+<br> <br>
+<div class="container">
+  <div class="list " style="margin-left: 90px">
+    <div class="item" *ngFor="let facility of facilityList">
+      <div class="img">
+        <img style="width: 40%; margin-top: 10px" [src]="facility.image" alt="Anh">
+      </div>
+      <div class="content">
+        <div class="category">Facility</div>
+        <div class="title">Facility Name: {{facility.name}}</div>
+        <div class="title">Area: {{facility.area}}</div>
+        <div class="price">Price: {{facility.cost}}</div>
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="cursor: pointer"
+                (click)="temp = facility">Xem Thêm
+        </button>
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="temp = facility" type="button"
+                class="addCard btn btn-danger">Delete
+        </button>
+        <button
+          class="btn btn-info" [routerLink]="['/facility/edit',facility.id]">Edit
+        </button>
       </div>
     </div>
   </div>
-  <!--  Modal-delete-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content" style="background-image: linear-gradient(to top,  #B5B5B5, #B5B5B5,#8273B0); overflow:hidden;">
-        <div class="modal-header">
-          <h2 class="modal-title fs-5" id="exampleModalLabel">Xóa thông tin sản phẩm</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h5 style="color:red">Delete facility ?<br> {{temp.name}}</h5>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-primary" (click)="deleteFacility()" data-bs-dismiss="modal">Xóa</button>
-        </div>
+</div>
+<!--  Modal-delete-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content"
+         style="background-image: linear-gradient(to top,  #B5B5B5, #B5B5B5,#8273B0); overflow:hidden;">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="exampleModalLabel">Xóa thông tin sản phẩm</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5 style="color:red">Delete facility ?<br> {{temp.name}}</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" (click)="deleteFacility()" data-bs-dismiss="modal">Xóa</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!--  Modal-detail-->
-  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content" style="background-image: linear-gradient(to top,  #B5B5B5, #B5B5B5,#8273B0); overflow:hidden;">
-        <div class="modal-header">
-          <h2 class="modal-title fs-5" id="exampleModalLabel1" style="color: white"> Facility Detail</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <span>Name: {{temp.name}}</span><br>
-          <span>Area: {{temp.area}}</span><br>
-          <span>Cost: {{temp.cost}}</span><br>
-          <span>Facility free: {{temp.attachFacility}}</span><br>
-          <span>Max people: {{temp.maxPeople}}</span><br>
-          <span>Number floors: {{temp.numberOfFloors}}</span><br>
-          <span>Other convenience: {{temp.descriptionOfOtherConvenience}}</span><br>
-          <span *ngIf="temp.facilityType">Facility type: {{temp.facilityType.name}}</span><br>
-          <span *ngIf="temp.rentType">Rent type: {{temp.rentType.name}}</span><br>
-          <span *ngIf="temp.standardRoom==1">Standard Rom: Vip</span><br>
-          <span *ngIf="temp.standardRoom==0">Standard Rom: Normal</span><br>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
-        </div>
+<!--  Modal-detail-->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content"
+         style="background-image: linear-gradient(to top,  #B5B5B5, #B5B5B5,#8273B0); overflow:hidden;">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="exampleModalLabel1" style="color: white"> Facility Detail</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span>Name: {{temp.name}}</span><br>
+        <span>Area: {{temp.area}}</span><br>
+        <span>Cost: {{temp.cost}}</span><br>
+        <span>Facility free: {{temp.attachFacility}}</span><br>
+        <span>Max people: {{temp.maxPeople}}</span><br>
+        <span>Number floors: {{temp.numberOfFloors}}</span><br>
+        <span>Other convenience: {{temp.descriptionOfOtherConvenience}}</span><br>
+        <span *ngIf="temp.facilityType">Facility type: {{temp.facilityType.name}}</span><br>
+        <span *ngIf="temp.rentType">Rent type: {{temp.rentType.name}}</span><br>
+        <span *ngIf="temp.standardRoom==1">Standard Rom: Vip</span><br>
+        <span *ngIf="temp.standardRoom==0">Standard Rom: Normal</span><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
-</table>
+</div>
+
 

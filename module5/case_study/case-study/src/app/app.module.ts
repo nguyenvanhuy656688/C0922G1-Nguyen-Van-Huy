@@ -11,6 +11,9 @@ import {HttpClientModule} from "@angular/common/http";
 import { FacilityListComponent } from './facility/facility-list/facility-list.component';
 import { FacilityEditComponent } from './facility/facility-edit/facility-edit.component';
 import { FacilityCreateComponent } from './facility/facility-create/facility-create.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
+import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { FacilityCreateComponent } from './facility/facility-create/facility-cre
     HomeComponent,
     FacilityListComponent,
     FacilityEditComponent,
-    FacilityCreateComponent
+    FacilityCreateComponent,
+    CustomerListComponent,
+    CustomerEditComponent,
+    CustomerCreateComponent
   ],
   imports: [
     BrowserModule,

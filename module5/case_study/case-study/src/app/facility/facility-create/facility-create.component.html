@@ -1,55 +1,69 @@
-<form [formGroup]="reactiveForm" (ngSubmit)="create()">
-  <p>
-    <lable for="name">Name</lable>
-    <input type="text" id="name" formControlName="name">
-  </p>
-  <p>
-    <lable for="area">Area</lable>
-    <input type="text" id="area" formControlName="area">
-  </p>
-  <p>
-    <lable for="image">Img</lable>
-    <input type="text" id="image" formControlName="image" placeholder="dán link ảnh bạn muốn">
-  </p>
-  <p>
-    <lable for="cost">Cost</lable>
-    <input type="text" id="cost" formControlName="cost">
-  </p>
-  <p>
-    <lable for="maxPeople">Max People</lable>
-    <input type="number" id="maxPeople" formControlName="maxPeople">
-  </p>
-  <p>
-    <lable for="standardRoom">standardRoom</lable>
-    <input type="number" id="standardRoom" formControlName="standardRoom">
-  </p>
-  <p>
-    <lable for="rentType">Rent Type</lable>
-    <select formControlName="rentType">
-      <option *ngFor="let rentType of rentType" [ngValue]="rentType">{{rentType.name}}}</option>
-    </select>
-  </p>
-  <p>
-    <lable for="facilityType">Facility Type</lable>
-    <select formControlName="rentType">
-      <option *ngFor="let facilityType of facilityType" [ngValue]="facilityType">{{facilityType.name}}}</option>
-    </select>
-  </p>
-  <p>
-    <lable for="descriptionOfOtherConvenience">Description</lable>
-    <input type="text" id="descriptionOfOtherConvenience" formControlName="descriptionOfOtherConvenience">
-  </p>
-  <p>
-    <lable for="poolArea">Area of pool</lable>
-    <input type="number" id="poolArea" formControlName="poolArea">
-  </p>
-  <p>
-    <lable for="numberOfFloors">Number of Floors</lable>
-    <input type="number" id="numberOfFloors" formControlName="numberOfFloors">
-  </p>
-  <p>
-    <lable for="attachFacility">Attach Facility</lable>
-    <input type="text" id="attachFacility" formControlName="attachFacility">
-  </p>
-  <input type="submit" value="Thêm mới">
-</form>
+<h1 style="text-align: center;color: #0dcaf0">Create Facility</h1>
+<div class="row">
+  <div  class="col-md-4">
+    <button routerLink="/facility" class="btn btn-outline-primary">Danh sách</button>
+  </div>
+  <div  class="col-md-8">
+    <div style="text-align: center;justify-content: center" >
+      <form [formGroup]="reactiveForm" (ngSubmit)="create()">
+        <p class="col-md-6" style="text-align: center">
+          <label class="form-label" for="name">Name:</label>
+          <input class="form-control" type="text" id="name" formControlName="name">
+        </p>
+        <p class="col-md-6">
+          <label for="area">Area:</label>
+          <input class="form-control" type="text" id="area" formControlName="area">
+        </p>
+        <p class="col-md-6">
+          <label for="image">Img:</label>
+          <input class="form-control" type="text" id="image" formControlName="image" placeholder="dán link ảnh bạn muốn">
+        </p>
+        <p class="col-md-6">
+          <label for="cost">Cost:</label>
+          <input class="form-control" type="text" id="cost" formControlName="cost">
+        </p>
+        <p class="col-md-6">
+          <label for="maxPeople">Max People:</label>
+          <input class="form-control" type="number" id="maxPeople" formControlName="maxPeople">
+        </p>
+        <p class="col-md-6">
+          <label for="standardRoom">standardRoom:</label>
+          <input class="form-control" type="number" id="standardRoom" formControlName="standardRoom">
+        </p>
+        <p class="col-md-6">
+          <label class="form-label">Rent Type:</label>
+          <label>
+            <select class="form-select" formControlName="rentType">
+              <option *ngFor="let rentType of rentType" [ngValue]="rentType">{{rentType.name}}}</option>
+            </select>
+          </label>
+        </p>
+        <p class="col-md-6">
+          <label>Facility Type:</label>
+          <label class="form-label">
+            <select class="form-select" formControlName="rentType">
+              <option *ngFor="let facilityType of facilityType" [ngValue]="facilityType">{{facilityType.name}}}</option>
+            </select>
+          </label>
+        </p>
+        <p class="col-md-6">
+          <label class="form-label" for="descriptionOfOtherConvenience">Description:</label>
+          <input class="form-control" type="text" id="descriptionOfOtherConvenience" formControlName="descriptionOfOtherConvenience">
+        </p>
+        <p class="col-md-6">
+          <label class="form-label" for="poolArea">Area of pool:</label>
+          <input class="form-control" type="number" id="poolArea" formControlName="poolArea">
+        </p>
+        <p class="col-md-6">
+          <label class="form-label" for="numberOfFloors">Number of Floors:</label>
+          <input class="form-control" type="number" id="numberOfFloors" formControlName="numberOfFloors">
+        </p>
+        <p class="col-md-6">
+          <label class="form-label" for="attachFacility">Attach Facility:</label>
+          <input class="form-control" type="text" id="attachFacility" formControlName="attachFacility">
+        </p>
+          <button style="text-align: left"  class="btn btn-info" type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+</div>
