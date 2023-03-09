@@ -3,23 +3,22 @@
   <div class="col-md-4"></div>
   <div id="form" class="col-md-6">
     <form [formGroup]="reactiveForm" (ngSubmit)="edit()">
-      <input type="hidden" formControlName="id">
       <p class="col-md-6">
-        <label class="form-label">Name</label>
+        <label class="form-label">Name: </label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="Name" formControlName="name"/>
         </label>
       </p>
 
       <p class="col-md-6">
-        <label class="form-label">Date Of Birth</label>
+        <label class="form-label">Date Of Birth: </label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="Day of birth"
                  formControlName="dateOfBirth"/>
         </label>
       </p>
       <div class="col-md-6">
-        <label class="form-label">Gender</label>
+        <label class="form-label">Gender:</label>
         <br>
         <div class="form-check form-check-inline col-md-3">
           <label>
@@ -42,14 +41,14 @@
       </div>
 
       <p class="col-md-6">
-        <label class="form-label">ID Card</label>
+        <label class="form-label">ID Card:</label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="ID Card" formControlName="idCard"/>
         </label>
       </p>
 
       <p class="col-md-6">
-        <label class="form-label">Phone Number</label>
+        <label class="form-label">Phone Number:</label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="Phone number"
                  formControlName="phoneNumber"/>
@@ -57,28 +56,29 @@
       </p>
 
       <p class="col-md-6">
-        <label class="form-label">Email</label>
+        <label class="form-label">Email:</label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="Email" formControlName="email"/>
         </label>
       </p>
 
       <p class="col-md-6">
-        <label class="form-label">Address</label>
+        <label class="form-label">Address:</label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="Address" formControlName="address"/>
         </label>
       </p>
       <p class="col-md-6">
-        <label class="form-label">Customer Type</label>
+        <label class="form-label">Customer Type:</label>
         <label>
           <select class="form-select" formControlName="customerType">
+            <option value="">--Please Choose customerType--</option>
             <option *ngFor="let customerType of customerType" [ngValue]="customerType">{{customerType.name}}</option>
           </select>
         </label>
       </p>
       <br>
-      <input type="submit" class="btn btn-light" value="Save"/>
+      <input type="submit" class="btn btn-outline-primary" value="Save"/>
     </form>
   </div>
   <div class="col-md-2"></div>

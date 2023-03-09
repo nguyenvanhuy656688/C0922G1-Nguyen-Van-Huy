@@ -138,6 +138,34 @@
         "id": 2,
         "name": "Bạch Kim"
       }
+    },
+    {
+      "id": 4,
+      "name": "sakura555",
+      "dateOfBirth": "02/03/2122",
+      "gender": 1,
+      "idCard": "5896356545",
+      "phoneNumber": "0901234121",
+      "address": "64654654654",
+      "email": "xpham9668@gmail.com",
+      "customerType": {
+        "id": 1,
+        "name": "Kim cương"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Huycute",
+      "dateOfBirth": "22/11/1888",
+      "gender": 3,
+      "idCard": "5896356545",
+      "phoneNumber": "0935373352",
+      "address": "64654654654",
+      "email": "xpham9668@gmail.com",
+      "customerType": {
+        "id": 3,
+        "name": "Vàng"
+      }
     }
   ],
   "customerType": [

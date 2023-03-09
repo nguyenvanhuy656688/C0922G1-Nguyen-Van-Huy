@@ -25,4 +25,12 @@ export class CustomerService {
   create(customer: Customer) {
     return this.httpClient.post<Customer>('http://localhost:3000/customers', customer);
   }
+
+  findById(id: number) {
+    return this.httpClient.get<Facility[]>('http://localhost:3000/customers/' + id);
+  }
+
+  edit(id: number, customer: Customer) {
+    return this.httpClient.patch<Customer>('http://localhost:3000/customers/' + id, customer);
+  }
 }

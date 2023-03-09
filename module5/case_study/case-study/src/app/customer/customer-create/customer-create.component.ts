@@ -41,7 +41,7 @@ export class CustomerCreateComponent implements OnInit {
     customer = this.reactiveForm.value
     if (this.reactiveForm.valid) {
       let temp = this.customerService.create(customer).subscribe(ok => {
-        if (temp != null) {
+        if (ok && temp != null) {
           alert('thêm mới thành công');
         }
         this.router.navigateByUrl('/customer');
