@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Transaction contract</h1>
+<button type="submit" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add contract
+</button>
+
+<table class="table table-striped table-hover" style="--bs-table-hover-bg: lightpink">
+  <thead>
+  <tr>
+    <th scope="col">STT</th>
+    <th scope="col">Khách hàng</th>
+    <th scope="col">Dịch vụ</th>
+    <th scope="col">Ngày bắt đầu</th>
+    <th scope="col">Ngày kết thúc</th>
+    <th scope="col">Tiền đặt cọc</th>
+    <th scope="col">Tổng tiền</th>
+    <th scope="col">Thêm/dịch vụ đi kèm</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr >
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <!-- Button trigger modal -->
+      <button  type="button"
+              class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+        +
+      </button>
+      <button  type="button" class="btn btn-primary"
+              data-bs-toggle="modal" data-bs-target="#exampleModal3">
+        Danh sách dịch vụ đi kèm
+      </button>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+<!-- Modal Thêm mới -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form  method="post" >
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Thêm hợp đồng</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3 row">
+            <label for="start_day" class="col-sm-3 col-form-label ">Ngày bắt đầu</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="start_day">
+              <p style="color: red" ></p>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="end_day" class="col-sm-3 col-form-label">Ngày kết thúc</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="end_day" >
+              <p style="color: red" ></p>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="money" class="col-sm-3 col-form-label">Tiền đặt cọc</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="money" >
+              <p style="color: red"></p>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="total" class="col-sm-3 col-form-label">Tổng tiền</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="total" >
+              <p style="color: red" ></p>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Khách hàng thuê dịch vụ</label>
+            <div class="col-sm-9">
+              <select class="form-control" >
+                <option></option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Dịch vụ</label>
+            <div class="col-sm-9">
+              <select class="form-control" >
+                <option></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+          <button type="submit" class="btn btn-warning">Tạo hợp đồng</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--danh sách dịch vị đi kèm-->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModal4">Danh sách dịch vụ đi kèm</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Stt</th>
+            <th>Tên dịch vụ</th>
+            <th>Giá</th>
+            <th>Đơn vị</th>
+            <th>Trạng thái</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+          </tr>
+          </thead>
+          <tbody id="myTableContractDetail">
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="modal1" aria-hidden="true">
+  <form method="post" >
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal1">Thêm dịch vụ đi kèm</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="mb-3 row" hidden>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" id="idContract" >
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label ">Dịch vụ đi kèm</label>
+            <div class="col-md-6">
+              <select class="form-select"  >
+                <option></option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label ">Số lượng</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="number" >
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal">
+            Hủy bỏ
+          </button>
+          <button type="submit" class="btn btn-warning">Tạo hợp đồng</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+<div th:replace="~{/views/layout::footer}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>
