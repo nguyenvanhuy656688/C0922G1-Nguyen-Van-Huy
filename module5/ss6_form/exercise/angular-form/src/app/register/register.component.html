@@ -1,0 +1,63 @@
+<form [formGroup]="reactiveForm"  (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Email:</label>
+    <label>
+      <input type="email" name="email" formControlName="email" required class="form-control">
+      <p *ngIf="reactiveForm.controls.email?.errors?.required">Bắt buộc phải nhập</p>
+      <p *ngIf="reactiveForm.controls.email?.errors?.pattern"> phải nhập đúng định dạng</p>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Age</label>
+    <label>
+      <input type="text" formControlName="age"  required class="form-control">
+    </label>
+    <p *ngIf="reactiveForm.controls.age?.errors?.required">Bắt buộc phải nhập</p>
+    <p *ngIf="reactiveForm.controls.age?.errors?.min"> phải nhập đúng định dạng</p>
+  </div>
+  <div class="form-group">
+    <label>country</label>
+    <label>
+      <select formControlName="country">
+        <option value="ĐN">Đà Nẵng</option>
+        <option value="HCM">HCM</option>
+        <option value="HN">Hà Nội</option>
+      </select>
+    </label>
+    <p *ngIf="reactiveForm.controls.country?.errors?.required">Bắt buộc phải nhập</p>
+  </div>
+  <div class="form-group">
+    <label>Gender</label>
+    <label style="margin-left: 20px">
+      <input type="radio" formControlName="gender" [value]="true" checked  required class="form-control">
+      <label >Male</label>
+    </label>
+    <label style="margin-left: 20px">
+      <input type="radio" formControlName="gender" [value]="false"  required class="form-control">
+      <label >female</label>
+    </label>
+    <label style="margin-left: 20px">
+      <input type="radio" formControlName="gender" [value]=""  required class="form-control">
+      <label >Other</label>
+    </label>
+    <p *ngIf="reactiveForm.controls.gender?.errors?.required">Bắt buộc phải chọn</p>
+  </div>
+  <div class="form-group">
+    <label> Password</label>
+    <label>
+      <input type="password"  name="password" formControlName="password"  required class="form-control">
+    </label>
+    <p *ngIf="reactiveForm.controls.password?.errors?.required">Bắt buộc phải nhập</p>
+    <p *ngIf="reactiveForm.controls.password?.errors?.minlength"> phải nhập đúng định dạng 6 kí tự</p>
+  </div>
+  <div class="form-group">
+    <label>Confirm Password</label>
+    <label>
+      <input type="password"  name="confirmPassword" formControlName="confirmPassword"  required class="form-control">
+    </label>
+    <p *ngIf="reactiveForm.controls.confirmPassword?.errors?.required">Bắt buộc phải nhập</p>
+    <p *ngIf="reactiveForm.controls.confirmPassword?.errors?.minlength"> phải nhập đúng định dạng 6 kí tự</p>
+    <p *ngIf="reactiveForm.controls.confirmPassword?.errors?.same"> Đã sai định dạng</p>
+  </div>
+  <button [disabled]="reactiveForm.invalid" type="submit" class="btn btn-primary">Register</button>
+</form>
