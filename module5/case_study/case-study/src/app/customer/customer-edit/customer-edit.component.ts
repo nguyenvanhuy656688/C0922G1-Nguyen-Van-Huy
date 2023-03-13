@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CustomerService} from "../../service/customer.service";
 import {CustomerTypeService} from "../../service/customer-type.service";
 import {Customer} from "../../model/customer";
+import {loadConfigurationFromPath} from "tslint/lib/configuration";
 
 @Component({
   selector: 'app-customer-edit',
@@ -33,9 +34,9 @@ export class CustomerEditComponent implements OnInit {
       gender: new FormControl(this.customer?.gender, [Validators.required]),
       idCard: new FormControl(this.customer?.idCard, [Validators.required]),
       phoneNumber: new FormControl(this.customer?.phoneNumber, [Validators.required]),
-      address: new FormControl(this.customer?.address, [Validators.required]),
+      address: new FormControl(this.customer?.address, [Validators.required,Validators.email]),
       email: new FormControl(this.customer?.email, [Validators.required]),
-      customerType: new FormControl(this.customer?.customerType)
+      customerType: new FormControl(null,[Validators.required])
     })
     this.customerTypeService.getAll().subscribe(next => {
       this.customerType = next;
@@ -51,9 +52,10 @@ export class CustomerEditComponent implements OnInit {
 
   edit() {
     this.customer = this.reactiveForm.value;
-    if (this.reactiveForm.valid) {
-      let temp = this.customerService.edit(this.customer.id, this.customer).subscribe(ok => {
-        if (temp != null) {
+    console.log(this.customer)
+    if (this.reactiveForm) {
+       let temp = this.customerService.edit(this.customer.id, this.customer).subscribe(ok => {
+        if (temp != null && ok) {
           alert('Chỉnh sửa thành công');
         }
         this.router.navigateByUrl('/customer');

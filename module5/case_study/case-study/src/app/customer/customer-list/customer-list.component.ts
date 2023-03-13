@@ -16,10 +16,6 @@ export class CustomerListComponent implements OnInit {
   removeCustomer: Customer={};
 
   constructor(private router:Router , private customerService:CustomerService , private  customerTypeService:CustomerTypeService) {
-    this.customerService.getAll().subscribe(data =>{
-      this.customerList = data
-      console.log(this.customerList)
-    })
     this.customerTypeService.getAll().subscribe(data =>{
       this.customerType = data
       console.log(this.customerType)
@@ -27,6 +23,10 @@ export class CustomerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.customerService.getAll().subscribe(data =>{
+      this.customerList = data
+      console.log(this.customerList)
+    })
   }
 
   searchForCustomerTypeAndName(nameSearch: string, customerTypeSearch: string):void {
@@ -44,6 +44,20 @@ export class CustomerListComponent implements OnInit {
   }
 
   deleteCustomer() {
+    let temp = this.customerService.delete(this.removeCustomer.id).subscribe(data => {
+      if (temp != null) {
+        alert('Đã xóa thành công');
+        this.ngOnInit()
+      } else {
+        alert('xóa không thành công');
+      }
+      this.router.navigateByUrl('/customer');
+    }, error => {
+
+    }, () => {
+
+    });
+
 
   }
 }

@@ -27,8 +27,8 @@ export class CustomerCreateComponent implements OnInit {
       idCard: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      customerType: new FormControl('')
+      email: new FormControl('', [Validators.required,Validators.email]),
+      customerType: new FormControl(null , [Validators.required])
     })
   }
 

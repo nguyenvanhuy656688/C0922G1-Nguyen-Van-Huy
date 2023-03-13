@@ -103,26 +103,12 @@
       "dateOfBirth": "2020/11/11",
       "gender": 1,
       "idCard": "054632178911",
-      "phoneNumber": "123456654",
+      "phoneNumber": "0905123456",
       "email": "xpham123456@gmail.com",
       "address": "Đà Nẵng",
       "customerType": {
         "id": 2,
         "name": "Bạch Kim"
-      }
-    },
-    {
-      "id": 2,
-      "name": "Nguyễn Lê Huy",
-      "dateOfBirth": "2020/11/11",
-      "gender": 2,
-      "idCard": "054632178911",
-      "phoneNumber": "123456654",
-      "email": "xpham123456@gmail.com",
-      "address": "Đà Nẵng",
-      "customerType": {
-        "id": 1,
-        "name": "Kim cương"
       }
     },
     {
@@ -137,20 +123,6 @@
       "customerType": {
         "id": 2,
         "name": "Bạch Kim"
-      }
-    },
-    {
-      "id": 4,
-      "name": "sakura555",
-      "dateOfBirth": "02/03/2122",
-      "gender": 1,
-      "idCard": "5896356545",
-      "phoneNumber": "0901234121",
-      "address": "64654654654",
-      "email": "xpham9668@gmail.com",
-      "customerType": {
-        "id": 1,
-        "name": "Kim cương"
       }
     },
     {
@@ -180,6 +152,36 @@
     {
       "id": 3,
       "name": "Vàng"
+    }
+  ],
+  "contract": [
+    {
+      "id": 1,
+      "startDay": "20/11/2001",
+      "endDay": "20/11/2002",
+      "cost": "30",
+      "customer": {
+        "id": 1,
+        "name": "Nguyễn Huy"
+      },
+      "facility": {
+        "id": 1,
+        "name":"Beach"
+      }
+    },
+    {
+      "id": 2,
+      "startDay": "18/11/2001",
+      "endDay": "20/11/2002",
+      "cost": "30",
+      "customer": {
+        "id": 1,
+        "name": "Nguyễn My"
+      },
+      "facility": {
+        "id": 1,
+        "name":"Beach"
+      }
     }
   ]
 }

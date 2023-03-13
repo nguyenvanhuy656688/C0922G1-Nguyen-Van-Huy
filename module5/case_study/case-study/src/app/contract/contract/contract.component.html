@@ -30,22 +30,22 @@
   </tr>
   </thead>
   <tbody>
-  <tr >
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+  <tr *ngFor="let contract of contractList , index as i">
+    <td>{{i+1}}</td>
+    <td>{{contract.customer.name}}</td>
+    <td>{{contract.facility.name}}</td>
+    <td>{{contract.startDay}}</td>
+    <td>{{contract.endDay}}</td>
+    <td>{{contract.cost}}</td>
+    <td>500000</td>
+
     <td>
       <!-- Button trigger modal -->
       <button  type="button"
               class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
         +
       </button>
-      <button  type="button" class="btn btn-primary"
+      <button style="margin-left: 10px"  type="button" class="btn btn-primary"
               data-bs-toggle="modal" data-bs-target="#exampleModal3">
         Danh sách dịch vụ đi kèm
       </button>
@@ -57,7 +57,7 @@
 
 <!-- Modal Thêm mới -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <form  method="post" >
+  <form  method="post" formGroup="">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">

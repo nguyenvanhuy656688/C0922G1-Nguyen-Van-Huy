@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {Facility} from "../model/facility";
 import {HttpClient} from "@angular/common/http";
+import {Customer} from "../model/customer";
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +28,8 @@ export class FacilityService {
     return this.httpClient.get<Facility[]>('http://localhost:3000/facility?name_like=' + nameSearch +'&customerType.name=' + facilityTypeSearch);
   }
 
+  create(facility: Facility) {
+    return this.httpClient.post<Facility>('http://localhost:3000/facility', facility);
+
+  }
 }

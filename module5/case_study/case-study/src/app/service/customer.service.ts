@@ -33,4 +33,8 @@ export class CustomerService {
   edit(id: number, customer: Customer) {
     return this.httpClient.patch<Customer>('http://localhost:3000/customers/' + id, customer);
   }
+
+  delete(id: number) {
+    return this.httpClient.delete<Customer>('http://localhost:3000/customers/' + id);
+  }
 }

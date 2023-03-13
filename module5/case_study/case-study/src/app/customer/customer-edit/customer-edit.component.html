@@ -3,20 +3,26 @@
   <div class="col-md-4"></div>
   <div id="form" class="col-md-6">
     <form [formGroup]="reactiveForm" (ngSubmit)="edit()">
-      <p class="col-md-6">
+      <input type="hidden" formControlName="id">
+      <div class="col-md-6">
         <label class="form-label">Name: </label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="Name" formControlName="name"/>
         </label>
-      </p>
-
-      <p class="col-md-6">
+        <p style="color: red" *ngIf="reactiveForm.controls.name.touched && reactiveForm.controls.name.hasError('required')">*Bắt buộc
+          nhập</p>
+      </div>
+      <br>
+      <div class="col-md-6">
         <label class="form-label">Date Of Birth: </label>
         <label>
-          <input type="text" name="idCard" class="form-control" placeholder="Day of birth"
+          <input type="date" name="dateOfBirth" class="form-control" placeholder="Day of birth"
                  formControlName="dateOfBirth"/>
         </label>
-      </p>
+        <p style="color: red" *ngIf="reactiveForm.controls.dateOfBirth.touched && reactiveForm.controls.dateOfBirth.hasError('required')">*Bắt buộc
+          nhập</p>
+      </div>
+      <br>
       <div class="col-md-6">
         <label class="form-label">Gender:</label>
         <br>
@@ -39,46 +45,58 @@
           <label class="form-check-label">other</label>
         </div>
       </div>
-
-      <p class="col-md-6">
+      <br>
+      <div class="col-md-6">
         <label class="form-label">ID Card:</label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="ID Card" formControlName="idCard"/>
         </label>
-      </p>
-
-      <p class="col-md-6">
+        <p style="color: red" *ngIf="reactiveForm.controls.idCard.touched && reactiveForm.controls.idCard.hasError('required')">*Bắt buộc
+          nhập</p>
+      </div>
+      <br>
+      <div class="col-md-6">
         <label class="form-label">Phone Number:</label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="Phone number"
                  formControlName="phoneNumber"/>
         </label>
-      </p>
-
-      <p class="col-md-6">
+        <p style="color: red" *ngIf="reactiveForm.controls.phoneNumber.touched && reactiveForm.controls.phoneNumber.hasError('required')">*Bắt buộc
+          nhập</p>
+      </div>
+      <br>
+      <div class="col-md-6">
         <label class="form-label">Email:</label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="Email" formControlName="email"/>
         </label>
-      </p>
-
-      <p class="col-md-6">
+        <p style="color: red" *ngIf="reactiveForm.controls.email.touched && reactiveForm.controls.email.hasError('required')">*Bắt buộc
+          nhập</p>
+        <p style="color: red" *ngIf="reactiveForm.controls.email.touched && reactiveForm.controls.email.hasError('email')">*Mời nhập đúng định dạng</p>
+      </div>
+      <br>
+      <div class="col-md-6">
         <label class="form-label">Address:</label>
         <label>
           <input type="text" name="idCard" class="form-control" placeholder="Address" formControlName="address"/>
         </label>
-      </p>
-      <p class="col-md-6">
+        <p style="color: red" *ngIf="reactiveForm.controls.address.touched && reactiveForm.controls.address.hasError('required')">*Bắt buộc
+          nhập</p>
+      </div>
+      <br>
+      <div class="col-md-6">
         <label class="form-label">Customer Type:</label>
         <label>
           <select class="form-select" formControlName="customerType">
-            <option value="">--Please Choose customerType--</option>
+            <option [selected]="true" [value]="null">--Please Choose customerType--</option>
             <option *ngFor="let customerType of customerType" [ngValue]="customerType">{{customerType.name}}</option>
           </select>
         </label>
-      </p>
+        <p style="color: red" *ngIf="reactiveForm.controls.customerType.touched && reactiveForm.controls.customerType.hasError('required')">*Bắt buộc
+          nhập</p>
+      </div>
       <br>
-      <input type="submit" class="btn btn-outline-primary" value="Save"/>
+      <input  type="submit" class="btn btn-outline-primary" value="Save"/>
     </form>
   </div>
   <div class="col-md-2"></div>
