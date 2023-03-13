@@ -1,0 +1,5 @@
+<p>page works!</p>
+<div *ngFor="let dictionary of dictionaryList" >
+  <a  routerLink="/dictionary/detail/{{dictionary.word}}">{{dictionary.word}}</a>
+</div>
+
