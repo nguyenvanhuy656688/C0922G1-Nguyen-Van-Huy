@@ -29,11 +29,11 @@ export class CustomerEditComponent implements OnInit {
     })
     this.reactiveForm = new FormGroup({
       id: new FormControl(this.customer?.id),
-      name: new FormControl(this.customer?.name, [Validators.required]),
+      name: new FormControl(this.customer?.name, [Validators.required,Validators.pattern('^[A-Z][a-z]*( [A-Z][a-z]*)*$')]),
       dateOfBirth: new FormControl(this.customer?.dateOfBirth, [Validators.required]),
       gender: new FormControl(this.customer?.gender, [Validators.required]),
-      idCard: new FormControl(this.customer?.idCard, [Validators.required]),
-      phoneNumber: new FormControl(this.customer?.phoneNumber, [Validators.required]),
+      idCard: new FormControl(this.customer?.idCard, [Validators.required,Validators.pattern('^[0-9]{9}$|^[0-9]{12}$')]),
+      phoneNumber: new FormControl(this.customer?.phoneNumber, [Validators.required,Validators.pattern('^09\d{8}$')]),
       address: new FormControl(this.customer?.address, [Validators.required,Validators.email]),
       email: new FormControl(this.customer?.email, [Validators.required]),
       customerType: new FormControl(null,[Validators.required])

@@ -23,16 +23,16 @@ export class FacilityEditComponent implements OnInit {
 
   reactiveForm: FormGroup = new FormGroup({
     id: new FormControl(),
-    name: new FormControl(this.facility?.name, [Validators.required]),
+    name: new FormControl(this.facility?.name, [Validators.required,Validators.pattern('^[A-Z][a-z]*( [A-Z][a-z]*)*$')]),
     area: new FormControl(this.facility?.area, [Validators.required]),
     image: new FormControl(this.facility?.image, [Validators.required]),
     cost: new FormControl(this.facility?.cost, [Validators.required]),
     maxPeople: new FormControl(this.facility?.standardRoom, [Validators.required]),
     standardRoom: new FormControl(this.facility?.standardRoom, [Validators.required, Validators.min(0), Validators.max(1)]),
-    descriptionOfOtherConvenience: new FormControl(this.facility?.descriptionOfOtherConvenience),
-    poolArea: new FormControl(this.facility?.poolArea),
-    numberOfFloors: new FormControl(this.facility?.numberOfFloors),
-    attachFacility: new FormControl(this.facility?.attachFacility),
+    descriptionOfOtherConvenience: new FormControl(this.facility?.descriptionOfOtherConvenience,[Validators.required]),
+    poolArea: new FormControl(this.facility?.poolArea,[Validators.required]),
+    numberOfFloors: new FormControl(this.facility?.numberOfFloors,[Validators.required]),
+    attachFacility: new FormControl(this.facility?.attachFacility,Validators.required),
     rentType: new FormControl(this.facility?.rentType, [Validators.required]),
     facilityType: new FormControl(this.facility?.facilityType, [Validators.required]),
   });

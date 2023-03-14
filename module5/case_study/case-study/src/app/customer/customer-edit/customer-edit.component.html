@@ -11,6 +11,7 @@
         </label>
         <p style="color: red" *ngIf="reactiveForm.controls.name.touched && reactiveForm.controls.name.hasError('required')">*Bắt buộc
           nhập</p>
+        <p style="color: red" *ngIf="reactiveForm.controls.name.touched && reactiveForm.controls.name.hasError('pattern')">*Vui lòng nhập tên không chứa số và viết Hoa chữ cái đầu mỗi từ</p>
       </div>
       <br>
       <div class="col-md-6">
@@ -53,6 +54,7 @@
         </label>
         <p style="color: red" *ngIf="reactiveForm.controls.idCard.touched && reactiveForm.controls.idCard.hasError('required')">*Bắt buộc
           nhập</p>
+        <p style="color: red" *ngIf="reactiveForm.controls.idCard.touched && reactiveForm.controls.idCard.hasError('pattern')">*Vui lòng nhập đúng CMND/CCCD</p>
       </div>
       <br>
       <div class="col-md-6">
@@ -63,6 +65,7 @@
         </label>
         <p style="color: red" *ngIf="reactiveForm.controls.phoneNumber.touched && reactiveForm.controls.phoneNumber.hasError('required')">*Bắt buộc
           nhập</p>
+        <p style="color: red" *ngIf="reactiveForm.controls.phoneNumber.touched && reactiveForm.controls.phoneNumber.hasError('pattern')">*Vui lòng nhập đúng SDT</p>
       </div>
       <br>
       <div class="col-md-6">

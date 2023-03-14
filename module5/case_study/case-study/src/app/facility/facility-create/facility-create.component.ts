@@ -22,16 +22,16 @@ export class FacilityCreateComponent implements OnInit {
 
   reactiveForm:FormGroup = new FormGroup({
     id: new FormControl(),
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required,Validators.pattern('^[A-Z][a-z]*( [A-Z][a-z]*)*$')]),
     area: new FormControl('', [Validators.required]),
     image: new FormControl('', [Validators.required]),
     cost: new FormControl('', [Validators.required]),
     maxPeople: new FormControl('', [Validators.required]),
     standardRoom: new FormControl('', [Validators.required,Validators.min(0),Validators.max(1)]),
-    descriptionOfOtherConvenience: new FormControl(),
-    poolArea: new FormControl(""),
-    numberOfFloors: new FormControl(),
-    attachFacility: new FormControl(),
+    descriptionOfOtherConvenience: new FormControl("",[Validators.required]),
+    poolArea: new FormControl("",[Validators.required,Validators.min(30)]),
+    numberOfFloors: new FormControl("",[Validators.required,Validators.min(1)]),
+    attachFacility: new FormControl("",[Validators.required]),
     rentType: new FormControl(null, [Validators.required]),
     facilityType: new FormControl(null, [Validators.required]),
   });

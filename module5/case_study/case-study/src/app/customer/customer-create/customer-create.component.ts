@@ -21,11 +21,11 @@ export class CustomerCreateComponent implements OnInit {
     })
     this.reactiveForm = new FormGroup({
       id: new FormControl(''),
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required,Validators.pattern('^[A-Z][a-z]*( [A-Z][a-z]*)*$')]),
       dateOfBirth: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
-      idCard: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required]),
+      idCard: new FormControl('', [Validators.required,Validators.pattern('^[0-9]{9}$|^[0-9]{12}$')]),
+      phoneNumber: new FormControl('', [Validators.required,Validators.pattern('^09\d{8}$')]),
       address: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required,Validators.email]),
       customerType: new FormControl(null , [Validators.required])
