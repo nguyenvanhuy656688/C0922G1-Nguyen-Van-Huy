@@ -37,7 +37,7 @@
     <td>{{contract.startDay}}</td>
     <td>{{contract.endDay}}</td>
     <td>{{contract.cost}}</td>
-    <td>500000</td>
+    <td>{{contract.total}}</td>
 
     <td>
       <!-- Button trigger modal -->
@@ -57,7 +57,7 @@
 
 <!-- Modal Thêm mới -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <form  method="post" formGroup="">
+  <form  method="post" [formGroup]="reactiveForm" (ngSubmit)="create()">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -66,47 +66,51 @@
         </div>
         <div class="modal-body">
           <div class="mb-3 row">
-            <label for="start_day" class="col-sm-3 col-form-label ">Ngày bắt đầu</label>
+            <label for="start_day" class="col-sm-3 col-form-label " >Ngày bắt đầu</label>
             <div class="col-sm-9">
-              <input type="date" class="form-control" id="start_day">
+              <input formControlName="startDay" type="date" class="form-control" id="start_day">
               <p style="color: red" ></p>
             </div>
           </div>
           <div class="mb-3 row">
             <label for="end_day" class="col-sm-3 col-form-label">Ngày kết thúc</label>
             <div class="col-sm-9">
-              <input type="date" class="form-control" id="end_day" >
+              <input formControlName="endDay" type="date" class="form-control" id="end_day" >
               <p style="color: red" ></p>
             </div>
           </div>
           <div class="mb-3 row">
             <label for="money" class="col-sm-3 col-form-label">Tiền đặt cọc</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="money" >
+              <input formControlName="cost" type="text" class="form-control" id="money" >
               <p style="color: red"></p>
             </div>
           </div>
           <div class="mb-3 row">
             <label for="total" class="col-sm-3 col-form-label">Tổng tiền</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="total" >
+              <input formControlName="total" type="text" class="form-control" id="total" >
               <p style="color: red" ></p>
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Khách hàng thuê dịch vụ</label>
             <div class="col-sm-9">
-              <select class="form-control" >
-                <option></option>
-              </select>
+              <label>
+                <select class="form-control" formControlName="customer">
+                  <option *ngFor="let customer of customerList" [ngValue]="customer">{{customer.name}}</option>
+                </select>
+              </label>
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Dịch vụ</label>
             <div class="col-sm-9">
-              <select class="form-control" >
-                <option></option>
-              </select>
+              <label>
+                <select class="form-control" formControlName="facility">
+                  <option *ngFor="let facility of facilityList" [ngValue]="facility">{{facility.name}}</option>
+                </select>
+              </label>
             </div>
           </div>
         </div>

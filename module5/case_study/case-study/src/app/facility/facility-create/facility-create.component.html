@@ -9,10 +9,10 @@
         <div class="col-md-6">
           <label>Facility Type:</label>
           <label class="form-label">
-            <select class="form-select" formControlName="facilityType">
+            <select class="form-select" formControlName="facilityType" (change)="checkFacilityType()">
               <option [selected]="true" [value]="null">*Vui lòng chọn kiểu dịch vụ</option>
-              <option *ngFor="let facilityType of facilityType" [ngValue]="facilityType"
-                      (change)="checkFacilityType()">{{facilityType.name}} </option>
+              <option *ngFor="let facilityType of facilityType" [ngValue]="facilityType.id"
+                      >{{facilityType.name}} </option>
             </select>
           </label>
           <p style="color: red"

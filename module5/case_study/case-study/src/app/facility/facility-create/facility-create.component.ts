@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {RentType} from "../../model/rent-type";
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {FacilityType} from "../../model/facility-type";
 import {Router} from "@angular/router";
 import {RentTypeService} from "../../service/rent-type.service";
 import {FacilityTypeService} from "../../service/facility-type.service";
-import {Customer} from "../../model/customer";
 import {Facility} from "../../model/facility";
 import {FacilityService} from "../../service/facility.service";
 
@@ -69,9 +68,7 @@ export class FacilityCreateComponent implements OnInit {
   }
 
   checkFacilityType() {
-    const check = this.reactiveForm.controls.facilityType.value
-    this.idCheck = check.id
-
+    this.idCheck = this.reactiveForm.controls.facilityType.value
   }
 
 

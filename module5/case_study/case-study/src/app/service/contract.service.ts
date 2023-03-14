@@ -14,4 +14,8 @@ export class ContractService {
   getAll():Observable<Contract[]> {
     return this.httpClient.get<Contract[]>('http://localhost:3000/contract')
   }
+
+  create(contract:Contract) {
+    return this.httpClient.post<Contract>('http://localhost:3000/contract',contract)
+  }
 }

@@ -34,7 +34,7 @@
   "facility": [
     {
       "id": 1,
-      "name": "Beach",
+      "name": "Beach Green",
       "area": "50000",
       "cost": "100",
       "image": "https://khachsanvietnam.com.vn/vnt_upload/news/09_2022/Furama.jpg",
@@ -94,6 +94,24 @@
       "poolArea": 500,
       "numberOfFloors": 3,
       "attachFacility": "10 nhà vệ sinh"
+    },
+    {
+      "id": 4,
+      "name": "VIP BEACH",
+      "area": "12",
+      "image": "https://fantasea.vn/wp-content/uploads/2017/10/Furama-%C4%90%C3%A0-N%E1%BA%B5ng-Resort.jpg",
+      "cost": "123",
+      "maxPeople": 6,
+      "standardRoom": 1,
+      "descriptionOfOtherConvenience": "có 5 nhà vệ sinh",
+      "poolArea": 500,
+      "numberOfFloors": 4,
+      "attachFacility": "sdsd",
+      "rentType": {
+        "id": 3,
+        "name": "Day"
+      },
+      "facilityType": 1
     }
   ],
   "customers": [
@@ -113,7 +131,7 @@
     },
     {
       "id": 3,
-      "name": "My My cute",
+      "name": "My cute",
       "dateOfBirth": "2023-02-02",
       "gender": 1,
       "idCard": "5896356545",
@@ -166,7 +184,7 @@
       },
       "facility": {
         "id": 1,
-        "name":"Beach"
+        "name": "Beach"
       }
     },
     {
@@ -180,7 +198,49 @@
       },
       "facility": {
         "id": 1,
-        "name":"Beach"
+        "name": "Beach"
+      }
+    },
+    {
+      "id": 3,
+      "startDay": "2023-03-09",
+      "endDay": "2023-03-23",
+      "cost": "123",
+      "total": "123",
+      "customer": {
+        "id": 3,
+        "name": "My cute",
+        "dateOfBirth": "2023-02-02",
+        "gender": 1,
+        "idCard": "5896356545",
+        "phoneNumber": "0901234121",
+        "address": "64654654654",
+        "email": "xpham9668@gmail.com",
+        "customerType": {
+          "id": 2,
+          "name": "Bạch Kim"
+        }
+      },
+      "facility": {
+        "id": 1,
+        "name": "Beach Green",
+        "area": "50000",
+        "cost": "100",
+        "image": "https://khachsanvietnam.com.vn/vnt_upload/news/09_2022/Furama.jpg",
+        "maxPeople": "15",
+        "rentType": {
+          "id": 1,
+          "name": "Year"
+        },
+        "standardRoom": 1,
+        "facilityType": {
+          "id": 1,
+          "name": "Villa"
+        },
+        "descriptionOfOtherConvenience": "Nhà 5 lầu",
+        "poolArea": 500,
+        "numberOfFloors": 3,
+        "attachFacility": "10 nhà vệ sinh"
       }
     }
   ]

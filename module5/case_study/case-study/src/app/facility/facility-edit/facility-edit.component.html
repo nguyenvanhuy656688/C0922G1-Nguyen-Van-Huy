@@ -3,67 +3,101 @@
   <div  class="col-md-4">
     <button routerLink="/facility" class="btn btn-outline-primary">Danh sách</button>
   </div>
+  <br>
   <div  class="col-md-8">
     <div style="text-align: center;justify-content: center" >
       <form [formGroup]="reactiveForm" (ngSubmit)="edit()">
         <input type="hidden" formControlName="id">
-        <p class="col-md-6" style="text-align: center">
+        <div class="col-md-6">
+          <label>Facility Type:</label>
+          <label class="form-label">
+            <select class="form-select" formControlName="facilityType" (change)="checkFacilityType()">
+              <option [selected]="true" [value]="null">*Vui lòng chọn kiểu dịch vụ</option>
+              <option *ngFor="let facilityType of facilityType" [ngValue]="facilityType.id"
+              >{{facilityType.name}} </option>
+            </select>
+          </label>
+          <p style="color: red"
+             *ngIf="reactiveForm.controls.facilityType.untouched && reactiveForm.controls.facilityType.hasError('required')">
+            Bắt buộc chọn</p>
+        </div>
+        <div class="col-md-6" style="text-align: center">
           <label class="form-label" for="name">Name:</label>
           <input class="form-control" type="text" id="name" formControlName="name">
-        </p>
-        <p class="col-md-6">
+          <p style="color: red" *ngIf="reactiveForm.controls.name.touched && reactiveForm.controls.name.hasError('required')">*Bắt buộc nhập</p>
+        </div>
+        <div class="col-md-6">
           <label for="area">Area:</label>
           <input class="form-control" type="text" id="area" formControlName="area">
-        </p>
-        <p class="col-md-6">
+          <p style="color: red" *ngIf="reactiveForm.controls.area.touched && reactiveForm.controls.area.hasError('required')">*Bắt buộc nhập</p>
+        </div>
+        <div class="col-md-6">
           <label for="image">Img:</label>
-          <input class="form-control" type="text" id="image" formControlName="image" placeholder="dán link ảnh bạn muốn">
-        </p>
-        <p class="col-md-6">
+          <input class="form-control" type="text" id="image" formControlName="image"
+                 placeholder="dán link ảnh bạn muốn">
+          <p style="color: red" *ngIf="reactiveForm.controls.image.touched && reactiveForm.controls.image.hasError('required')">*Bắt buộc
+            nhập</p>
+        </div>
+        <div class="col-md-6">
           <label for="cost">Cost:</label>
           <input class="form-control" type="text" id="cost" formControlName="cost">
-        </p>
-        <p class="col-md-6">
+          <p style="color: red" *ngIf="reactiveForm.controls.cost.touched && reactiveForm.controls.cost.hasError('required')">*Bắt buộc nhập</p>
+        </div>
+        <div class="col-md-6">
           <label for="maxPeople">Max People:</label>
           <input class="form-control" type="number" id="maxPeople" formControlName="maxPeople">
-        </p>
-        <p class="col-md-6">
+          <p style="color: red" *ngIf="reactiveForm.controls.maxPeople.touched && reactiveForm.controls.maxPeople.hasError('required')">*Bắt
+            buộc nhập</p>
+        </div>
+        <div class="col-md-6">
           <label for="standardRoom">standardRoom:</label>
           <input class="form-control" type="number" id="standardRoom" formControlName="standardRoom">
-        </p>
-        <p class="col-md-6">
+          <p style="color: red" *ngIf="reactiveForm.controls.standardRoom.touched && reactiveForm.controls.standardRoom.hasError('required')">*Bắt buộc
+            nhập</p>
+          <p style="color: red" *ngIf="reactiveForm.controls.standardRoom.touched && reactiveForm.controls.standardRoom.hasError('min')">*Min 0 = VIP</p>
+          <p style="color: red" *ngIf="reactiveForm.controls.standardRoom.touched && reactiveForm.controls.standardRoom.hasError('max')">*Max 1 = Normal</p>
+        </div>
+        <br>
+        <div class="col-md-6">
           <label class="form-label">Rent Type:</label>
           <label>
             <select class="form-select" formControlName="rentType">
-              <option *ngFor="let rentType of rentType" [ngValue]="rentType">{{rentType.name}}}</option>
+              <option [selected]="true" [value]="null">*Vui lòng chọn kiểu thuê</option>
+              <option *ngFor="let rentType of rentType" [ngValue]="rentType">{{rentType.name}}</option>
             </select>
           </label>
-        </p>
-        <p class="col-md-6">
-          <label>Facility Type:</label>
-          <label class="form-label">
-            <select class="form-select" formControlName="rentType">
-              <option *ngFor="let facilityType of facilityType" [ngValue]="facilityType">{{facilityType.name}}}</option>
-            </select>
-          </label>
-        </p>
+          <p style="color: red" *ngIf="reactiveForm.controls.rentType.untouched && reactiveForm.controls.rentType.hasError('required')">*Bắt
+            buộc chọn</p>
+        </div>
         <p class="col-md-6">
           <label class="form-label" for="descriptionOfOtherConvenience">Description:</label>
-          <input class="form-control" type="text" id="descriptionOfOtherConvenience" formControlName="descriptionOfOtherConvenience">
+          <input class="form-control" type="text" id="descriptionOfOtherConvenience"
+                 formControlName="descriptionOfOtherConvenience">
         </p>
-        <p class="col-md-6">
+        <div class="col-md-6" *ngIf="idCheck == 1">
+          <p>{{mess}}</p>
           <label class="form-label" for="poolArea">Area of pool:</label>
-          <input class="form-control" type="number" id="poolArea" formControlName="poolArea">
-        </p>
-        <p class="col-md-6">
+          <input  #poolArea (change)="checkPool(poolArea.value)"
+                  class="form-control" type="number" id="poolArea" formControlName="poolArea">
+          <p *ngIf="reactiveForm.controls.poolArea.dirty && reactiveForm.controls.poolArea?.hasError('nullPoolArea')">
+            *vui lòng nhập diện tích cho hồ bơi</p>
+        </div>
+        <div class="col-md-6" *ngIf="idCheck == 1 || idCheck == 2">
+          <p>{{mess}}</p>
           <label class="form-label" for="numberOfFloors">Number of Floors:</label>
-          <input class="form-control" type="number" id="numberOfFloors" formControlName="numberOfFloors">
-        </p>
-        <p class="col-md-6">
-          <label class="form-label" for="attachFacility">Attach Facility:</label>
-          <input class="form-control" type="text" id="attachFacility" formControlName="attachFacility">
-        </p>
-        <button style="text-align: left"  class="btn btn-info" type="submit">Edit</button>
+          <input  #floor (change)="checkFloor(floor.value)" class="form-control" type="number"
+                  id="numberOfFloors" formControlName="numberOfFloors">
+          <p style="color: red"
+             *ngIf="reactiveForm.controls.numberOfFloors.dirty && reactiveForm.controls.numberOfFloors?.hasError('nullFloor')">
+            *vui lòng nhập số tầng</p>
+        </div>
+        <div>
+          <p class="col-md-6">
+            <label class="form-label" for="attachFacility">Attach Facility:</label>
+            <input class="form-control" type="text" id="attachFacility" formControlName="attachFacility">
+          </p>
+        </div>
+        <button [disabled]="reactiveForm.invalid" style="text-align: left" class="btn btn-info" type="submit">Save</button>
       </form>
     </div>
   </div>

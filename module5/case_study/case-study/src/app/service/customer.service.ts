@@ -16,18 +16,18 @@ export class CustomerService {
   }
 
   searchName(nameSearch: string) {
-    return this.httpClient.get<Facility[]>('http://localhost:3000/customers?name_like=' + nameSearch);
+    return this.httpClient.get<Customer[]>('http://localhost:3000/customers?name_like=' + nameSearch);
   }
 
   customerTypeAndNameSearch(nameSearch: string, customerTypeSearch: string) {
-    return this.httpClient.get<Facility[]>('http://localhost:3000/customers?name_like=' + nameSearch +'&customerType.name=' + customerTypeSearch);
+    return this.httpClient.get<Customer[]>('http://localhost:3000/customers?name_like=' + nameSearch +'&customerType.name=' + customerTypeSearch);
   }
   create(customer: Customer) {
     return this.httpClient.post<Customer>('http://localhost:3000/customers', customer);
   }
 
   findById(id: number) {
-    return this.httpClient.get<Facility[]>('http://localhost:3000/customers/' + id);
+    return this.httpClient.get<Customer>('http://localhost:3000/customers/' + id);
   }
 
   edit(id: number, customer: Customer) {

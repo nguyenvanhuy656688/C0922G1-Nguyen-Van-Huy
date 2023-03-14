@@ -5,7 +5,8 @@ export interface Contract {
   id?: number,
   startDay?: string,
   endDay?: string,
-  cost: string,
+  cost?: string,
+  total?: string
   customer: Customer,
   facility: Facility
 }

@@ -1,11 +1,11 @@
 <h2 style="font-size: 60px; text-align: center">Facility Management</h2>
-<div class="row">
+<div class="row container">
   <form>
     <input type="hidden" value="create" name="action">
     <button routerLink="/facility/create" class="btn btn-outline-primary">Thêm Mới</button>
   </form>
 </div>
-<div class="row">
+<div class="row container">
   <form class="d-flex animationTop delay-02" role="search" style="float: left; font-size: 17px; margin-top: 14px">
     <input class="form-control me-2" #nameSearch type="search" placeholder="Search By Name" aria-label="Search">
     <select class="form-select animationTop delay-03" aria-label="Default select example" #typeSearch
@@ -19,11 +19,11 @@
   </form>
 </div>
 <br> <br>
-<div class="container">
-  <div class="list " style="margin-left: 150px">
-    <div class="item" *ngFor="let facility of facilityList">
+<div class="container" >
+  <div class="list row " style="margin-left: 10px">
+    <div class="item col-6" *ngFor="let facility of facilityList">
       <div class="img">
-        <img style="width: 40%; margin-top: 10px" [src]="facility.image" alt="Anh">
+        <img style="width: 70%; margin-top: 10px" [src]="facility.image" alt="Anh">
       </div>
       <div class="content">
         <div class="category">Facility</div>
@@ -33,11 +33,12 @@
         <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="cursor: pointer"
                 (click)="temp = facility">Xem Thêm
         </button>
-        <button style="margin-left: 10px" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="temp = facility" type="button"
+        <button style="margin-left: 10px" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="temp = facility" type="button"
                 class="addCard btn btn-danger">Delete
         </button>
         <button style="margin-left: 10px"
-          class="btn btn-info" [routerLink]="['/facility/edit',facility.id]">Edit
+                class="btn btn-info" [routerLink]="['/facility/edit',facility.id]">Edit
         </button>
       </div>
     </div>
