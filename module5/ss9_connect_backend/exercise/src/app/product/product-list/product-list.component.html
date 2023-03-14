@@ -1,0 +1,39 @@
+<h2 style="font-size: 60px; text-align: center">Product Management</h2>
+<div id="main" class="row">
+  <div class="container">
+    <section id="content">
+      <div class="table-responsive">
+        <div class="table-wrapper">
+          <table class="alt table  table-hover container">
+            <thead>
+            <tr>
+              <th>NO</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th >Edit</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let product of productList, let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.description}}</td>
+              <td>{{product.category.name}}</td>
+              <td>
+                <button style="margin-right: 50px" class="btn btn-primary"
+                        [routerLink]="['/product/edit',product.id]">Edit
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+

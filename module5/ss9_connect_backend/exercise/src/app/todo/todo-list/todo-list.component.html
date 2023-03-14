@@ -1,0 +1,68 @@
+<p>todo-list works!</p>
+
+<form [formGroup]="createForm" (ngSubmit)="create()">
+  <label>
+    <input type="text" formControlName="status">
+  </label>
+  <input type="submit" value="save">
+</form>
+
+<div *ngFor="let todo of todoList">
+  <p><span>Id:</span>{{todo.id}}</p>
+  <p><span>status:</span>{{todo.status}}</p>
+  <p>
+    <button type="button" class="btn btn-danger" (click)=" deleteTodo = todo"
+            data-bs-toggle="modal" data-bs-target="#deleteModal">
+      Delete
+    </button>
+  </p>
+  <span>
+     <button type="button" class="btn btn-danger" (click)=" deleteTodo = todo"
+             data-bs-toggle="modal" data-bs-target="#editModal">
+      Edit
+    </button>
+  </span>
+
+
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <span>Do you want to delete  </span><span style="color: red">{{deleteTodo.id}}</span><span>  ?</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="delete()" data-bs-dismiss="modal" class="btn btn-danger">
+            Xóa
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <form class="modal-content" [formGroup]="editForm" (ngSubmit)="edit()">
+        <h5 class="modal-title" id="exampleModalLabel1">Edit</h5>
+        <input type="hidden" formControlName="id">
+        <div class="col-md-6">
+          <input type="text" class="btn-close" formControlName="status" aria-label="Close">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit"  data-bs-dismiss="modal" class="btn btn-danger">
+            Edit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

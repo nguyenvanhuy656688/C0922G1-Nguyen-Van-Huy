@@ -1,0 +1,56 @@
+{
+  "todo": [
+    {
+      "id": 2,
+      "status": "lol123454546"
+    },
+    {
+      "id": 3,
+      "status": "lol123454546"
+    }
+  ],
+
+  "product": [
+    {
+    "id": 1,
+    "name": "Iphone",
+    "price": 50,
+    "description": "256gb",
+      "category": {
+        "id": 2,
+        "name": "Normal"
+      }
+  },
+    {
+      "id": 2,
+      "name": "Iphone",
+      "price": 50,
+      "description": "256gb",
+      "category": {
+        "id": 1,
+        "name": "Vip"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Iphone",
+      "price": 50,
+      "description": "256gb",
+      "category": {
+        "id": 1,
+        "name": "Vip"
+      }
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "name": "Vip"
+    },
+    {
+      "id": 2,
+      "name": "Normal"
+    }
+  ]
+
+}
