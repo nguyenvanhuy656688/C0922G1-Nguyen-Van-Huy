@@ -4,9 +4,16 @@ import {ProductEditComponent} from "./product/product-edit/product-edit.componen
 import {ProductListComponent} from "./product/product-list/product-list.component";
 
 
+
 const routes: Routes = [
   {path:'product/edit/:id',component:ProductEditComponent},
-  {path:'',component:ProductListComponent}
+  {path:'product/list',component:ProductListComponent},
+  {path:'todo/list',component:ProductListComponent},
+
+  {
+    path: 'product',
+    loadChildren: () => import('./product-list/product-list.module').then(module => module.ProductModule)
+  },
 ];
 
 @NgModule({

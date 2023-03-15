@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import {SharedModule} from "./product/shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
