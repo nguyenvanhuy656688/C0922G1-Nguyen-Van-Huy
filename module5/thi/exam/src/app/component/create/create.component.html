@@ -1,0 +1,96 @@
+<h1 style="text-align: center ; color: #0dcaf0">Thêm xe</h1>
+<br>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div id="form" class="col-md-6">
+    <form [formGroup]="formThem" (ngSubmit)="them()">
+      <div class="col-md-6">
+        <label class="form-label">Số xe : </label>
+        <label>
+          <input type="text"  class="form-control" formControlName="soXe" placeholder="Nhập số xe"/>
+        </label>
+        <p style="color: red" *ngIf="formThem.controls.soXe.hasError('required') && formThem.controls.soXe.touched">*Không được để trống</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Loại xe :</label>
+        <label>
+          <select class="form-select" formControlName="loaiXe" >
+            <option [selected]="true" [value]="null">--Chọn loại xe--</option>
+            <option *ngFor="let loaiXe of danhSachLoaiXe" [ngValue]="loaiXe">{{loaiXe?.ten}}</option>
+          </select>
+        </label>
+        <p style="color: red" *ngIf="formThem.controls.diemDi.hasError('required') && formThem.controls.diemDi.touched">*Không được để trống</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Tên nhà xe: </label>
+        <label>
+          <input type="text"  class="form-control" formControlName="tenNhaXe" placeholder="Nhập tên nhà xe"/>
+        </label>
+        <p style="color: red" *ngIf="formThem.controls.tenNhaXe.hasError('required') && formThem.controls.tenNhaXe.touched">*Không được để trống</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Điểm đi :</label>
+        <label>
+          <select class="form-select" formControlName="diemDi">
+            <option [value]="null" [selected]="true">--Chọn điểm đi--</option>
+            <option *ngFor="let diemDi of danhSachDiemDen" [ngValue]="diemDi">{{diemDi?.ten}}</option>
+          </select>
+        </label>
+        <p style="color: red" *ngIf="formThem.controls.diemDi.hasError('required') && formThem.controls.diemDi.touched">*Không được để trống</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Điểm đến :</label>
+        <label>
+          <select class="form-select" formControlName="diemDen" >
+            <option [value]="null" [selected]="true">--Chọn điểm đến--</option>
+            <option *ngFor="let diemDen of danhSachDiemDen" [ngValue]="diemDen">{{diemDen?.ten}}</option>
+          </select>
+        </label>
+        <p style="color: red" *ngIf="formThem.controls.diemDen.hasError('required') && formThem.controls.diemDen.touched">*Không được để trống</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Số điện thoại : </label>
+        <label>
+          <input type="text"  class="form-control" formControlName="soDienThoai" placeholder="Nhập số điện thoại"/>
+        </label>
+        <p style="color: red" *ngIf="formThem.controls.soDienThoai.hasError('required') && formThem.controls.soDienThoai.touched">*Không được để trống</p>
+        <p style="color: red" *ngIf="formThem.controls.soDienThoai.hasError('pattern') && formThem.controls.soDienThoai.touched">*Mời nhập SDT có 3 số đầu: 093 hoặc 097 hoặc 090 </p>
+      </div>
+      <br>
+
+      <div class="col-md-6">
+        <label class="form-label">Email : </label>
+        <label>
+          <input type="text"  class="form-control" formControlName="email" placeholder="Nhập email"/>
+        </label>
+        <p style="color: red" *ngIf="formThem.controls.email.hasError('required') && formThem.controls.email.touched">*Không được để trống</p>
+        <p style="color: red" *ngIf="formThem.controls.email.hasError('email') && formThem.controls.email.touched">*Vui lòng nhập đúng định dạng email</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Giờ đi : </label>
+        <label>
+          <input type="text"  class="form-control" formControlName="gioDi" placeholder="Nhập email"/>
+        </label>
+        <p style="color: red" *ngIf="formThem.controls.gioDi.hasError('required') && formThem.controls.gioDi.touched">*Không được để trống</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Giờ đến : </label>
+        <label>
+          <input type="text"  class="form-control" formControlName="gioDen" placeholder="Nhập email"/>
+        </label>
+        <p style="color: red" *ngIf="formThem.controls.gioDen.hasError('required') && formThem.controls.gioDen.touched">*Không được để trống</p>
+      </div>
+      <br>
+      <input class="btn btn-outline-primary" type="button" routerLink="/" value="Trở về danh sách">
+      <input style="margin-left: 20px" type="submit" class="btn btn-outline-primary" value="Thêm mới"/>
+    </form>
+  </div>
+  <div class="col-md-2"></div>
+</div>

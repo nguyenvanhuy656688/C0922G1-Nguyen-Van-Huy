@@ -1,0 +1,83 @@
+<h1 style="font-size: 60px; text-align: center">Danh sách xe đăng ký ở bến</h1>
+
+<br>
+<div id="main" class="row">
+  <div class="container">
+    <header class="major">
+      <h5>
+        <button style="margin-left: 25px" routerLink="/xe/them" class="btn btn-danger">Thêm mới</button>
+      </h5>
+    </header>
+    <section id="content">
+      <div class="table-responsive">
+        <div class="table-wrapper">
+          <table class="alt table  table-hover container">
+            <thead>
+            <tr>
+              <th>STT</th>
+              <th>Số xe</th>
+              <th>Loại xe</th>
+              <th>Tên Nhà Xe</th>
+              <th>Điểm đi</th>
+              <th>Điểm đến</th>
+              <th>Số điện thoại</th>
+              <th>email</th>
+              <th>Giờ đi</th>
+              <th>Giờ đến</th>
+              <th colspan="2" style="text-align: center">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let xe of danhSachXe | paginate:{itemsPerPage:3 , currentPage: trang} , let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{xe.soXe}}</td>
+              <td>{{xe.loaiXe.ten}}</td>
+              <td>{{xe.tenNhaXe}}</td>
+              <td>{{xe.diemDi.ten}}</td>
+              <td>{{xe.diemDen.ten}}</td>
+              <td>{{xe.soDienThoai}}</td>
+              <td>{{xe.email}}</td>
+              <td>{{xe.gioDi}}</td>
+              <td>{{xe.gioDen}}</td>
+              <td>
+                <button style="margin-right: 50px" class="btn btn-primary"
+                        [routerLink]="['/xe/sua/', xe.id] ">Chỉnh sửa
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)=" xoa = xe"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">Xóa
+                </button>
+              </td>
+              <!--              Modal Xóa-->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                   aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <span>Bạn có muốn xóa thông tin xe khách có số xe:</span><span
+                      style="color: red"></span><span style="color:red;"> {{xoa?.soXe}}?</span>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" (click)="xoaXe()" data-bs-dismiss="modal" class="btn btn-danger">
+                        Xóa
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="trang = $event"></pagination-controls>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+

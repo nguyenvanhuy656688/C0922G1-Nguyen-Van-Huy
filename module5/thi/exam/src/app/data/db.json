@@ -1,0 +1,158 @@
+{
+  "xe": [
+    {
+      "id": 4,
+      "soXe": 1231,
+      "loaiXe": {
+        "id": 1,
+        "ten": "Giường nằm"
+      },
+      "tenNhaXe": "Mai Linh",
+      "diemDi": {
+        "id": 1,
+        "ten": "Đà Nẵng"
+      },
+      "diemDen": {
+        "id": 1,
+        "ten": "Hà Nội"
+      },
+      "soDienThoai": "0905145698",
+      "email": "mailinh@gmail.com",
+      "gioDi": "13:20",
+      "gioDen": "15:00"
+    },
+    {
+      "id": 5,
+      "soXe": 9401,
+      "loaiXe": {
+        "id": 1,
+        "ten": "Giường nằm"
+      },
+      "tenNhaXe": "Mai Linh",
+      "diemDi": {
+        "id": 1,
+        "ten": "Đà Nẵng"
+      },
+      "diemDen": {
+        "id": 1,
+        "ten": "Thanh Hóa"
+      },
+      "soDienThoai": "0905145698",
+      "email": "mailinh@gmail.com",
+      "gioDi": "13:20",
+      "gioDen": "15:00"
+    },
+    {
+      "id": 6,
+      "soXe": 8751,
+      "loaiXe": {
+        "id": 1,
+        "ten": "Giường nằm"
+      },
+      "tenNhaXe": "Mai Linh",
+      "diemDi": {
+        "id": 1,
+        "ten": "Đà Nẵng"
+      },
+      "diemDen": {
+        "id": 1,
+        "ten": "Nha Trang"
+      },
+      "soDienThoai": "0905145698",
+      "email": "mailinh@gmail.com",
+      "gioDi": "13:20",
+      "gioDen": "15:00"
+    },
+    {
+      "id": 6,
+      "soXe": 8751,
+      "loaiXe": {
+        "id": 1,
+        "ten": "Giường nằm"
+      },
+      "tenNhaXe": "Mai Linh",
+      "diemDi": {
+        "id": 1,
+        "ten": "Đà Nẵng"
+      },
+      "diemDen": {
+        "id": 1,
+        "ten": "Nha Trang"
+      },
+      "soDienThoai": "0905145698",
+      "email": "mailinh@gmail.com",
+      "gioDi": "13:20",
+      "gioDen": "15:00"
+    }
+  ],
+  "diemDi": [
+    {
+      "id": 1,
+      "ten": "Đà Nẵng"
+    },
+    {
+      "id": 2,
+      "ten": "Quảng Bình"
+    },
+    {
+      "id": 3,
+      "ten": "Quảng Trị"
+    },
+    {
+      "id": 4,
+      "ten": "Huế"
+    },
+    {
+      "id": 5,
+      "ten": "Hà Nội"
+    },
+    {
+      "id": 6,
+      "ten": "Thanh Hóa"
+    },
+    {
+      "id": 7,
+      "ten": "Nha Trang"
+    }
+  ],
+  "diemDen": [
+    {
+      "id": 1,
+      "ten": "Đà Nẵng"
+    },
+    {
+      "id": 2,
+      "ten": "Quảng Bình"
+    },
+    {
+      "id": 3,
+      "ten": "Quảng Trị"
+    },
+    {
+      "id": 4,
+      "ten": "Huế"
+    },
+    {
+      "id": 5,
+      "ten": "Hà Nội"
+    },
+    {
+      "id": 6,
+      "ten": "Thanh Hóa"
+    },
+    {
+      "id": 7,
+      "ten": "Nha Trang"
+    }
+  ],
+  "loaiXe": [
+    {
+      "id": 1,
+      "ten": "Giường nằm"
+    },
+    {
+      "id": 2,
+      "ten": "Ghế ngồi"
+    }
+  ]
+}
