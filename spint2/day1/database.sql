@@ -14,8 +14,6 @@ address varchar (225),
 gender boolean,
 is_deleted boolean,
 day_of_birth date,
-position_id int,
-email_account varchar(45) unicode,
 employee_type_id int,
 foreign key (employee_type_id) references `employee_type`(id)
 );
