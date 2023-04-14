@@ -1,6 +1,10 @@
 create database aqua_fish_website;
 use aqua_fish_website;
-
+create table account(
+id int primary key auto_increment,
+username varchar(255),
+password varchar(225)
+);
 create table employee_type (
 id int primary key auto_increment,
 name varchar(45)
@@ -15,6 +19,8 @@ gender boolean,
 is_deleted boolean,
 day_of_birth date,
 employee_type_id int,
+accout_id int ,
+foreign key (accout_id) references account(id),
 foreign key (employee_type_id) references `employee_type`(id)
 );
 create table customer (
@@ -26,7 +32,9 @@ id_card varchar(45) unicode,
 address varchar (225),
 gender boolean,
 is_deleted boolean,
-email varchar(45) unique
+email varchar(45) unique,
+accout_id int ,
+foreign key (accout_id) references account(id)
 );
 create table aqua_type(
 id int primary key auto_increment,
@@ -63,14 +71,7 @@ create table role (
 id int primary key auto_increment,
 name varchar(25)
 );
-create table account(
-id int primary key auto_increment,
-employee_id int,
-customer_id int,
-password varchar(225),
-foreign key (employee_id) references `employee`(id),
-foreign key (customer_id) references `customer`(id)
-);
+
 create table account_role (
 id int primary key auto_increment,
 id_role int,
