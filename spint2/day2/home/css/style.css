@@ -1,0 +1,540 @@
+@import url(//fonts.googleapis.com/css?family=Righteous);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300);
+
+/*css*/
+@import "../css/reset.css";
+@import "../css/skeleton.css";
+@import "../css/superfish.css";
+@import "../css/font-awesome.css";
+
+body {
+	height:100%;
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size:14px;
+	line-height:15px;
+	color:#83868a;
+	}
+
+.border1 {
+    border-bottom: 1px solid #07b6e3;
+    margin-top: 7px;
+}
+
+a[href^="tel:"] {
+	color: inherit;
+	text-decoration:none;
+}
+* {
+	-webkit-text-size-adjust: none;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after { clear: both;}
+
+h2 {
+	font-family:'Open Sans', sans-serif;
+	font-size: 18px; 
+	line-height: 22px;
+	color:#6e6e6e;
+	font-weight: 600;
+	margin: 0;
+	text-transform:uppercase;
+	padding-bottom:25px;
+	}
+
+.nowrap1 {white-space: nowrap;}
+	
+h3 {
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size:24px;
+	line-height:30px;
+	color:#db1024;
+	font-weight:400;
+	text-transform:uppercase;
+	padding-bottom:20px;
+	}
+
+h4 {
+	font-family:'Open Sans', sans-serif;
+	font-size: 13px; 
+	line-height: 20px;
+	color:#3d3d3d;	
+	font-weight: 400;
+	}
+
+h4 a {color:#3f3f3f;}
+h4 a:hover {color:#009db0;}
+
+p {
+	font-family:'Open Sans', sans-serif;
+	font-size: 13px; 
+	line-height: 20px;
+	color:#999999;	
+	font-weight: 400;
+	padding-bottom:25px;
+}
+
+a {	font-family:'Open Sans', sans-serif;
+	font-size: 13px; 
+	line-height: 20px;
+	color:#83dbd7;	
+	font-weight: 400;
+	text-decoration: none;
+}
+
+a:hover {color: #f2cd75;}
+
+.margin_boot1 { margin-bottom:30px;}
+.margin_boot2 { margin-bottom:60px;}
+.margin_boot3 { margin-bottom:40px;}
+.margin_boot4 { margin-bottom:5px;}
+.margin_boot5 { margin-bottom:10px;}
+.marg_top2 { margin-top:30px;}
+.marg_top3 { margin-top:55px;}
+.margin_top1 { margin-top:38px;}
+.border0 {border-bottom: 1px solid #09b8d4; padding-top: 7px; }
+.border1 {border-bottom: 1px solid #c9c9c9;}
+.border2 {border-bottom: 1px solid #c9c9c9; margin-bottom: 25px;}
+.pad_left {padding-left: 60px;}
+/************Header************/
+
+.h_main {
+	background: url("https://topchiase24h.com/wp-content/uploads/2021/04/hinh-nen-con-ca-duoi-day-dai-duong-6.jpg") center top no-repeat;
+	background-size:100%;
+	padding: 90px 0 460px;
+	display: block;
+	text-align: center;
+}
+
+.h_main_pad {padding-bottom:880px;}
+
+.logo a {display: inline-block;}
+
+.logo h1 {
+	font-family: 'Righteous', cursive;
+	color:#fff;
+	font-size:70px;
+	line-height:75px;
+	font-weight:400;
+	text-transform:uppercase;
+}
+
+.logo span {
+	font-family: 'Trebuchet MS', sans-serif;	
+	font-size:13px; 
+	line-height:17px; 
+	text-transform:uppercase;
+	font-weight: 700;
+	color: #bef9ff;
+}
+
+/************Content************/
+
+.bg1 {
+	background: #fff;
+	margin-top: -410px;
+	border-top: 8px solid #35d5ce;
+	padding-top: 50px;
+}
+
+.center { text-align: center;}
+
+.b_text1 {
+	font-family: 'Trebuchet MS', sans-serif;	
+	font-size:50px; 
+	line-height:44px; 
+	text-transform:uppercase;
+	font-weight: 700;
+	color: #b6b6b6;
+	margin: 0;
+}
+
+.b_text2 {
+	font-family:'Open Sans', sans-serif;
+	font-size: 30px; 
+	line-height: 30px;
+	color:#8ce0dc;	
+	text-transform:uppercase;
+	font-weight: 700;
+	margin: 0;
+	padding-bottom: 40px;
+}
+
+.b_text3 {
+	font-family: 'Trebuchet MS', sans-serif;	
+	font-size:16px; 
+	line-height:20px; 
+	text-transform:uppercase;
+	font-weight: 400;
+	color: #57c8d4;
+	margin: 0;
+	padding: 40px 0;
+}
+
+.b_text4 {
+	font-family:'Open Sans', sans-serif;
+	font-size: 18px; 
+	line-height: 24px;
+	color:#b7b7b7;	
+	text-transform:uppercase;
+	font-weight: 600;
+	margin: 0;
+	padding: 40px 0;
+}
+
+.b_text5 {
+	font-family:'Open Sans', sans-serif;
+	font-size: 45px; 
+	line-height: 50px;
+	color:#8b8b8b;
+	font-weight: 600;
+	margin: 0;
+	padding-bottom:30px;
+}
+
+.b_text6 span {
+	color:#64c1bd;
+	display: block;
+}
+
+.b_text6 {
+	font-family:'Open Sans', sans-serif;
+	font-size: 18px; 
+	line-height: 24px;
+	color:#acacac;	
+	margin: 0;
+	padding-bottom: 40px;
+}
+
+.lg_text7 {
+	font-family:'Open Sans', sans-serif;
+	font-size: 36px; 
+	line-height: 65px;
+	color:#b7b7b7;
+	font-weight: 300;
+	margin-bottom: 13px;
+	padding-bottom:0px;
+	display: inline-block;
+	border-right: 1px solid #eaeaea;
+	padding-right: 50px;
+}
+
+.img_line {
+	/*background:url(../day2/image/images/img_line.jpg) 0 0 repeat-x;*/
+	height: 13px;
+}
+
+.pic {margin-left: -1px; text-align: left;}
+.pic a {
+	margin: 0 0 1px 1px;
+	float: left;
+}
+
+
+
+.button1 {
+	font-family: 'Trebuchet MS', sans-serif;
+    background: none repeat scroll 0 0 #88A185;
+    color: #fff;
+    font-size: 12px;
+    line-height: 17px;
+    padding: 12px 23px;
+	text-transform:uppercase;
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	background: #83dbd7; 
+	display:inline-block;
+	margin-bottom: 40px;
+}
+
+
+.button1:hover{
+	background: #ffc246;
+	color:#fff;
+}
+.button1.yell {background: #ffc246;}
+.button1.yell:hover {background: #83dbd7;}
+.button1.gr {background: #8f8f8f;}
+.button1.gr:hover {background: #83dbd7;}
+
+.img-indent1 {
+	padding:0px 0px 8px 0;
+	float:left;
+}
+
+.social { 
+	display: inline-block; 
+	padding-left: 30px;
+	padding-top: 10px;
+}
+.social a { float:left; margin-left:15px;}
+.social img {
+	-webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+	}
+
+.social img:hover {
+	-moz-transform: rotate(30deg);
+ 	-o-transform: rotate(30deg);
+ 	-webkit-transform: rotate(30deg);
+	opacity:0.8;
+}
+
+.img-indent2 {
+	padding:0px 25px 10px 0;
+	float:left;
+}
+
+.img-indent3 {
+	padding:0px 18px 8px 0;
+	float:left;
+}
+
+.img-indent4 {
+	padding:0px 18px 11px 0;
+	float:left;
+}
+
+.link1 {color: #83dbd7; text-decoration: underline;}
+.link1:hover {color: #f2cd75; text-decoration: none;}
+
+.date_text {
+	padding-bottom: 5px;
+	font-family:'Open Sans', sans-serif;
+	font-size: 11px; 
+	line-height: 18px;
+	color:#3d3d3d;
+}
+
+.pic2 {padding-bottom: 25px;}
+
+.gallery {
+	margin-left: 1px;	
+	float: left; 
+	width: 24.8%;
+	padding-bottom: 25px
+}
+
+.gall_block {
+	border: #e5e5e5 solid 1px; 
+	padding: 25px 20px 0px 20px;
+	border-top:none;
+	box-sizing:border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.gall_block .button1.gr {margin-bottom: 7px;}
+.gall_block .button1 {margin-bottom: 20px; padding: 12px 20px;}
+.pic2 {padding-bottom: 50px;}
+.pic2 img {width: 100%;}
+
+.clear1 { 
+	clear: left;
+	display: block;
+}
+
+.col_text {
+	font-family: 'Trebuchet MS', sans-serif;	
+	font-size:12px; 
+	line-height:18px; 
+	font-weight: 400;
+	color: #ffc246;
+	margin: 0;
+	display: block;
+	margin: 8px 0 -10px 0;
+}
+
+.col_text span {
+	color: #83dbd7;
+	text-decoration: line-through;
+	
+}
+
+.col_text>span+span {
+	text-decoration: none;
+}
+
+.map {
+    min-width: 100%;
+    width: 100%;
+}
+
+.map figure iframe {
+    height: 332px;
+    max-width: 100%;
+    width: 100%;
+}
+
+.map figure {	
+	width:100%;
+	display:block;
+	-moz-box-sizing: border-box;
+	margin-bottom:15px;
+	}
+
+address dl {
+	float:left;  
+	font-style:normal;
+	font-family:'Open Sans', sans-serif;
+	font-size: 13px; 
+	line-height: 20px;
+	color:#3d3d3d;	
+	font-weight: 400;
+}	
+
+address dt {padding-bottom: 20px;}
+	
+address dd {	
+	color:#999999;	
+	}
+
+address dd span {
+	min-width: 68px;
+	display:inline-block;
+}
+
+address dd a{
+	color:#83dbd7;
+	margin-left: 7px;
+}
+
+address dd a:hover {color:#f2cd75;}
+
+/************Footer************/
+footer {
+	padding-bottom: 70px;
+}
+
+.privacy {
+	float: left;
+	padding-bottom: 15px;
+	font-family:'Open Sans', sans-serif;
+	font-size: 14px; 
+	line-height: 20px;
+	color:#3e3e3e;
+	text-transform:uppercase;
+}
+
+.privacy a {
+	color:#3e3e3e;
+}
+
+.privacy a:hover {
+	color:#5eb9b5;
+}
+
+.address {
+	padding-bottom: 15px;
+	font-family:'Open Sans', sans-serif;
+	font-size: 14px; 
+	line-height: 20px;
+	color:#3e3e3e;
+	text-transform:uppercase;
+	float: right;
+	width: 285px;
+}
+
+.privacy strong { color:#b4b4b4;}
+
+.add_icon {
+	float: left;
+}
+
+.add_icon img {
+	padding: 0 10px 5px 0;
+}
+
+.fleft { float:left;}
+
+.fright { float:right; padding-bottom:20px;}
+
+.fleft  h4 { padding-bottom:20px;}
+.fright h4 { padding-bottom:20px;}
+
+#toTop {
+	color: #8bdfdb;
+	font-size: 22px;
+	line-height: 28px;
+ 	bottom: 62px;
+	width: 19px;
+    display: none;
+    height: 19px;
+    left: 41%;
+    margin-left: 845px;
+    position: fixed;
+    z-index: 999;
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+	transition: all 0.5s ease 0s;
+	z-index:1;
+	padding: 5px;
+}
+
+#toTop:hover { color: #f6cf71;}
+
+/*==================================RESPONSIVE LAYOUTS===============================================*/
+@media only screen and (max-width: 1600px) {
+.bg1  {margin-top: -600px;}
+.bg2  {margin-top: -410px;}
+}
+@media only screen and (max-width: 1300px) {
+.bg1  {margin-top: -800px;}
+.bg2  {margin-top: -410px;}
+}
+@media only screen and (max-width: 995px) {
+.h_main {
+	background-size:cover;
+	padding: 70px 0 300px;
+}
+.bg1 {margin-top: -200px;}
+.pic a {float: left;width: 49%;}
+.pic img { width: 100%;}
+.nowrap1 {white-space: normal;}
+.lg_text7 {font-size: 30px; padding-right: 20px;}
+.social {padding-left: 0px;}
+}
+@media only screen and (max-width: 767px) {
+.h_main {padding: 70px 0 100px;}
+.bg1 {margin-top:0px;}
+.b_text5 {
+	font-size: 40px;
+	line-height: 42px;
+}
+.privacy {float: none;}
+.address {float: none; width: 100%;}
+.lg_text7 {border: none; line-height: 35px;}
+.social {margin-left: -15px;}
+.gallery {width: 49%; margin-left: 1%;}
+.clear2 { 
+	clear: left;
+	display: block;
+}
+}
+@media only screen and (max-width: 480px) {
+.logo h1 {
+	font-size: 60px;
+	line-height:65px;
+}
+.b_text1 {
+	font-size:35px; 
+	line-height:37px;
+}
+
+.img-indent2 {float: none;}
+.img-indent2 img { width: 100%;}
+.img-indent4 {float: none;}
+.img-indent4 img { width: 100%;}
+}
+
+@media only screen and (max-width: 320px) {
+}
