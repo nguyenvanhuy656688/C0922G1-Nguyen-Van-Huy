@@ -9,35 +9,13 @@ public class AccountRole {
     private Long accountRoleId;
     @ManyToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
-    private Account account;
+    private Accounts accounts;
 
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
     public AccountRole() {
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public AccountRole(Long accountRoleId, Account account, Role role) {
-        this.accountRoleId = accountRoleId;
-        this.account = account;
-        this.role = role;
     }
 
     public Long getAccountRoleId() {
@@ -48,4 +26,19 @@ public class AccountRole {
         this.accountRoleId = accountRoleId;
     }
 
+    public Accounts getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Accounts accounts) {
+        this.accounts = accounts;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
