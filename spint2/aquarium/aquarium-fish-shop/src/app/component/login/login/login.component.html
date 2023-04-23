@@ -20,11 +20,11 @@
     </form>
   </div>
   <div class="form-container sign-in-container">
-    <form action="#">
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
       <h1>Đăng nhập</h1>
       <span>Mời nhập thông tin đăng nhập</span>
-      <input type="email" class="login-input" placeholder="Tài khoản"/>
-      <input type="password" class="login-input" placeholder="Mật khẩu"/>
+      <input type="email" formControlName="username" class="login-input" placeholder="Tài khoản"/>
+      <input type="password" formControlName="password" class="login-input" placeholder="Mật khẩu"/>
       <a href="#">Quên mật khẩu?</a>
       <button>Đăng nhập</button>
       <div class="social-container">

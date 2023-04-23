@@ -11,6 +11,13 @@
   zoom:1;
 }
 
+.style{
+  width: 350px;
+  height: 300px;
+  margin-bottom: 20px;
+
+}
+
 /* Form wrapper styling */
 .search-wrapper {
   width: 220px;
@@ -106,3 +113,18 @@
   border: 0;
   padding: 0;
 }
+
+#ground{
+  padding: 50px 0;
+  background: url("https://i.imgur.com/snDSnCX.jpg");
+}
+
+.line-img{
+  background: url("../../../../assets/images/img_line.png");
+}
+
+.bellow_header{
+  z-index: 10;
+}
+
+

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <!------ Include the above in your HEAD tag ---------->
 <body>
-<footer id="dk-footer" class="dk-footer" style=" border-bottom: dashed 1px aqua;">
+<footer id="dk-footer" class="dk-footer fixed-bottom" style=" border-bottom: dashed 1px aqua;">
   <div class="container overlay-container"  >
     <div class="row" style="margin-top: 1px">
       <div class="col-md-12 col-lg-4">
@@ -175,7 +175,7 @@
   <!-- End Copyright -->
   <!-- Back to top -->
   <div id="back-to-top" class="back-to-top">
-    <button class="btn btn-dark" title="Back to Top" style="display: block;">
+    <button (click)="scrollToTop()" class="btn btn-dark" title="Back to Top" style="display: block;">
       <i class="fa fa-angle-up"></i>
     </button>
   </div>

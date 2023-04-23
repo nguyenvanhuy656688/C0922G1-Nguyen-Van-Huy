@@ -5746,6 +5746,7 @@ button.close {
 
 .carousel {
   position: relative;
+  align-items: center;
 }
 
 .carousel-inner {

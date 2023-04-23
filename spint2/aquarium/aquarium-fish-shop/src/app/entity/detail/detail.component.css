@@ -193,3 +193,6 @@ body {
 
 .product-image:hover img {transition: all 0.3s ease-out;}
 .product-image:hover img {transform: scale(1.2, 1.2);}
+.line-img{
+  background: url("../../../assets/images/img_line.png");
+}

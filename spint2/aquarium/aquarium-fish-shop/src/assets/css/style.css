@@ -598,11 +598,11 @@ button {
 
 .appointment {
     background: #fdc001;
-    padding-top: 80px;
+    padding-top: 20px;
 }
 
 .appointment .titlepage p {
-    padding-top: 10px;
+    padding: 0;
 }
 
 .main_form .form_control {
@@ -841,6 +841,14 @@ button {
 
 .yellow {
     background: #fdc001 !important;
+}
+
+.red{
+  background: #c82333 !important;
+}
+
+.green{
+  background: #1e7e34 !important;
 }
 
 .nostrud {
