@@ -1,0 +1,85 @@
+<h2 style="font-size: 60px; text-align: center">EXAM MODULE 6</h2>
+<div class="row container-fluid">
+  <form class="d-flex animationTop delay-02" role="search" style="float: left; font-size: 17px; margin-top: 57px">
+    <input class="form-control me-2" #nameSearch type="search" placeholder="Search By Name" aria-label="Search">
+    <select class="form-select animationTop delay-03" aria-label="Default select example" #managerSearch
+            style="padding-right: 10px">
+      <option selected value="">Manager :</option>
+      <option *ngFor="let manager of managerList" [ngValue]="manager?.id">{{manager?.employee?.name}}</option>
+    </select>
+    <button style="margin-left: 10px" class="btn btn-primary animationTop delay-04"
+            (click)="searchForManagerAndName(nameSearch.value,managerSearch.value)" type="submit">Search
+    </button>
+  </form>
+</div>
+<br>
+<div id="main" class="row">
+  <div class="container">
+    <header class="major">
+      <h5>
+        <button style="margin-left: 40px" class="btn btn-danger" routerLink="/create">Create</button>
+      </h5>
+    </header>
+    <section id="content">
+      <div class="table-responsive">
+        <div class="table-wrapper">
+          <table class="alt table  table-hover container">
+            <thead>
+            <tr>
+              <th>NO</th>
+              <th>Name</th>
+              <th>Open date</th>
+              <th>Address</th>
+              <th>Manager</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let location of locationList , let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{location.name}}</td>
+              <td>{{location.openDate}}</td>
+              <td>{{location.address}}</td>
+              <td>{{location.positionAndEmployee?.employee?.name}}</td>
+              <td>
+                <button style="margin-right: 20px" class="btn btn-primary"
+                        [routerLink]="['/location/edit',location.id]">Edit
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)=" remove = location"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Delete
+                </button>
+              </td>
+              <!--              Modal Xóa-->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                   aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <span>Do you want to delete  </span><span style="color: red">{{remove?.name}}</span><span>  ?</span>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" (click)="delete()" data-bs-dismiss="modal" class="btn btn-danger">
+                        Xóa
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+

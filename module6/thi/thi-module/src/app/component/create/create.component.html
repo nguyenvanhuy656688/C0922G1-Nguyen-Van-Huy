@@ -1,0 +1,49 @@
+<h1 style="margin-left: 43% ; color: #0dcaf0">  Add new</h1>
+<br>
+<div class="row" style="text-align: center">
+  <div class="col-md-2"></div>
+  <div style="margin-left: 38%" id="form" class="col-md-8" >
+    <form [formGroup]="formAdd" (ngSubmit)="add()">
+      <div class="col-md-6">
+          <label class="form-label" style="">Name : </label>
+        <p>
+          <input type="text"  class="form-control" formControlName="name" placeholder="Nhập tên cơ sở"/>
+        </p>
+        <p style="color: red" *ngIf="formAdd.controls.name.hasError('required') && formAdd.controls.name.touched">*Không được để trống</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Open Date : </label>
+        <p>
+          <input type="text"  class="form-control" formControlName="openDate" placeholder="Nhập ngày khai trương"/>
+        </p>
+        <p style="color: red" *ngIf="formAdd.controls.openDate.hasError('required') && formAdd.controls.openDate.touched">*Không được để trống</p>
+        <p style="color: red" *ngIf="formAdd.controls.openDate.hasError('pattern') && formAdd.controls.openDate.touched">*phải đúng định dạng DD/MM/YYYY</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Address : </label>
+        <p>
+          <input type="text"  class="form-control" formControlName="address" placeholder="Nhập địa chỉ"/>
+        </p>
+        <p style="color: red" *ngIf="formAdd.controls.address.hasError('required') && formAdd.controls.address.touched">*Không được để trống</p>
+      </div>
+      <br>
+      <div class="col-md-6">
+        <label class="form-label">Manager:</label>
+        <p>
+          <select class="form-select" formControlName="positionAndEmployee">
+            <option [value]="null" [selected]="true">--Chọn người quản lý--</option>
+            <option *ngFor="let manager of managerList" [ngValue]="manager">{{manager?.employee.name}}</option>
+          </select>
+        </p>
+        <p style="color: red" *ngIf="formAdd.controls.positionAndEmployee.hasError('required') && formAdd.controls.positionAndEmployee.touched">*Xin vui lòng chọn</p>
+      </div>
+      <br>
+      <input class="btn btn-outline-primary" type="button" routerLink="/" value="Comeback">
+      <input style="margin-left: 20px" type="submit" class="btn btn-outline-primary" value="Add new"/>
+    </form>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+
