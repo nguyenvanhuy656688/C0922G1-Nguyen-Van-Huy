@@ -20,15 +20,18 @@ public class AccountDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;
     private String username;
+    private String nameUser;
 
     @JsonIgnore
     private String password;
     List<GrantedAuthority> authorities = null;
 
-    public AccountDetails(String username, String password,
+    public AccountDetails(String username, String password,String nameUser,
                           List<GrantedAuthority> authorities) {
+
         this.username = username;
         this.password = password;
+        this.nameUser=nameUser;
         this.authorities = authorities;
     }
 
@@ -39,6 +42,7 @@ public class AccountDetails implements UserDetails {
         return new AccountDetails(
                 account.getEmail(),
                 account.getPassword(),
+                account.getNameUser(),
                 authorities);
     }
 
@@ -47,6 +51,25 @@ public class AccountDetails implements UserDetails {
         return authorities;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAuthorities(List<GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
 
     @Override
     public String getPassword() {

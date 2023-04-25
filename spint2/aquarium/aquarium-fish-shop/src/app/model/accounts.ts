@@ -2,10 +2,9 @@
 export interface Accounts {
   id:number;
   avatar:string;
-  userName:string;
+  email:string;
   password:string;
   nameUser:string;
   address:string;
-  email:string;
   phoneNumber:string;
 }

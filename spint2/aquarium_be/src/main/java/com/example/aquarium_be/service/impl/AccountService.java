@@ -17,23 +17,22 @@ public class AccountService implements IAccountService {
     @Autowired
     private IAccountRepository accountRepository;
 
-    @Override
-    public Accounts findAccountByEmail(String username) {
-        return accountRepository.findAccountByEmail(username);
-    }
 
-    public boolean checkOldPassword( String oldPassword, String password){
-        return BCrypt.checkpw(oldPassword, password);
-    }
 
     @Override
-    public void updateAccount(Accounts account) {
-        accountRepository.updateAccount(account.getId(),account.getPassword());
+    public Accounts findAccountByEmployeeEmail(String email) {
+        return accountRepository.findAccountByEmail(email);
     }
 
     @Override
-    public void addAccount(Accounts account) {
-        accountRepository.save(account);
+    public boolean checkPassword(String password, String oldPassword) {
+         return BCrypt.checkpw(password,oldPassword);
+    }
+
+    @Override
+    public void saveNewPassword(String newPassword, Long accountId) {
+        accountRepository.saveNewPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt(12)),accountId);
+
     }
 
 

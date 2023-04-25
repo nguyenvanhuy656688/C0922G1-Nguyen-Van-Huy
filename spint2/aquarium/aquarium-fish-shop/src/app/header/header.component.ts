@@ -24,12 +24,11 @@ export class HeaderComponent implements OnInit {
 
   loadHeader(): void {
     if (this.tokenStorageService.getToken()) {
-      this.currentUser = this.tokenStorageService.getUser().username;
+      this.currentUser = this.tokenStorageService.getUser();
       this.role = this.tokenStorageService.getUser().roles[0];
-      this.username = this.tokenStorageService.getUser().username;
+      this.username = this.tokenStorageService.getUser().nameUser;
     }
     this.isLoggedIn = this.username != null;
-    this.getUsernameAccount();
   }
 
 
@@ -56,11 +55,11 @@ export class HeaderComponent implements OnInit {
     location.reload();
   }
 
-  getUsernameAccount() {
-    if (this.tokenStorageService.getToken()) {
-      this.nameEmployee = this.tokenStorageService.getUser().name;
-    }
-  }
+  // getUsernameAccount() {
+  //   if (this.tokenStorageService.getToken()) {
+  //     this.nameEmployee = this.tokenStorageService.getUser().username;
+  //   }
+  // }
 
 
   scrollToTopLogin() {

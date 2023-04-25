@@ -12,15 +12,26 @@ public class JwtResponse {
     private String token;
     private String type = "Bearer";
     private String username;
+    private String nameUser;
     private List<String> roles;
 
-    public JwtResponse(String accessToken, String username, List<String> roles) {
+    public JwtResponse(String accessToken, String username, String nameUser, List<String> roles) {
         this.token = accessToken;
         this.username = username;
+        this.nameUser=nameUser;
         this.roles = roles;
     }
 
     public JwtResponse() {
+    }
+
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
     }
 
     public String getAccessToken() {

@@ -244,8 +244,8 @@ button {
 }
 
 .read_more {
-    font-size: 16px;
-    background: #363636;
+    font-size: 12px;
+    background: #6c757d;
     max-width: 204px;
     width: 100%;
     transition: ease-in all 0.5s;

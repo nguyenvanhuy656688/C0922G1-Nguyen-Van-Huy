@@ -1,5 +1,5 @@
-/*--------------------------------------------------------------------- 
-File Name: responsive.css 
+/*---------------------------------------------------------------------
+File Name: responsive.css
 ---------------------------------------------------------------------*/
 
 @media (min-width: 1343px) and (max-width: 1500px) {
@@ -239,7 +239,7 @@ File Name: responsive.css
     .latest {
         max-width: 317px;
         margin: 0 auto;
-        margin-bottom: 55px;
+        margin-bottom: 30px;
     }
     .titlepage h2 {
         line-height: 40px;

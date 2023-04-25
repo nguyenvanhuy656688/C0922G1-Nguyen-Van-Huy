@@ -4,6 +4,7 @@
     <form action="#">
       <h1>Đăng kí</h1>
       <span>Mời nhập thông tin đăng kí</span>
+      <br>
       <input type="text" placeholder="Tài khoản"/>
       <input type="password" placeholder="Mật khẩu"/>
       <input type="password" placeholder="Nhập lại mật khẩu"/>
@@ -23,10 +24,11 @@
     <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
       <h1>Đăng nhập</h1>
       <span>Mời nhập thông tin đăng nhập</span>
+      <br>
       <input type="email" formControlName="username" class="login-input" placeholder="Tài khoản"/>
       <input type="password" formControlName="password" class="login-input" placeholder="Mật khẩu"/>
       <a href="#">Quên mật khẩu?</a>
-      <button>Đăng nhập</button>
+      <button type="submit">Đăng nhập</button>
       <div class="social-container">
         <a href="#" class="social"><i style="background: #3B5998;color: white;"
                                       class="fab fa-facebook-f"></i></a>

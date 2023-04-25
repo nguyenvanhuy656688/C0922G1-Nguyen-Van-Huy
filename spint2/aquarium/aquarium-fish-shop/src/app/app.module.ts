@@ -11,6 +11,7 @@ import { DetailComponent } from './entity/detail/detail.component';
 import { HomeComponent } from './component/home/home/home.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ShoppingCartComponent,
     LoginComponent,
     DetailComponent,
-    HomeComponent
+    HomeComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

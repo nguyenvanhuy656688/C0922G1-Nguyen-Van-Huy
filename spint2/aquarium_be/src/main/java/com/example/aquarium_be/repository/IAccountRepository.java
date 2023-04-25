@@ -12,11 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface IAccountRepository extends JpaRepository<Accounts, Long> {
 
-    @Query(value = "select a.* from  accounts as a where a.email= :email", nativeQuery = true)
+    @Query(value = "select a.* from  accounts a where a.email= :email", nativeQuery = true)
     Accounts findAccountByEmail(@Param("email") String email);
 
     @Modifying
-    @Query(value = "update accounts set password= :passwordConfirm where id= :id", nativeQuery = true)
-    void updateAccount(@Param("id") Long id,
-                       @Param("passwordConfirm") String passwordConfirm);
+    @Query(value = "update accounts set password =:newPassword where id =:id ",nativeQuery = true)
+    void saveNewPassword(@Param("newPassword") String newPassword,@Param("id") Long id);
 }

@@ -15,9 +15,15 @@
   width: 350px;
   height: 300px;
   margin-bottom: 20px;
-
 }
 
+.align{
+  text-align: center;
+}
+
+.style_fish{
+
+}
 /* Form wrapper styling */
 .search-wrapper {
   width: 220px;
