@@ -14,8 +14,16 @@ const routes: Routes = [
     loadChildren: () => import('./component/login/login.module').then(module => module.LoginModule)
   },
   {
+    path: 'detail',
+    loadChildren: () => import('./component/detail/detail.module').then(module => module.DetailModule)
+  },
+  {
     path: 'shopping',
     loadChildren: () => import('./component/shopping-cart/shopping-cart.module').then(module => module.ShoppingCartModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./component/list-search/list-search.module').then(module => module.ListSearchModule)
   }
 ];
 

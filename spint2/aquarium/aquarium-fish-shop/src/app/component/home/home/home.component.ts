@@ -79,14 +79,7 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
 
   reset() {
-    this.ngOnInit()
-    this.page = 0;
-    this.aquaProductService.getProductFish(this.page, this.size).subscribe(products => {
-      this.ngOnDestroy()
-      this.productList.push(...products);
-      this.hasMore = products.length === this.size;
-      this.displayedCount += this.page;
-    });
+    this.loadListFish()
   }
 
 
@@ -125,11 +118,15 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.loadListFish()
-    this.loadListAquatic()
-    this.loadListFood()
+
   }
 
 
+  reset1() {
+    this.loadListAquatic()
+  }
 
+  reset2() {
+    this.loadListFood()
+  }
 }

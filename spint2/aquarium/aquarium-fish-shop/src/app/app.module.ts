@@ -7,11 +7,12 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart/shopping-cart.component';
 import { LoginComponent } from './component/login/login/login.component';
-import { DetailComponent } from './entity/detail/detail.component';
+import { DetailComponent } from './component/detail/detail/detail.component';
 import { HomeComponent } from './component/home/home/home.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
+import {AuthInterceptor} from './component/login/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { ChangePasswordComponent } from './component/change-password/change-pass
     LoginComponent,
     DetailComponent,
     HomeComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,9 @@ import { ChangePasswordComponent } from './component/change-password/change-pass
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AquaProduct} from '../model/aqua-product';
+import {AccompanyingImage} from '../model/accompanying-image';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,13 @@ export class AquaProductService {
 
   getProductFood(page2: number, size2: number):Observable<AquaProduct[]> {
     return this.httpClient.get<AquaProduct[]>('http://localhost:8080/api/public/listFood?page2=' + page2 + '&size2=' + size2)
+  }
+
+  findProductById(id: number):Observable<AquaProduct> {
+    return this.httpClient.get<AquaProduct>('http://localhost:8080/api/public/findProductById/' + id)
+  }
+
+  getAccompanyingImage(id: number):Observable<AccompanyingImage[]> {
+    return this.httpClient.get<AccompanyingImage[]>('http://localhost:8080/api/public/accompanyingImageListById/' + id )
   }
 }

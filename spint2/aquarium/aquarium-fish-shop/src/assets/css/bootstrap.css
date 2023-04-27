@@ -5878,8 +5878,8 @@ button.close {
   align-items: center;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 15%;
-  color: #fff;
+  width: 30%;
+  color: #F5B02E;
   text-align: center;
   opacity: 0.5;
 }

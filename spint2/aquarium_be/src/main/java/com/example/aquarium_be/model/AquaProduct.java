@@ -14,7 +14,7 @@ public class AquaProduct {
     @Column(length = 45, nullable = false, unique = true)
     private String name;
     private double price;
-    @Column(length = 250, nullable = false, unique = true)
+    @Column(length = 500, nullable = false, unique = true)
     private String description;
     @Column(columnDefinition = "date", nullable = false)
     private String dateSubmit;

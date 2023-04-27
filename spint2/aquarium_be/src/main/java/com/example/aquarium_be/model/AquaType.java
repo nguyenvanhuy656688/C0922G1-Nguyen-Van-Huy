@@ -12,6 +12,9 @@ public class AquaType {
     private Long id;
     private  String name;
 
+    public AquaType() {
+    }
+
     public Long getId() {
         return id;
     }

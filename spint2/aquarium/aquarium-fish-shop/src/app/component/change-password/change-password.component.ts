@@ -62,10 +62,13 @@ export class ChangePasswordComponent implements OnInit {
     debugger
     this.loginService.changePassword(this.formChangePassword.value).subscribe(() => {
       Swal.fire({
-        text: 'Đổi mật khẩu thành công!',
+        text: 'Đổi mật khẩu thành công',
         icon: 'success',
-        showConfirmButton: false,
-        timer: 1500
+        iconColor: "#ffc246",
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#ffc246',
+        // showConfirmButton: false,
+        timer: 2500
       });
       this.shareService.sendClickEvent();
       this.router.navigateByUrl('/');

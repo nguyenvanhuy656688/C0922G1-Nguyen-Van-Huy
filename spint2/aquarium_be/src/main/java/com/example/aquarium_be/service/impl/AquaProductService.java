@@ -1,5 +1,7 @@
 package com.example.aquarium_be.service.impl;
 
+import com.example.aquarium_be.dto.IAccompanyingImage;
+import com.example.aquarium_be.model.AccompanyingImage;
 import com.example.aquarium_be.model.AquaProduct;
 import com.example.aquarium_be.repository.IAquaProductRepository;
 import com.example.aquarium_be.service.IAquaProductService;
@@ -28,5 +30,15 @@ public class AquaProductService implements IAquaProductService {
     @Override
     public List<AquaProduct> getListFood(Pageable pageable) {
         return iAquaProductRepository.getListFood(pageable);
+    }
+
+    @Override
+    public AquaProduct findProductDetailById(int id) {
+        return iAquaProductRepository.findProductDetailById(id);
+    }
+
+    @Override
+    public List<IAccompanyingImage> accompanyingImageList(int id) {
+        return iAquaProductRepository.getAccompanyingImageList(id);
     }
 }

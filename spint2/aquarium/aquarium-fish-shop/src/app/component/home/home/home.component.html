@@ -24,6 +24,7 @@
 <div class="row line-img">
   .
 </div>
+
 <div id="ground">
   <div class="row"></div>
   <div class="row">
@@ -45,16 +46,16 @@
         </div>
       </div>
     </div>
-    <div class="carousel carousel-dark col-md-8">
+    <div class="carousel col-md-8">
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                  aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                  aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                  aria-label="Slide 3"></button>
-        </div>
+        <ol class="carousel-indicators">
+          <li type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></li>
+          <li type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+              aria-label="Slide 2"></li>
+          <li type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+              aria-label="Slide 3"></li>
+        </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img style="width: 50%; height: 50%;border-radius: 30px"
@@ -85,16 +86,14 @@
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
 
+        <button class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+          <i class="fa fa-angle-left carousel-control-prev-icon" aria-hidden="true"></i>
+          <span class="sr-only">Previous</span>
         </button>
-        <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+        <button class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+          <i class="fa fa-angle-right carousel-control-next-icon" aria-hidden="true"></i>
+          <span class="sr-only">Next</span>
         </button>
       </div>
     </div>
@@ -227,7 +226,6 @@
             <h3>Ngày 16/1 </h3>
             <p style="text-indent: inherit ">Giảm giá các sản phẩm thuộc thức ăn cho cá và các dụng cụ dành cho bể cá
               như đèn, sưởi , lọc nước , thuốc chữa bệnh cho cá, vi sinh,... </p>
-            <a class="read_more" href="blog.html">Xem thêm</a>
           </div>
         </div>
       </div>
@@ -241,7 +239,6 @@
             <h3>Ngày 17/1 </h3>
             <p>Giảm giá tất cả các loại cá đang có tại shop có giá trị dưới 1tr/con và các dụng cụ dành cho bể cá như
               đèn, sưởi , lọc nước , vi sinh,...</p>
-            <a class="read_more" href="blog.html">Xem thêm</a>
           </div>
         </div>
       </div>
@@ -255,7 +252,6 @@
             <h3>Ngày 18/1 </h3>
             <p>Giảm giá các sản phẩm thuộc thức ăn cho cá và các dụng cụ dành cho bể cá như đèn, sưởi , lọc nước , thuốc
               chữa bệnh cho cá, vi sinh,...</p>
-            <a class="read_more" href="blog.html">Xem thêm</a>
           </div>
         </div>
       </div>
@@ -307,12 +303,13 @@
             <figure><img style="width: 330px; height: 275px" [src]="product.image" alt="#"/>
             </figure>
           </div>
-          <div class="nostrud" >
+          <div class="nostrud">
             <h3>{{product.name}}</h3>
-            <p style="text-indent: inherit ">{{product.description}}</p>
+<!--            <p style="text-indent: inherit ">{{product.description}}</p>-->
+            <p style="padding: 0;margin:0 0 16px ;background-color: white;color: black"><strong style="color: red">Giá: {{product.price | number}} VND</strong></p>
             <!--            <a class="read_more" href="blog.html">Xem thêm</a>-->
             <div class=" d-flex justify-content-between ">
-              <a routerLink="/info/" class=" p-0 read_more " style="color: white;">Chi
+              <a routerLink="/detail/detail/{{product.id}}" class=" p-0 read_more " style="color: white;">Chi
                 tiết <i class="fas fa-eye mr-1" style="color: #0cc4d4"></i></a>
               <a href="" class=" p-0 read_more" style="color: white">Thêm vào <i
                 class="fas fa-shopping-cart mr-1" style="color: #0cc4d4;"></i></a>
@@ -325,9 +322,11 @@
       <div class="col-md-5"></div>
       <div class="col-md-2">
         <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
-                *ngIf="hasMore" (click)="loadMore()">Xem thêm</button>
+                *ngIf="hasMore" (click)="loadMore()">Xem thêm
+        </button>
         <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
-                *ngIf="displayedCount > 0 && !hasMore" (click)="reset()">Thu gọn</button>
+                *ngIf="!hasMore" (click)="reset()">Thu gọn
+        </button>
       </div>
       <div class="col-md-5"></div>
     </div>
@@ -380,7 +379,8 @@
           <span class="yellow bellow_header">{{i + 1}} st</span>
           <div class="nostrud">
             <h3>{{product.name}}</h3>
-            <p style="text-indent: inherit ">{{product.description}}</p>
+<!--            <p style="text-indent: inherit ">{{product.description}}</p>-->
+            <p style="padding: 0;margin:0 0 16px ;background-color: white;color: black"><strong style="color: red">Giá: {{product.price | number}} VND</strong></p>
             <div class=" d-flex justify-content-between ">
               <a routerLink="/info/" class=" p-0 read_more " style="color: white;">Chi
                 tiết <i class="fas fa-eye mr-1" style="color: #0cc4d4"></i></a>
@@ -395,7 +395,11 @@
       <div class="col-md-5"></div>
       <div class="col-md-2">
         <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
-                *ngIf="hasMore1" (click)="loadMore1()">Xem thêm</button>
+                *ngIf="hasMore1" (click)="loadMore1()">Xem thêm
+        </button>
+        <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
+                *ngIf="!hasMore1" (click)="reset1()">Thu gọn
+        </button>
       </div>
       <div class="col-md-5"></div>
     </div>
@@ -433,7 +437,7 @@
 </div>
 <!-- blog -->
 <div class="blog">
-  <div class="container">
+  <div class="container ">
     <div class="row">
       <div class="col-md-12">
         <div class="titlepage text_align_center ">
@@ -443,7 +447,7 @@
       </div>
     </div>
     <div class="row d_flex">
-      <div class=" col-md-4" *ngFor="let product of productList2, index as i">
+      <div class=" col-md-4 close" *ngFor="let product of productList2, index as i">
         <div class="latest">
           <div class="style row">
             <figure><img style="width: 350px;height: 300px" [src]="product.image" alt="#"/></figure>
@@ -451,7 +455,8 @@
           </div>
           <div class="nostrud">
             <h3>{{product.name}}</h3>
-            <p style="text-indent: inherit ">{{product.description}}</p>
+<!--            <p style="text-indent: inherit ">{{product.description}}</p>-->
+            <p style="padding: 0;margin:0 0 16px ;background-color: white;color: black"><strong style="color: red">Giá: {{product.price | number}} VND</strong></p>
             <div class=" d-flex justify-content-between ">
               <a routerLink="/info/" class=" p-0 read_more " style="color: white;">Chi
                 tiết <i class="fas fa-eye mr-1" style="color: #0cc4d4"></i></a>
@@ -466,7 +471,11 @@
       <div class="col-md-5"></div>
       <div class="col-md-2">
         <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
-                *ngIf="hasMore2" (click)="loadMore2()">Xem thêm</button>
+                *ngIf="hasMore2" (click)="loadMore2()">Xem thêm
+        </button>
+        <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
+                *ngIf="!hasMore2" (click)="reset2()">Thu gọn
+        </button>
       </div>
       <div class="col-md-5"></div>
     </div>
@@ -485,7 +494,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="titlepage text_align_center">
-            <h2>What is Says Customers</h2>
+            <h2>Khách hàng nói gì về chúng tôi</h2>
           </div>
         </div>
       </div>
@@ -494,9 +503,9 @@
   <!-- start slider section -->
   <div id="myCarousel" class="carousel slide clients_banner" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+      <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -505,17 +514,16 @@
             <div class="row d_flex">
               <div class="col-md-2 col-sm-8">
                 <div class="pro_file">
-                  <i><img src="images/test2.png" alt="#"/></i>
-                  <h4>English.Many</h4>
-                  <span>normal distribution</span>
+                  <i><img src="../../../../assets/images/test1.png" height="129" width="129"/> alt="#"/></i>
+                  <h4>Nguyễn Long</h4>
+                  <span>Khách hàng</span>
                 </div>
               </div>
               <div class="col-md-10">
                 <div class="test_box text_align_left">
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                    classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
-                    professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
-                    consectetur, from a Lorem Ipsum passage, and going </p>
+                  <div class="test_box text_align_left">
+                    <p>Tôi có mua một ít cây thủy sinh ở shop , shop rất nhiệt tình và thân thiện , sản phẩm rất ok</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -528,17 +536,15 @@
             <div class="row d_flex">
               <div class="col-md-2 col-sm-8">
                 <div class="pro_file">
-                  <i><img src="images/test2.png" alt="#"/></i>
-                  <h4>English.Many</h4>
-                  <span>normal distribution</span>
+                  <i><img src="../../../../assets/images/test2.png" alt="#"/></i>
+                  <h4>Nguyễn Mỵ</h4>
+                  <span>khách hàng</span>
                 </div>
               </div>
               <div class="col-md-10">
                 <div class="test_box text_align_left">
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                    classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
-                    professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
-                    consectetur, from a Lorem Ipsum passage, and going </p>
+                  <p>Tôi có mua cá thù lù ở shop , shop rất nhiệt tình và thân thiện ,cá khỏe mạnh và rất đẹp , màu sắc
+                    rất ok .Tôi rất hài lòng </p>
                 </div>
               </div>
             </div>
@@ -551,17 +557,15 @@
             <div class="row d_flex">
               <div class="col-md-2 col-sm-8">
                 <div class="pro_file">
-                  <i><img src="images/test2.png" alt="#"/></i>
-                  <h4>English.Many</h4>
-                  <span>normal distribution</span>
+                  <i><img src="../../../../assets/images/test3.png" alt="#"/></i>
+                  <h4>Cao Minh</h4>
+                  <span>khách hàng</span>
                 </div>
               </div>
               <div class="col-md-10">
                 <div class="test_box text_align_left">
-                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                    classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
-                    professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
-                    consectetur, from a Lorem Ipsum passage, and going </p>
+                  <p>Tôi rất hài lòng với các sản phẩm của shop ,hàng đẹp , giá cả rất phải chăng.Thật sự rất tuyệt
+                    vời</p>
                 </div>
               </div>
             </div>
@@ -569,14 +573,14 @@
         </div>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+    <button class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
       <i class="fa fa-angle-left" aria-hidden="true"></i>
       <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+    </button>
+    <button class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
       <i class="fa fa-angle-right" aria-hidden="true"></i>
       <span class="sr-only">Next</span>
-    </a>
+    </button>
   </div>
 </div>
 <!-- end customers -->
