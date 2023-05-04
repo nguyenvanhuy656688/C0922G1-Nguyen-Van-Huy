@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AquaProduct} from '../model/aqua-product';
 import {AccompanyingImage} from '../model/accompanying-image';
+import {AquaType} from '../model/aqua-type';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,17 @@ export class AquaProductService {
 
   getAccompanyingImage(id: number):Observable<AccompanyingImage[]> {
     return this.httpClient.get<AccompanyingImage[]>('http://localhost:8080/api/public/accompanyingImageListById/' + id )
+  }
+
+  getListSearchResults(page: number, size: number,keyword: string):Observable<AquaProduct[]> {
+    return this.httpClient.get<AquaProduct[]>('http://localhost:8080/api/public/getListSearchResults?page='+page+'&size='+size+'&keyword='+keyword )
+  }
+
+  getAquaTypeList():Observable<AquaType[]> {
+    return this.httpClient.get<AquaType[]>('http://localhost:8080/api/public/listAquaType')
+  }
+
+  changeListForOption(page:number,size:number,keyword: string, id: number):Observable<AquaProduct[]> {
+    return this.httpClient.get<AquaProduct[]>('http://localhost:8080/api/public/changeListForOptionList?page='+page+'&size='+size+'&keyword='+keyword+"&id="+id)
   }
 }

@@ -6,7 +6,7 @@ import { ListSearchComponent } from './list-search/list-search.component';
 
 
 @NgModule({
-  declarations: [ListSearchComponent],
+  declarations: [],
   imports: [
     CommonModule,
     ListSearchRoutingModule

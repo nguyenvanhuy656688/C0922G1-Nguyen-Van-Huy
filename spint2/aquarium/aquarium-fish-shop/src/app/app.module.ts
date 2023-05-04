@@ -13,6 +13,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
 import {AuthInterceptor} from './component/login/auth.interceptor';
+import {ListSearchComponent} from './component/list-search/list-search/list-search.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {AuthInterceptor} from './component/login/auth.interceptor';
     DetailComponent,
     HomeComponent,
     ChangePasswordComponent,
+    ListSearchComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TokenStorageService} from '../service/token-storage.service';
 import {ShareService} from '../service/share.service';
 import {Router} from '@angular/router';
@@ -60,10 +60,14 @@ export class HeaderComponent implements OnInit {
   //     this.nameEmployee = this.tokenStorageService.getUser().username;
   //   }
   // }
+  @Input() searchInput: string = '';
 
 
   scrollToTopLogin() {
     window.scroll(0, 0);
   }
 
+  onSearch() {
+    this.router.navigate(['/search'],{queryParams: {'name': this.searchInput } })
+  }
 }

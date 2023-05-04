@@ -3,7 +3,9 @@ package com.example.aquarium_be.controller;
 import com.example.aquarium_be.dto.IAccompanyingImage;
 import com.example.aquarium_be.model.AccompanyingImage;
 import com.example.aquarium_be.model.AquaProduct;
+import com.example.aquarium_be.model.AquaType;
 import com.example.aquarium_be.service.IAquaProductService;
+import com.example.aquarium_be.service.IAquaTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,8 @@ import java.util.List;
 public class AquaProductController {
     @Autowired
     private IAquaProductService iAquaProductService;
+    @Autowired
+    private IAquaTypeService iAquaTypeService;
 
 
     @GetMapping("/listFish")
@@ -71,6 +75,43 @@ public class AquaProductController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(accompanyingImageList, HttpStatus.OK);
+    }
+
+    @GetMapping("/getListSearchResults")
+    public ResponseEntity<List<AquaProduct>> getListSearchResults(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("keyword") String keyword) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<AquaProduct> listSearchResults = iAquaProductService.getListSearchResults(keyword,pageable);
+        if (listSearchResults.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(listSearchResults, HttpStatus.OK);
+    }
+
+    @GetMapping("listAquaType")
+    public ResponseEntity<List<AquaType>> aquaTypeList() {
+        List<AquaType> aquaType = iAquaTypeService.findAquaType();
+        if (aquaType == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(aquaType, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/changeListForOptionList")
+    public ResponseEntity<List<AquaProduct>> getListSearchResultsByOption(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("keyword") String keyword,
+            @RequestParam("id") int id) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<AquaProduct> listSearchResults = iAquaProductService.getListSearchResultsOption(keyword,id,pageable);
+//        if (listSearchResults.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+        return new ResponseEntity<>(listSearchResults, HttpStatus.OK);
     }
 
 

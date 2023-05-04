@@ -1,1 +1,67 @@
-<p>list-search works!</p>
+<br>
+<div class="row line-img">
+  .
+</div>
+<!-- blog -->
+<div class="blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="titlepage text_align_center ">
+          <h3>Kết qủa tìm kiếm: {{keyword}}</h3>
+          <p>Đến shop để có thể thể xem kĩ hơn</p>
+          <div class="row">
+            <div class="col-md-2">
+              <select (click)="hiddenStt()" [(ngModel)]="selectedOption" (ngModelChange)="changeListForOption()" class="ctools-jump-menu-select ctools-jump-menu-change form-select ctools-jump-menu-processed" id="SELECT_1" name="jump">
+                <option [hidden]="hiddenSt == true" value="0"  selected [disabled]="hiddenSt == false" class="OPTION">
+                  - Bạn chọn loại gì? -
+                </option>
+                <option *ngFor="let option of aquaTypeList" [ngValue]="option.id">{{option.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d_flex">
+      <div class=" col-md-4" *ngFor="let product of listSearchResults , index as i">
+        <div class="latest close1">
+          <div class="style">
+            <figure><img style="width: 330px; height: 275px" [src]="product.image" alt="#"/></figure>
+            <span class="yellow bellow_header">Số.{{i + 1}}</span>
+          </div>
+          <div class="nostrud">
+            <h3>{{product.name}}</h3>
+            <!--            <p style="text-indent: inherit ">{{product.description}}</p>-->
+            <p style="padding: 0;margin:0 0 16px ;background-color: white;color: black"><strong
+              style="color: red">Giá: {{product.price | number}} VND</strong></p>
+            <!--            <a class="read_more" href="blog.html">Xem thêm</a>-->
+            <div class=" d-flex justify-content-between ">
+              <a routerLink="/detail/detail/{{product.id}}" class=" p-0 read_more " style="color: white;">Chi
+                tiết <i class="fas fa-eye mr-1" style="color: #0cc4d4"></i></a>
+              <a href="" class=" p-0 read_more" style="color: white">Thêm vào <i
+                class="fas fa-shopping-cart mr-1" style="color: #0cc4d4;"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-2">
+        <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
+                *ngIf="hasMore" (click)="loadMore()">Xem thêm
+        </button>
+        <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
+                *ngIf="!hasMore" (click)="reset()">Thu gọn
+        </button>
+      </div>
+      <div class="col-md-5"></div>
+    </div>
+  </div>
+</div>
+
+
+
+

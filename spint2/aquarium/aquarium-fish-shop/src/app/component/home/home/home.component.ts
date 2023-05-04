@@ -1,8 +1,10 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, Output, EventEmitter, Input, HostListener} from '@angular/core';
 import {DOCUMENT, ViewportScroller} from '@angular/common';
 import {AquaProduct} from '../../../model/aqua-product';
 import {AquaProductService} from '../../../service/aqua-product.service';
 import {templateJitUrl} from '@angular/compiler';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -10,6 +12,9 @@ import {templateJitUrl} from '@angular/compiler';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit,OnDestroy {
+
+  @Input() searchQuery: string = '';
+
   productList: AquaProduct[] = [];
   productList1: AquaProduct[] = [];
   productList2: AquaProduct[] = [];
@@ -23,13 +28,26 @@ export class HomeComponent implements OnInit,OnDestroy {
   page2 = 0;
   size2 = 3;
   displayedCount: number = 0;
+  previews:any = [];
+  previewContainer: HTMLElement;
+  previewBox: NodeListOf<HTMLElement>;
 
-  constructor(@Inject(DOCUMENT) private document: any, private viewportScroller: ViewportScroller, private aquaProductService:AquaProductService) { }
+  constructor(@Inject(DOCUMENT) private document: any,
+              private router:Router,
+              private viewportScroller: ViewportScroller,
+              private aquaProductService:AquaProductService) {
+    this.productList2.forEach(() => {
+      this.previews.push(false);
+    });
+  }
 
   ngOnInit(): void {
     this.loadListFish()
     this.loadListAquatic()
     this.loadListFood()
+  }
+  ngOnDestroy(): void {
+
   }
 
 
@@ -89,7 +107,14 @@ export class HomeComponent implements OnInit,OnDestroy {
       this.productList1.push(...products);
       this.hasMore1 = products.length === this.size1;
     });
+  }
 
+  reset1() {
+    this.loadListAquatic()
+  }
+
+  reset2() {
+    this.loadListFood()
   }
 
   private loadListAquatic() {
@@ -117,16 +142,41 @@ export class HomeComponent implements OnInit,OnDestroy {
 
   }
 
-  ngOnDestroy(): void {
 
+
+  onSearch() {
+    // this.searchQueryChange.emit(this.searchQuery);
+    this.router.navigate(['/search'],{queryParams: {'name': this.searchQuery } })
   }
 
+  showPreview(index:number) {
+    this.previewContainer = document.querySelector('.products-preview') as HTMLElement;
+    this.previewBox = this.previewContainer.querySelectorAll('.preview');
 
-  reset1() {
-    this.loadListAquatic()
+    this.previewBox.forEach(preview => {
+      preview.classList.remove('active');
+    });
+
+    this.previews.forEach(i => {
+      if (i === index) {
+        this.previews[i] = true;
+        this.previewBox[i].classList.add('active');
+        this.previewContainer.style.display = 'flex';
+      } else {
+        this.previews[i] = false;
+      }
+    });
+
   }
+  closePreview() {
+    this.previewBox.forEach(preview => {
+      preview.classList.remove('active');
+    });
 
-  reset2() {
-    this.loadListFood()
+    this.previews.forEach((preview, i) => {
+      this.previews[i] = false;
+    });
+
+    this.previewContainer.style.display = 'none';
   }
 }

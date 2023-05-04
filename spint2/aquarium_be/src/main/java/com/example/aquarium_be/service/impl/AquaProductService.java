@@ -3,6 +3,7 @@ package com.example.aquarium_be.service.impl;
 import com.example.aquarium_be.dto.IAccompanyingImage;
 import com.example.aquarium_be.model.AccompanyingImage;
 import com.example.aquarium_be.model.AquaProduct;
+import com.example.aquarium_be.model.AquaType;
 import com.example.aquarium_be.repository.IAquaProductRepository;
 import com.example.aquarium_be.service.IAquaProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,4 +42,15 @@ public class AquaProductService implements IAquaProductService {
     public List<IAccompanyingImage> accompanyingImageList(int id) {
         return iAquaProductRepository.getAccompanyingImageList(id);
     }
+
+    @Override
+    public List<AquaProduct> getListSearchResults(String keyword, Pageable pageable) {
+        return iAquaProductRepository.getListSearchResults(keyword,pageable);
+    }
+
+    @Override
+    public List<AquaProduct> getListSearchResultsOption(String keyword, int id, Pageable pageable) {
+        return iAquaProductRepository.getListSearchResultsOption(keyword,id,pageable);
+    }
+
 }
