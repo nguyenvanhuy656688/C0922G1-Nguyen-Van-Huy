@@ -21,18 +21,20 @@ public class AccountDetails implements UserDetails {
     private static final long serialVersionUID = 1L;
     private String username;
     private String nameUser;
+    private Long idAccount;
 
     @JsonIgnore
     private String password;
     List<GrantedAuthority> authorities = null;
 
-    public AccountDetails(String username, String password,String nameUser,
+    public AccountDetails(String username, String password,Long idAccount,String nameUser,
                           List<GrantedAuthority> authorities) {
 
         this.username = username;
         this.password = password;
         this.nameUser=nameUser;
         this.authorities = authorities;
+        this.idAccount = idAccount;
     }
 
     public static AccountDetails build(Accounts account) {
@@ -42,6 +44,7 @@ public class AccountDetails implements UserDetails {
         return new AccountDetails(
                 account.getEmail(),
                 account.getPassword(),
+                account.getId(),
                 account.getNameUser(),
                 authorities);
     }
@@ -109,5 +112,13 @@ public class AccountDetails implements UserDetails {
             return false;
         AccountDetails account = (AccountDetails) o;
         return Objects.equals(username, account.username);
+    }
+
+    public Long getIdAccount() {
+        return idAccount;
+    }
+
+    public void setIdAccount(Long idAccount) {
+        this.idAccount = idAccount;
     }
 }

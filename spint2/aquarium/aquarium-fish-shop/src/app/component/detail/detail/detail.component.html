@@ -1,43 +1,44 @@
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"/>
 <br>
 <br id="form">
 <br>
-<body >
-<div class = "card-wrapper">
-  <div class = "card" >
+<body>
+<div class="card-wrapper">
+  <div class="card">
     <!-- card left -->
-    <div class="product-imgs" >
-      <div class="img-display"  >
-        <div class="img-showcase" #imgShowcase >
-          <img *ngFor="let image of accompanyingImgListDisplay" [src]="image.image" alt="{{image.name}}" />
+    <div class="product-imgs">
+      <div class="img-display">
+        <div class="img-showcase" #imgShowcase>
+          <img *ngFor="let image of accompanyingImgListDisplay" [src]="image.image" alt="{{image.name}}"/>
         </div>
       </div>
       <div class="img-select">
         <div class="img-item" *ngFor="let image of accompanyingImgList, let i = index">
           <a [attr.data-id]="i+1" (click)="selectImage(i+1)">
-            <img style="width: 270px;height: 110px" [src]="image.image" alt="{{image.name}}" />
+            <img style="width: 270px;height: 110px" [src]="image.image" alt="{{image.name}}"/>
           </a>
         </div>
       </div>
     </div>
     <!-- card right -->
-    <div class = "product-content">
-      <h2 class = "product-title">{{infoProduct.name}}</h2>
-      <div class = "product-rating">
-        <i class = "fas fa-star"></i>
-        <i class = "fas fa-star"></i>
-        <i class = "fas fa-star"></i>
-        <i class = "fas fa-star"></i>
-        <i class = "fas fa-star-half-alt"></i>
+    <div class="product-content">
+      <h2 class="product-title">{{infoProduct.name}}</h2>
+      <div class="product-rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
         <span>4.7(21)</span>
       </div>
 
-      <div class = "product-price">
-        <p class = "new-price">New Price: <span>{{infoProduct.price}}</span></p>
+      <div class="product-price">
+        <p class="new-price">New Price: <span>{{infoProduct.price}}</span></p>
       </div>
 
-      <div class = "product-detail">
+      <div class="product-detail">
         <h4>Mô tả: </h4>
         <p>{{infoProduct.description}}</p>
         <ul>
@@ -47,30 +48,47 @@
         </ul>
       </div>
 
-      <div class = "purchase-info">
-        <input style="padding:5px 0 5px 5px" type = "number" min = "0" value = "1">
-        <button style="margin-top: 5px" type = "button" class = "btn">
-          Thêm vào giỏ hàng <i class = "fas fa-shopping-cart"></i>
+      <div class="purchase-info">
+        <div class="row">
+          <div class="col-md-3">
+            <label style="margin-left: 5px" for="size">Kích thước</label>
+            <select #select (change)="setSize(select.value)" id="size" style="width: 115px" class="form-control">
+              <option [value]="'Một ngón'">Một ngón</option>
+              <option [value]="'Hai ngón'">Hai ngón</option>
+              <option [value]="'Ba ngón'">Ba ngón</option>
+              <option [value]="'Bốn ngón'">Bốn ngón</option>
+              <option [value]="'Bàn tay'">Bàn tay</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label>Số lượng</label>
+            <label>
+              <input #quantity style="padding:5px 0 5px 5px" type="number" min="1" value="1">
+            </label>
+          </div>
+        </div>
+        <button (click)="addCart(infoProduct.id,quantity.value)" style="margin-top: 5px" type="button" class="btn">
+          Thêm vào giỏ hàng <i class="fas fa-shopping-cart"></i>
         </button>
-        <button style="margin-top: 5px" type = "button" class = "btn">Tiếp tục mua</button>
+        <button style="margin-top: 5px" type="button" class="btn">Tiếp tục mua</button>
       </div>
 
-      <div class = "social-links">
+      <div class="social-links">
         <p>Share At: </p>
-        <a href = "#">
-          <i class = "fab fa-facebook-f"></i>
+        <a href="#">
+          <i class="fab fa-facebook-f"></i>
         </a>
-        <a href = "#">
-          <i class = "fab fa-twitter"></i>
+        <a href="#">
+          <i class="fab fa-twitter"></i>
         </a>
-        <a href = "#">
-          <i class = "fab fa-instagram"></i>
+        <a href="#">
+          <i class="fab fa-instagram"></i>
         </a>
-        <a href = "#">
-          <i class = "fab fa-whatsapp"></i>
+        <a href="#">
+          <i class="fab fa-whatsapp"></i>
         </a>
-        <a href = "#">
-          <i class = "fab fa-pinterest"></i>
+        <a href="#">
+          <i class="fab fa-pinterest"></i>
         </a>
       </div>
     </div>

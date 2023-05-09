@@ -2,7 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TokenStorageService} from '../service/token-storage.service';
 import {ShareService} from '../service/share.service';
 import {Router} from '@angular/router';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
+import {CartService} from '../service/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -16,10 +17,21 @@ export class HeaderComponent implements OnInit {
   nameEmployee: string;
   role: string;
   isLoggedIn = false;
+  idAccount: number;
+  listCart: any;
+  length: number;
 
   constructor(private tokenStorageService: TokenStorageService,
+              private cartService: CartService,
               private shareService: ShareService,
               private router: Router) {
+    this.cartService.showAllCart(this.tokenStorageService.getUser().idAccount).subscribe(data => {
+      {
+        this.listCart = data;
+        this.length = this.listCart?.length;
+      }
+    });
+
   }
 
   loadHeader(): void {
@@ -27,6 +39,7 @@ export class HeaderComponent implements OnInit {
       this.currentUser = this.tokenStorageService.getUser();
       this.role = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().nameUser;
+      this.idAccount = this.tokenStorageService.getUser().idAccount;
     }
     this.isLoggedIn = this.username != null;
   }
@@ -45,7 +58,7 @@ export class HeaderComponent implements OnInit {
     await Swal.fire({
       text: 'Đã đăng xuất',
       icon: 'success',
-      iconColor: "#ffc246",
+      iconColor: '#ffc246',
       confirmButtonText: 'OK',
       confirmButtonColor: '#ffc246',
       // showConfirmButton: false,
@@ -68,6 +81,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearch() {
-    this.router.navigate(['/search'],{queryParams: {'name': this.searchInput } })
+    this.router.navigate(['/search'], {queryParams: {'name': this.searchInput}});
   }
 }

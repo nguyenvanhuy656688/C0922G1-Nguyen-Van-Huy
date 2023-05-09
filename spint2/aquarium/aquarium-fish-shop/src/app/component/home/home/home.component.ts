@@ -4,6 +4,10 @@ import {AquaProduct} from '../../../model/aqua-product';
 import {AquaProductService} from '../../../service/aqua-product.service';
 import {templateJitUrl} from '@angular/compiler';
 import {Router} from '@angular/router';
+import {CartService} from '../../../service/cart.service';
+import Swal from "sweetalert2";
+import {ShareService} from '../../../service/share.service';
+import {TokenStorageService} from '../../../service/token-storage.service';
 
 
 @Component({
@@ -27,6 +31,8 @@ export class HomeComponent implements OnInit,OnDestroy {
   hasMore2 = false;
   page2 = 0;
   size2 = 3;
+  sizeProduct:string = 'Hai ngón';
+  isLogged:boolean = false
   displayedCount: number = 0;
   previews:any = [];
   previewContainer: HTMLElement;
@@ -35,7 +41,10 @@ export class HomeComponent implements OnInit,OnDestroy {
   constructor(@Inject(DOCUMENT) private document: any,
               private router:Router,
               private viewportScroller: ViewportScroller,
-              private aquaProductService:AquaProductService) {
+              private aquaProductService:AquaProductService,
+              private cartService:CartService ,
+              private shareService:ShareService,
+              private token:TokenStorageService) {
     this.productList2.forEach(() => {
       this.previews.push(false);
     });
@@ -45,6 +54,9 @@ export class HomeComponent implements OnInit,OnDestroy {
     this.loadListFish()
     this.loadListAquatic()
     this.loadListFood()
+    if (this.token.getUser().nameUser != null){
+      this.isLogged = true
+    }
   }
   ngOnDestroy(): void {
 
@@ -178,5 +190,55 @@ export class HomeComponent implements OnInit,OnDestroy {
     });
 
     this.previewContainer.style.display = 'none';
+  }
+
+  addCart(id: number) {
+    debugger
+    if(this.isLogged == false){
+      Swal.fire({
+        title: 'Bạn bạn hiện tại chưa đăng nhập',
+        text: 'Bạn có muốn vào trang đăng nhập không?' ,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#0099FF',
+        cancelButtonColor: '#BBBBBB',
+        confirmButtonText: 'Đăng nhập',
+        cancelButtonText: 'Không'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.shareService.sendClickEvent()
+          this.router.navigateByUrl('/login')
+          this.Logged()
+        }
+      });
+    }else {
+      this.cartService.addCart(this.token.getUser().idAccount,id,1,this.sizeProduct).subscribe(next=>{
+        Swal.fire({
+          position: 'center',
+          title: 'Đã thêm vào giỏ hàng thành công',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1000
+        });
+        this.shareService.sendClickEvent()
+
+      }, error => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Thêm mới thất bại!',
+          text: 'Thêm mới thất bại',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      })
+    }
+
+  }
+
+  private Logged() {
+    if (this.token.getUser().idAccount != null){
+      this.isLogged = true
+    }
   }
 }

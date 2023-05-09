@@ -36,4 +36,7 @@ public interface IAquaProductRepository extends JpaRepository<AquaProduct, Long>
 
     @Query( value = "select * from aqua_product where aqua_product.name like concat('%',:keyword,'%') and aqua_product.aqua_type_id =:id", nativeQuery = true)
     List<AquaProduct> getListSearchResultsOption(@Param("keyword") String keyword,@Param("id") int id, Pageable pageable);
+
+
+
 }

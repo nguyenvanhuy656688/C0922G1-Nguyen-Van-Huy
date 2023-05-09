@@ -1,9 +1,12 @@
 package com.example.aquarium_be.service.impl;
 
 import com.example.aquarium_be.model.Accounts;
+import com.example.aquarium_be.model.OrderProduct;
 import com.example.aquarium_be.repository.IAccountRepository;
 import com.example.aquarium_be.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +36,16 @@ public class AccountService implements IAccountService {
     public void saveNewPassword(String newPassword, Long accountId) {
         accountRepository.saveNewPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt(12)),accountId);
 
+    }
+
+    @Override
+    public Accounts findById(Long id) {
+        return accountRepository.findAccountById(id);
+    }
+
+    @Override
+    public Page<OrderProduct> findAllByUser(Accounts id, Pageable pageable) {
+        return null;
     }
 
 

@@ -1,14 +1,16 @@
 package com.example.aquarium_be.controller;
 
+import com.example.aquarium_be.dto.CartDto;
 import com.example.aquarium_be.dto.IAccompanyingImage;
-import com.example.aquarium_be.model.AccompanyingImage;
-import com.example.aquarium_be.model.AquaProduct;
-import com.example.aquarium_be.model.AquaType;
-import com.example.aquarium_be.service.IAquaProductService;
-import com.example.aquarium_be.service.IAquaTypeService;
+import com.example.aquarium_be.dto.OrderProductDto;
+import com.example.aquarium_be.model.*;
+import com.example.aquarium_be.service.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,12 @@ public class AquaProductController {
     private IAquaProductService iAquaProductService;
     @Autowired
     private IAquaTypeService iAquaTypeService;
+    @Autowired
+    private ICartService iCartService;
+    @Autowired
+    private IAccountService iAccountService;
+    @Autowired
+    private IOrderProductService iOrderProductService;
 
 
     @GetMapping("/listFish")
@@ -84,9 +92,6 @@ public class AquaProductController {
             @RequestParam("keyword") String keyword) {
         Pageable pageable = PageRequest.of(page, size);
         List<AquaProduct> listSearchResults = iAquaProductService.getListSearchResults(keyword,pageable);
-        if (listSearchResults.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(listSearchResults, HttpStatus.OK);
     }
 
@@ -108,11 +113,132 @@ public class AquaProductController {
             @RequestParam("id") int id) {
         Pageable pageable = PageRequest.of(page, size);
         List<AquaProduct> listSearchResults = iAquaProductService.getListSearchResultsOption(keyword,id,pageable);
-//        if (listSearchResults.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
         return new ResponseEntity<>(listSearchResults, HttpStatus.OK);
     }
+
+    @PostMapping("/cart/create")
+    public ResponseEntity<?> createOrUpdate(@RequestBody CartDto cartDto) {
+        Cart cart = new Cart();
+        Accounts accounts = iAccountService.findById(cartDto.getAccounts());
+        System.out.println(accounts);
+        AquaProduct aquaProduct = iAquaProductService.findAquaProduct(cartDto.getAquaProduct());
+        BeanUtils.copyProperties(cartDto, cart);
+        cart.setAccounts(accounts);
+        cart.setAquaProduct(aquaProduct);
+        if (iCartService.checkCart(cart.getAquaProduct(),cart.getAccounts(),cart.getSize())) {
+            Cart cart1 = iCartService.findByFoodIdAndUserId(cart.getAquaProduct(),cart.getAccounts(),cart.getSize());
+            cart1.setQuantity(cart1.getQuantity() + 1);
+            cart1.setSize(cart1.getSize());
+            iCartService.createCart(cart1);
+        }else {
+            Cart cart1 = new Cart();
+            cart1.setQuantity(cartDto.getQuantity());
+            cart1.setSize(cartDto.getSize());
+            cart1.setAquaProduct(iAquaProductService.findAquaProduct(cartDto.getAquaProduct()));
+            cart1.setAccounts(iAccountService.findById(cartDto.getAccounts()));
+            iCartService.createCart(cart1);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    @PostMapping("/cart/buy")
+    public ResponseEntity<?> buy(@RequestBody OrderProductDto orderProductDto) {
+        List<Cart> list = iCartService.findAllByUser(iAccountService.findById(orderProductDto.getAccounts().getId()));
+        OrderProduct bill = new OrderProduct();
+        bill.setDateOrder(orderProductDto.getDateOrder());
+        bill.setTotal(orderProductDto.getTotal());
+        bill.setAccounts(iAccountService.findById(orderProductDto.getAccounts().getId()));
+        iOrderProductService.addBill(bill);
+        for (int i = 0; i < list.size(); i++) {
+            OrderDetail billHistory = new OrderDetail();
+            billHistory.setOrderProduct(bill);
+            billHistory.setAmount(list.get(i).getQuantity());
+            billHistory.setAquaProduct(list.get(i).getAquaProduct());
+            billHistory.setSize(list.get(i).getSize());
+            iOrderProductService.addBillHistory(billHistory);
+        }
+        iCartService.deleteCartByIdUser(orderProductDto.getAccounts());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/cart/list/{id}")
+    public ResponseEntity<List<Cart>> showList(@PathVariable("id") Long id){
+        List<Cart> carts = iCartService.findAll(id);
+        return new ResponseEntity<>(carts, HttpStatus.OK);
+    }
+
+    @PostMapping("/cart/edit")
+    public ResponseEntity<?> editSize(@RequestBody CartDto cartDto) {
+        Cart cart = new Cart();
+        List<Cart> carts = iCartService.findAll(cartDto.getAccounts());
+        for (int i = 0; i < carts.size(); i++) {
+            if (carts.get(i).getSize().equals(cartDto.getSize())  && carts.get(i).getAquaProduct().getId() == cartDto.getAquaProduct() && carts.get(i).getAccounts().getId()==cartDto.getAccounts()) {
+
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        BeanUtils.copyProperties(cartDto, cart);
+        iCartService.updateSize(cart.getId(),cart.getSize());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/cart/delete/{id}")
+    public ResponseEntity<Cart> deleteCart(@PathVariable("id") Long id) {
+        Cart cart = iCartService.findCart(id);
+        if (cart == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        iCartService.deleteCart(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/cart/increase")
+    public ResponseEntity<?> increaseQuantity(@RequestBody CartDto cartDto) {
+        Cart cart = new Cart();
+        Accounts accounts = iAccountService.findById(cartDto.getAccounts());
+        AquaProduct aquaProduct = iAquaProductService.findAquaProduct(cartDto.getAquaProduct());
+        BeanUtils.copyProperties(cartDto, cart);
+        cart.setAccounts(accounts);
+        cart.setAquaProduct(aquaProduct);
+        Cart cart1 = iCartService.findByAquaProductIdAndUserId(cart.getAquaProduct().getId(),cart.getAccounts().getId(),cart.getSize());
+        if (cart1 != null) {
+            cart1.setQuantity(cart1.getQuantity() + 1);
+        } else {
+            cart1 = new Cart();
+            cart1.setAquaProduct(cart.getAquaProduct());
+            cart1.setAccounts(cart.getAccounts());
+            cart1.setSize(cart.getSize());
+            cart1.setQuantity(cartDto.getQuantity()+1);
+        }
+
+        iCartService.createCart(cart1);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/cart/reduce")
+    public ResponseEntity<?> reduceQuantity(@RequestBody CartDto cartDto) {
+        Cart cart = new Cart();
+        Accounts accounts = iAccountService.findById(cartDto.getAccounts());
+        AquaProduct aquaProduct = iAquaProductService.findAquaProduct(cartDto.getAquaProduct());
+        BeanUtils.copyProperties(cartDto, cart);
+        cart.setAccounts(accounts);
+        cart.setAquaProduct(aquaProduct);
+        Cart cart1 = iCartService.findByAquaProductIdAndUserId(cart.getAquaProduct().getId(),cart.getAccounts().getId(),cart.getSize());
+        if (cart1 != null) {
+            cart1.setQuantity(cart1.getQuantity() - 1);
+        } else {
+            cart1 = new Cart();
+            cart1.setAquaProduct(cart.getAquaProduct());
+            cart1.setAccounts(cart.getAccounts());
+            cart1.setSize(cart.getSize());
+            cart1.setQuantity(cartDto.getQuantity()-1);
+        }
+
+        iCartService.createCart(cart1);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 
 

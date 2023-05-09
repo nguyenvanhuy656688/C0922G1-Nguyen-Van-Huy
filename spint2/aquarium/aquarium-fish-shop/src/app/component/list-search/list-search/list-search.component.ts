@@ -16,9 +16,14 @@ export class ListSearchComponent implements OnInit {
   hasMore = false;
   page = 0;
   size = 6;
-  private displayedCount: number;
   hiddenSt: boolean = false;
   aquaTypeList: AquaType[] = [];
+  noFind: boolean = false;
+  page1 = 0;
+  size1 = 3;
+  hasMore1 = false;
+  change: boolean = false;
+  chooseSt:boolean = false
 
 
   constructor(private aquaProductService: AquaProductService, private activatedRoute: ActivatedRoute) {
@@ -37,7 +42,6 @@ export class ListSearchComponent implements OnInit {
     this.aquaProductService.getListSearchResults(this.page, this.size, this.keyword).subscribe(products => {
       this.listSearchResults.push(...products);
       this.hasMore = products.length === this.size;
-      this.displayedCount += this.page;
     });
   }
 
@@ -46,6 +50,12 @@ export class ListSearchComponent implements OnInit {
     this.aquaProductService.getListSearchResults(this.page, this.size, this.keyword).subscribe(products => {
       this.listSearchResults = products;
       this.hasMore = products.length === this.size;
+      if (this.listSearchResults.length === 0) {
+        this.noFind = true;
+      }
+      if (this.listSearchResults.length !== 0){
+        this.noFind = false
+      }
     });
   }
 
@@ -64,22 +74,37 @@ export class ListSearchComponent implements OnInit {
     this.hiddenSt = true;
   }
 
-  // changeListForOption(id: number) {
-  //   debugger
-  //   this.aquaProductService.changeListForOption(this.page,this.size,this.keyword,id).subscribe(data=>{
-  //     this.listSearchResults = data
-  //   })
-  //
-  // }
   selectedOption: any = 0;
 
-  changeListForOption() {
-    this.aquaProductService.changeListForOption(this.page, this.size, this.keyword, this.selectedOption)
-      .subscribe(data => {
 
-          this.listSearchResults = data;
-        // this.listSearchResults = []
+  loadMore1() {
+    this.page1++;
+    this.aquaProductService.changeListForOption(this.page1, this.size1, this.keyword, this.selectedOption).subscribe(products => {
+      this.listSearchResults.push(...products);
+      this.hasMore1 = products.length === this.size1;
+    });
+  }
 
-      });
+  changeListForOptionList() {
+    this.change = true;
+    this.page1 = 0;
+    this.aquaProductService.changeListForOption(this.page1, this.size1, this.keyword, this.selectedOption).subscribe(products => {
+      this.listSearchResults = products;
+      this.hasMore1 = products.length === this.size1;
+      if (this.listSearchResults.length === 0) {
+        this.noFind = true;
+      }
+      if (this.listSearchResults.length !== 0){
+        this.noFind = false
+      }
+    });
+  }
+
+  reset1() {
+    this.changeListForOptionList();
+  }
+
+  choose() {
+    this.chooseSt = true
   }
 }

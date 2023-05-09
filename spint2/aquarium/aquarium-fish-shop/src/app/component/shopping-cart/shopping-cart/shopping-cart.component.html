@@ -1,152 +1,115 @@
-<body style="margin-top: 80px">
-<section class="h-100 ">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12">
+<div  *ngIf="quantity==0" style="height: 600px;margin-top: 150px" class="text-center cnt-div">
+  <img src="https://i.imgur.com/FaHdzrX.png" alt="">
+  <h1 class="text-center">giỏ hàng của bạn đang trống</h1>
+  <button class="btn btn-primary" style="margin-top: 50px" routerLink="/">Vào mua hàng</button>
+</div>
+
+
+<section *ngIf="quantity!=0" style="background-color: white;height: 850px;margin: 50px">
+  <div class=" ">
+    <div class="row d-flex justify-content-center align-items-center ">
+      <div class="col-12" style="margin-bottom: 100px;z-index: 300">
         <div class="card card-registration card-registration-2" style="border-radius: 15px;">
           <div class="card-body p-0">
             <div class="row g-0">
               <div class="col-lg-8">
                 <div class="p-5">
-                  <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h1 class="fw-bold mb-0 text-black">Order aquarius</h1>
-                    <h6 class="mb-0 text-muted">3 items</h6>
-                  </div>
-                  <div class="img_line" style="background: url(../../assets/images/images/img_line.png) 0 0 repeat-x"></div>
-                  <div class="img_line" style="background: url(../../assets/images/images/img_line.png) 0 0 repeat-x"></div>
-
-                  <div class="row mb-4 d-flex justify-content-between align-items-center">
-                    <div class="col-md-2 col-lg-2 col-xl-2">
-                      <img
-                        src="https://www.fishkeepingworld.com/wp-content/uploads/2018/02/17-Most-Popular-Freshwater-Fish-Article-Banner.png"
-                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                      <h6 class="text-muted">Fish</h6>
-                      <h6 class="text-black mb-0">T-Fish</h6>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                      <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                        <i class="fas fa-minus"></i>
-                      </button>
-
-                      <input  min="0" name="quantity" value="1" type="number"
-                              class="form-control form-control-sm" />
-
-                      <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                        <i class="fas fa-plus"></i>
-                      </button>
-                    </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0">€ 44.00</h6>
-                    </div>
-                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                    </div>
-                  </div>
-
                   <hr class="my-4">
 
-                  <div class="row mb-4 d-flex justify-content-between align-items-center">
+
+                  <div *ngFor="let item of cart;index as i" class="row mb-4 d-flex justify-content-between align-items-center" style="margin-bottom: -10px">
                     <div class="col-md-2 col-lg-2 col-xl-2">
                       <img
-                        src="https://tse4.mm.bing.net/th?id=OIP.019jz7m4_hlaUxrRcubaGAHaEo&pid=Api&P=0"
+                        src="{{item.aquaProduct.image}}"
                         class="img-fluid rounded-3" alt="Cotton T-shirt">
                     </div>
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                      <h6 class="text-muted">Fish</h6>
-                      <h6 class="text-black mb-0">Gold Fish</h6>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                      <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                        <i class="fas fa-minus"></i>
-                      </button>
 
-                      <input id="form1" min="0" name="quantity" value="1" type="number"
+                    <div class="col-md-1 col-lg-2 col-xl-2">
+                      <h6 class="text-black mb-0">{{item.aquaProduct.name}}</h6>
+                    </div>
+
+                    <div class="col-md-1 col-lg-3 col-xl-3">
+                      <label for="size">Size :</label>
+                      <select id="select" #select (change)="setSize(select.value,item?.id,item.aquaProduct?.id,item.aquaProduct.name)" id="size"  class="form-control">
+                        <option [selected]="item.size =='Một ngón'" [value]="'Một ngón'">Một ngón</option>
+                        <option [selected]="item.size =='Hai ngón'" [value]="'Hai ngón'">Hai ngón</option>
+                        <option [selected]="item.size =='Ba ngón'" [value]="'Ba ngón'">Ba ngón</option>
+                        <option [selected]="item.size =='Bốn ngón'" [value]="'Bốn ngón'">Bốn ngón</option>
+                        <option [selected]="item.size =='Bàn tay'" [value]="'Bàn tay'">Bàn tay</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                      <button [disabled]="item.quantity == 1" style="background-color: #FF9933" class="btn btn-link px-2" (click)="stepDown(item.aquaProduct?.id,select.value)">
+                        <i class="fas fa-minus" style="color: white"></i>
+                      </button>
+                      <input readonly [value]="item.quantity" style="width: 50px" value="1" type="number"
                              class="form-control form-control-sm" />
-
-                      <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                        <i class="fas fa-plus"></i>
+                      <button  style="background-color: #FF9933" class="btn btn-link px-2" (click)="stepUp(item.aquaProduct?.id,select.value)">
+                        <i class="fas fa-plus" style="color: white"></i>
                       </button>
                     </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0">€ 44.00</h6>
+
+                    <div class="col-md-2 col-lg-1 col-xl-2 " style="text-align: center">
+                      <ng-container>
+                        <h6 *ngIf="select.value == 'Một ngón'" style="text-align: center" class="mb-0">{{(item.aquaProduct.price * item.quantity) | number}}đ</h6>
+                        <h6 *ngIf="select.value == 'Hai ngón'" style="text-align: center" class="mb-0">{{(item.aquaProduct.price +100000) * item.quantity | number}}đ</h6>
+                        <h6 *ngIf="select.value == 'Ba ngón'" style="text-align: center" class="mb-0">{{(item.aquaProduct.price + 250000) * item.quantity | number}}đ</h6>
+                        <h6 *ngIf="select.value == 'Bốn ngón'" style="text-align: center" class="mb-0">{{(item.aquaProduct.price + 500000) * item.quantity | number}}đ</h6>
+                        <h6 *ngIf="select.value == 'Bàn tay'" style="text-align: center" class="mb-0">{{(item.aquaProduct.price  + 800000 ) * item.quantity | number}}đ</h6>
+                      </ng-container>
                     </div>
+
                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                      <a class="text-muted"><i style="cursor: pointer" class="fas fa-times" (click)="delete(item.id,item.aquaProduct.name,item.size)"></i></a>
                     </div>
+
+                    <hr class="my-4">
                   </div>
 
-                  <hr class="my-4">
-
-                  <div class="row mb-4 d-flex justify-content-between align-items-center">
-                    <div class="col-md-2 col-lg-2 col-xl-2">
-                      <img
-                        src="https://th.bing.com/th/id/OIP.t-GKv2e8iqfYjup7uNoPWgHaEo?pid=ImgDet&rs=1"
-                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                      <h6 class="text-muted">Fish</h6>
-                      <h6 class="text-black mb-0">Tiger Fish</h6>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                      <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                        <i class="fas fa-minus"></i>
-                      </button>
-
-                      <input  min="0" name="quantity" value="1" type="number"
-                              class="form-control form-control-sm" />
-
-                      <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                        <i class="fas fa-plus"></i>
-                      </button>
-                    </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0">€ 44.00</h6>
-                    </div>
-                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                    </div>
-
-                  </div>
-
-
-
-                  <div class="pt-5">
-                    <h6 class="mb-0"><a href="#!" class="text-body"><i
-                      class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                  <div class="pt-5" style="padding-top: 0">
+                    <h6 class="mb-0"><a routerLink="/" class="text-body"><i
+                      class="fas fa-long-arrow-alt-left me-2"></i>Quay lại cửa hàng</a></h6>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 bg-grey bg-1">
+              <div class="col-lg-4 bg-grey">
                 <div class="p-5">
-                  <h3 class="fw-bold mb-5 mt-2 pt-1">Order Summary</h3>
+                  <h3 class="fw-bold mb-5 mt-2 pt-1">Hóa đơn </h3>
+                  <hr class="my-4">
 
                   <div class="d-flex justify-content-between mb-4">
-                    <p class="text-uppercase" style="font-weight: bold">Quantity: 3</p>
-                    <p style="font-weight: bold">€ 132.00</p>
+                    <h5 class="text-uppercase">{{cart.length}} món</h5>
+                    <h5>{{total | number}} đ</h5>
                   </div>
 
-                  <p class="text-uppercase mb-3" style="font-weight: bold">Discount Code</p>
+                  <h5 class="text-uppercase mb-3">Phí vận chuyển</h5>
+
+                  <div class="mb-4 pb-2">
+                    <select class="select form-control" disabled>
+                      <option value="1">20,000 đ</option>
+                    </select>
+                  </div>
+
+                  <h5 class="text-uppercase mb-3">Mã giảm giá</h5>
 
                   <div class="mb-5">
                     <div class="form-outline">
-                      <input type="text" id="form3Examplea2" placeholder="enter your code" class="form-control form-control" />
+                      <input style="background-color: white" type="text" id="form3Examplea2" class="form-control form-control-lg" />
+                      <label class="form-label" for="form3Examplea2">Nhập mã của bạn</label>
                     </div>
                   </div>
+
+                  <hr class="my-4">
+
                   <div class="d-flex justify-content-between mb-5">
-                    <p class="text-uppercase" style="font-weight: bold">Total Price</p>
-                    <p style="font-weight: bold">€ 137.00</p>
+                    <h5 class="text-uppercase">Tổng tiền</h5>
+                    <h5>{{total | number}} đ</h5>
                   </div>
-
-                  <button type="button" class="btn btn-dark btn-block" data-mdb-ripple-color="dark">Register</button>
-
+                  <button *ngIf="isPaypal == false" type="button" (click)="paypal()" class="btn btn-dark btn-block btn-lg1"
+                          data-mdb-ripple-color="dark">Thanh toán</button>
+                  <div id="paypal"></div>
                 </div>
               </div>
             </div>
@@ -156,4 +119,9 @@
     </div>
   </div>
 </section>
-</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

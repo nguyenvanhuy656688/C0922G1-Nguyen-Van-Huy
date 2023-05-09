@@ -33,26 +33,21 @@
   }
 }
 
-body {
-  font-family: "Open Sans", sans-serif;
-  height: 100vh;
-  background: url("https://topchiase24h.com/wp-content/uploads/2021/04/hinh-nen-con-ca-duoi-day-dai-duong-29.jpg") 10% fixed;
-  background-size: cover;
+.btn-lg1, .btn-group-lg > .btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+  background-color: #FF9933;
 }
+.cnt-div {
+  position: relative;
 
-.bg-1 {
-  background-color: #f8f9fa;
+
 }
-
-.text-uppercase {
-  text-transform: uppercase;
-}
-
-.form-label {
-  color: #000;
-}
-
-.btn-dark {
-  background-color: #343a40;
-  color: #fff;
+.cnt-div > img {
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }

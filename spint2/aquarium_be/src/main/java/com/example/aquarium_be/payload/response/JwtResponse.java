@@ -14,12 +14,14 @@ public class JwtResponse {
     private String username;
     private String nameUser;
     private List<String> roles;
+    private Long idAccount;
 
-    public JwtResponse(String accessToken, String username, String nameUser, List<String> roles) {
+    public JwtResponse(String accessToken, String username,Long idAccount ,String nameUser, List<String> roles) {
         this.token = accessToken;
         this.username = username;
         this.nameUser=nameUser;
         this.roles = roles;
+        this.idAccount = idAccount;
     }
 
     public JwtResponse() {
@@ -83,4 +85,11 @@ public class JwtResponse {
         this.roles = roles;
     }
 
+    public Long getIdAccount() {
+        return idAccount;
+    }
+
+    public void setIdAccount(Long idAccount) {
+        this.idAccount = idAccount;
+    }
 }

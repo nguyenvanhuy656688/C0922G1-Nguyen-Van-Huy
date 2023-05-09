@@ -50,4 +50,8 @@ export class TokenStorageService {
       return JSON.parse(sessionStorage.getItem(USER_KEY));
     }
   }
+
+  getId() {
+
+  }
 }

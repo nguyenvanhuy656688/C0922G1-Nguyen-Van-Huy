@@ -196,7 +196,7 @@
           <p>Để tạo cho khách hàng thêm nhiều phần ưu đãi , cũng như tiết kiệm chi phí khi mua sắm.
             Shop chúng tôi đã chọn ra 3 ngày để mãi giảm giá các sản phẩm trong từng ngày trong tháng 1 để tri ân khách
             hàng nhân dip đầu năm mới 2023</p>
-          <a class="read_more" href="about.html">Xem phía dưới</a>
+          <a class="read_more" >Xem phía dưới</a>
         </div>
       </div>
     </div>
@@ -276,7 +276,7 @@
           <div class="titlepage text_align_left">
             <h2>Cá cảnh</h2>
             <p>Là linh hồn của shop , chúng tôi mong muốn bạn có thể chọn được những con cá mình thích nhất</p>
-            <a class="read_more" href="about.html">Xem phía dưới</a>
+            <a class="read_more" >Xem phía dưới</a>
           </div>
         </div>
       </div>
@@ -301,7 +301,7 @@
     </div>
     <div class="row d_flex">
       <div class=" col-md-4" *ngFor="let product of productList , index as i">
-        <div class="latest close1">
+        <div class="latest close1" routerLink="/detail/detail/{{product.id}}">
           <div class="style">
             <figure><img style="width: 330px; height: 275px" [src]="product.image" alt="#"/></figure>
             <span class="yellow bellow_header">Số.{{i + 1}}</span>
@@ -313,10 +313,10 @@
               style="color: red">Giá: {{product.price | number}} VND</strong></p>
             <!--            <a class="read_more" href="blog.html">Xem thêm</a>-->
             <div class=" d-flex justify-content-between ">
-              <a routerLink="/detail/detail/{{product.id}}" class=" p-0 read_more " style="color: white;">Chi
-                tiết <i class="fas fa-eye mr-1" style="color: #0cc4d4"></i></a>
+              <a  class=" p-0 read_more " style="color: white;">Mua ngay
+                <i class="fas fa-dollar mr-1" style="color: #0cc4d4"></i></a>
               <a href="" class=" p-0 read_more" style="color: white">Thêm vào <i
-                class="fas fa-shopping-cart mr-1" style="color: #0cc4d4;"></i></a>
+                class="fas fa-shopping-cart mr-1" style="color: #0cc4d4;" (click)="addCart(product.id)"></i></a>
             </div>
           </div>
         </div>
@@ -353,7 +353,7 @@
           <div class="titlepage text_align_left">
             <h2>Thủy sinh</h2>
             <p>Các loại thực vật và sản phẩm thủy sinh giúp cho hồ cá của bạn trở nên tươi mới và xinh đẹp hơn</p>
-            <a class="read_more" href="about.html">Xem phía dưới</a>
+            <a class="read_more">Xem phía dưới</a>
           </div>
         </div>
       </div>
@@ -378,7 +378,7 @@
     </div>
     <div class="row d_flex">
       <div class=" col-md-4" *ngFor="let product of productList1 , index as i">
-        <div class="latest close1">
+        <div class="latest close1" routerLink="/detail/detail/{{product.id}}">
           <figure><img style="width: 330px; height: 275px" [src]="product.image" alt="#"/></figure>
           <span class="yellow bellow_header">Số.{{i + 1}}</span>
           <div class="nostrud">
@@ -387,9 +387,9 @@
             <p style="padding: 0;margin:0 0 16px ;background-color: white;color: black"><strong
               style="color: red">Giá: {{product.price | number}} VND</strong></p>
             <div class=" d-flex justify-content-between ">
-              <a routerLink="/detail/detail/{{product.id}}" class=" p-0 read_more " style="color: white;">Chi
-                tiết <i class="fas fa-eye mr-1" style="color: #0cc4d4"></i></a>
-              <a href="" class=" p-0 read_more" style="color: white">Thêm vào <i
+              <a  class=" p-0 read_more " style="color: white;">Mua ngay
+                <i class="fas fa-dollar mr-1" style="color: #0cc4d4"></i></a>
+              <a href="" class=" p-0 read_more" style="color: white" (click)="addCart(product.id)">Thêm vào <i
                 class="fas fa-shopping-cart mr-1" style="color: #0cc4d4;"></i></a>
             </div>
           </div>
@@ -428,7 +428,7 @@
           <div class="titlepage text_align_left">
             <h2>Thức ăn cho cá</h2>
             <p>Là nguồn thực phẩm dinh dưỡng giúp cho cá chóng lớn và khỏe mạnh</p>
-            <a class="read_more" href="about.html">Xem phía dưới</a>
+            <a class="read_more" >Xem phía dưới</a>
           </div>
         </div>
       </div>
@@ -454,7 +454,7 @@
     <div class="row d_flex">
       <div class=" col-md-4 " *ngFor="let product of productList2 , index as i">
         <div class="products-container">
-          <div class="latest close1 product" (click)="showPreview(i)" [attr.data-name]="'p'+product.id">
+          <div class="latest close1 product" routerLink="/detail/detail/{{product.id}}" (click)="showPreview(i)" [attr.data-name]="'p'+product.id">
             <div class="style row">
               <figure><img style="width: 350px;height: 300px;filter: blur(0px)" [src]="product.image" alt="#"/></figure>
               <span class="yellow bellow_header">Số.{{i + 1}}</span>
@@ -465,9 +465,9 @@
               <p style="padding: 0;margin:0 0 16px ;background-color: white;color: black"><strong
                 style="color: red">Giá: {{product.price | number}} VND</strong></p>
               <div class=" d-flex justify-content-between ">
-                <a routerLink="/detail/detail/{{product.id}}" class=" p-0 read_more " style="color: white;">Chi
-                  tiết <i class="fas fa-eye mr-1" style="color: #0cc4d4"></i></a>
-                <a href="" class=" p-0 read_more" style="color: white">Thêm vào <i
+                <a  class=" p-0 read_more " style="color: white;">Mua ngay
+                  <i class="fas fa-dollar mr-1" style="color: #0cc4d4"></i></a>
+                <a href="" class=" p-0 read_more" style="color: white" (click)="addCart(product.id)">Thêm vào <i
                   class="fas fa-shopping-cart mr-1" style="color: #0cc4d4;"></i></a>
               </div>
             </div>

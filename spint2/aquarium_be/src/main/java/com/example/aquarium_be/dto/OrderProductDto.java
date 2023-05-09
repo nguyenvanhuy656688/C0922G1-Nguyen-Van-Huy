@@ -1,22 +1,15 @@
-package com.example.aquarium_be.model;
+package com.example.aquarium_be.dto;
 
-import javax.persistence.*;
+import com.example.aquarium_be.model.Accounts;
 
-@Entity
-public class OrderProduct {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+
+public class OrderProductDto {
     private Long id;
-
-    @Column(nullable = false)
     private double total;
-
-    @Column(columnDefinition = "date", nullable = false)
     private String dateOrder;
-
-    @ManyToOne
     private Accounts accounts;
-
 
     public Long getId() {
         return id;
@@ -26,6 +19,13 @@ public class OrderProduct {
         this.id = id;
     }
 
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
 
     public String getDateOrder() {
         return dateOrder;
@@ -41,13 +41,5 @@ public class OrderProduct {
 
     public void setAccounts(Accounts accounts) {
         this.accounts = accounts;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
     }
 }

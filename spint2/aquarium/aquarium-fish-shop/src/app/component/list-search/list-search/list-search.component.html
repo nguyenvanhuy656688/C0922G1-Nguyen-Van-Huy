@@ -12,11 +12,11 @@
           <p>Đến shop để có thể thể xem kĩ hơn</p>
           <div class="row">
             <div class="col-md-2">
-              <select (click)="hiddenStt()" [(ngModel)]="selectedOption" (ngModelChange)="changeListForOption()" class="ctools-jump-menu-select ctools-jump-menu-change form-select ctools-jump-menu-processed" id="SELECT_1" name="jump">
-                <option [hidden]="hiddenSt == true" value="0"  selected [disabled]="hiddenSt == false" class="OPTION">
+              <select (click)="hiddenStt()" [(ngModel)]="selectedOption" (ngModelChange)="changeListForOptionList()" class="ctools-jump-menu-select ctools-jump-menu-change form-select ctools-jump-menu-processed" id="SELECT_1" name="jump">
+                <option [hidden]="hiddenSt == true && chooseSt == true" [value]="0" disabled  [selected]="hiddenSt == false" class="OPTION">
                   - Bạn chọn loại gì? -
                 </option>
-                <option *ngFor="let option of aquaTypeList" [ngValue]="option.id">{{option.name}}</option>
+                <option (click)="choose()" *ngFor="let option of aquaTypeList" [ngValue]="option.id">{{option.name}}</option>
               </select>
             </div>
           </div>
@@ -26,7 +26,7 @@
 
     <div class="row d_flex">
       <div class=" col-md-4" *ngFor="let product of listSearchResults , index as i">
-        <div class="latest close1">
+        <div  class="latest close1" routerLink="/detail/detail/{{product.id}}">
           <div class="style">
             <figure><img style="width: 330px; height: 275px" [src]="product.image" alt="#"/></figure>
             <span class="yellow bellow_header">Số.{{i + 1}}</span>
@@ -38,8 +38,8 @@
               style="color: red">Giá: {{product.price | number}} VND</strong></p>
             <!--            <a class="read_more" href="blog.html">Xem thêm</a>-->
             <div class=" d-flex justify-content-between ">
-              <a routerLink="/detail/detail/{{product.id}}" class=" p-0 read_more " style="color: white;">Chi
-                tiết <i class="fas fa-eye mr-1" style="color: #0cc4d4"></i></a>
+              <a  class=" p-0 read_more " style="color: white;">Mua ngay
+                <i class="fas fa-dollar mr-1" style="color: #0cc4d4"></i></a>
               <a href="" class=" p-0 read_more" style="color: white">Thêm vào <i
                 class="fas fa-shopping-cart mr-1" style="color: #0cc4d4;"></i></a>
             </div>
@@ -47,14 +47,23 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <h3 [hidden]="noFind==false " style="text-align: center;color: orange">Không tìm thấy sản phẩm phù hợp !</h3>
+    <div class="row" [hidden]="noFind== true ">
       <div class="col-md-5"></div>
-      <div class="col-md-2">
+      <div class="col-md-2" [hidden]="change == true">
         <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
                 *ngIf="hasMore" (click)="loadMore()">Xem thêm
         </button>
         <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
                 *ngIf="!hasMore" (click)="reset()">Thu gọn
+        </button>
+      </div>
+      <div class="col-md-2" [hidden]="change == false" >
+        <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
+                *ngIf="hasMore1" (click)="loadMore1()">Xem thêm
+        </button>
+        <button href="" class=" p-0 read_more" style="color: white ; left: 20px  ;text-align: center"
+                *ngIf="!hasMore1" (click)="reset1()">Thu gọn
         </button>
       </div>
       <div class="col-md-5"></div>

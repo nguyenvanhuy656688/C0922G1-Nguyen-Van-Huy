@@ -53,4 +53,9 @@ public class AquaProductService implements IAquaProductService {
         return iAquaProductRepository.getListSearchResultsOption(keyword,id,pageable);
     }
 
+    @Override
+    public AquaProduct findAquaProduct(Long aquaProduct) {
+        return iAquaProductRepository.findById(aquaProduct).orElse(null);
+    }
+
 }

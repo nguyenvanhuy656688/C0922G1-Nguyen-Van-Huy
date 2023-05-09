@@ -1,20 +1,23 @@
 package com.example.aquarium_be.model;
 
+import org.apache.catalina.User;
+
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class OrderDetail implements Serializable {
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int amount;
+    private int quantity;
     private String size;
     @ManyToOne
-    private OrderProduct orderProduct;
+    private Accounts accounts;
     @ManyToOne
     private AquaProduct aquaProduct;
 
+    public Cart() {
+    }
 
     public Long getId() {
         return id;
@@ -24,20 +27,28 @@ public class OrderDetail implements Serializable {
         this.id = id;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public OrderProduct getOrderProduct() {
-        return orderProduct;
+    public String getSize() {
+        return size;
     }
 
-    public void setOrderProduct(OrderProduct orderProduct) {
-        this.orderProduct = orderProduct;
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public Accounts getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Accounts accounts) {
+        this.accounts = accounts;
     }
 
     public AquaProduct getAquaProduct() {
@@ -48,12 +59,4 @@ public class OrderDetail implements Serializable {
         this.aquaProduct = aquaProduct;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
 }
-
