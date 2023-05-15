@@ -1,0 +1,258 @@
+<br>
+<body>
+<section class="py-5 my-5">
+  <div class="" style="margin: 0 150px">
+    <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+      <div class="profile-tab-nav border-right">
+        <div class="p-4">
+          <div class="img-circle text-center mb-3">
+            <img [src]="info?.avatar" alt="Image" class="shadow">
+          </div>
+          <h4 class="text-center">{{info?.nameUser}}</h4>
+          <p>Yêu em vạn kiếp không phai !!!</p>
+        </div>
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a *ngIf="status==false" class="nav-link active" id="account-tab" data-bs-toggle="pill" href="#account" role="tab"
+             aria-controls="account" aria-selected="true">
+            <i class="fa fa-home text-center mr-1"></i>
+            Tài khoản
+          </a>
+          <a *ngIf="status==true" class="nav-link active"  data-bs-toggle="pill"  role="tab"
+             aria-controls="account" aria-selected="true">
+            <i class="fa fa-home text-center mr-1"></i>
+            Chi tiết đơn hàng
+          </a>
+          <a *ngIf="status==false" class="nav-link" id="password-tab" data-bs-toggle="pill" href="#password" role="tab"
+             aria-controls="password" aria-selected="false">
+            <i class="fa fa-history text-center me-1"></i>
+            Lịch sử mua hàng
+          </a>
+          <a *ngIf="status==false" class="nav-link" id="security-tab" data-bs-toggle="pill" href="#security" role="tab" aria-controls="security"
+             aria-selected="false">
+            <i class="fa fa-user text-center mr-1"></i>
+            Đăng xuất
+          </a>
+        </div>
+        <div>
+          <br><br><br><br><br><br>
+        </div>
+      </div>
+      <div class="tab-content p-4 p-md-5" id="accounts" role="tabpanel" aria-labelledby="account-tab">
+        <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+          <h3 class="col-mb-4">Thông tin tài khoản</h3>
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Tên tài khoản</label>
+                <input type="text" class="form-control" value="{{info?.nameUser}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Địa chỉ</label>
+                <input type="text" class="form-control" value="{{info?.address}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Số điện thoại</label>
+                <input type="text" class="form-control" value="{{info?.phoneNumber}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" value="{{info?.email}}">
+              </div>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 40px">
+            <button class="btn btn-primary">Cập nhật lại</button>
+            <button class="btn btn-light" style="margin-left: 20px" routerLink="/">Về Trang chủ</button>
+          </div>
+        </div>
+        <div class="tab-pane fade " id="password" role="tabpanel" aria-labelledby="password-tab">
+
+          <div class="bd" *ngIf="status==false">
+            <div class="wrapper">
+              <h1>Lịch sử mua hàng</h1>
+
+              <table class="keywords" >
+                <thead>
+                <tr>
+                  <th >STT</th>
+                  <th >Mã mua </th>
+                  <th >Ngày mua</th>
+                  <th >Tổng tiền</th>
+                  <th >Chi tiết</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of orderList,index as i">
+                  <td>{{i+1}}</td>
+                  <td>{{item.code}}</td>
+                  <td style="padding: 0">{{item.dateOrder}}</td>
+                  <td>{{item.total}}</td>
+                  <td><button (click)="changeStatus(item.id)">Chi tiết <i class="fa fa-eye"></i></button></td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="pagination">
+                <div class="container" style="margin-top: 5%;font-size: 13px">
+                  <div class="d-flex justify-content-center">
+                    <nav *ngIf="teamPage !== null" aria-label="Page navigation example">
+                      <ul class="pagination justify-content-end">
+                        <li class="page-item" [ngClass]="teamPage.first ? 'disabled': ''"><a
+                          class="page-link text-info text-info" type="button" (click)="goToPage(0)"
+                          onfocus="this.style.borderColor='#2b80dd';this.style.boxShadow='none';this.style.outline='2px solid #2b80dd';"
+                          onblur="this.style.borderColor='#2b80dd';this.style.outline='none';"
+                          style="color: black !important;">Trang đầu</a></li>
+
+                        <li class="page-item"><a class="page-link text-info text-info" (click)="previousPage()"
+                                                 *ngIf="p <=9 && p>0"
+                                                 onfocus="this.style.borderColor='#2b80dd';this.style.boxShadow='none';this.style.outline='2px solid #2b80dd';"
+                                                 onblur="this.style.borderColor='#ced4da';this.style.outline='none';"
+                                                 style="color: black !important;">< </a>
+                        </li>
+                        <li class="page-item" *ngFor="let page of pages" [ngClass]="{'active': page === p }">
+                          <a class="page-link" (click)="goToPage(page)"
+                             style="font-weight: bold; border: 1px solid #DEE2E6;"
+                             onfocus="this.style.borderColor='black';this.style.boxShadow='none';this.style.outline='2px solid black';"
+                             onblur="this.style.borderColor='#ced4da';this.style.outline='none';"
+                             [ngStyle]="{'background-color': page === p ? '#2b80dd' : '#FFFFFF', 'color': page === p ? '#FFFFFF' : 'black'}">
+                            {{ page + 1 }}
+                          </a>
+                        </li>
+
+                        <li class="page-item"><a class="page-link text-info text-info" (click)="nextPage()"
+                                                 *ngIf="(p <= 9 && totalPage > 0 && this.p < this.totalPage - 1) || (p >= totalPage - 1 && p <= totalPage && totalPage > 1 && p < totalPage - 4 && totalPage > 10 && this.p < this.totalPage - 1) || (p >= (totalPage - 10) && p <= totalPage && totalPage > 10 && p > totalPage - 11 && this.p < this.totalPage - 1) "
+                                                 onfocus="this.style.borderColor='#2b80dd';this.style.boxShadow='none';this.style.outline='2px solid #2b80dd';"
+                                                 onblur="this.style.borderColor='#ced4da';this.style.outline='none';"
+                                                 style="color: black !important;">></a>
+                        </li>
+                        <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''"><a
+                          class="page-link text-info text-info" type="button" (click)="goToPage(totalPage - 1)"
+                          onfocus="this.style.borderColor='#2b80dd';this.style.boxShadow='none';this.style.outline='2px solid #2b80dd';"
+                          onblur="this.style.borderColor='#2b80dd';this.style.outline='none';"
+                          style="color: black !important;">Trang cuối</a></li>
+                        <!--              <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''"><a-->
+                        <!--                class="page-link text-info text-info" type="button" (click)="goToPage(totalPage - 1)"-->
+                        <!--                onfocus="this.style.borderColor='#2b80dd';this.style.boxShadow='none';this.style.outline='2px solid #2b80dd';"-->
+                        <!--                onblur="this.style.borderColor='#2b80dd';this.style.outline='none';"-->
+                        <!--                style="color: #2b80dd !important;">Trang cuối</a></li>-->
+
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="bd" *ngIf="status==true">
+            <div class="wrapper">
+              <h1>Chi tiết đơn hàng</h1>
+
+              <table class="keywords" >
+                <thead>
+                <tr>
+                  <th >STT</th>
+                  <th style="padding: 0">Tên sản phẩm </th>
+                  <th >Size</th>
+                  <th style="padding: 0">Số lượng</th>
+                  <th >Thành tiền</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of orderDetailList,index as i">
+                  <td>{{i+1}}</td>
+                  <td>{{item.aquaProduct.name}}</td>
+                  <td style="padding: 0">{{item.size}}</td>
+                  <td>{{item.amount}}</td>
+                  <td>{{item.total}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <button class="row" (click)="changeStatusToFalse()" style="font-size: 20px;margin-left: 725px">Quay lại</button>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+          <h3 class="mb-4">Đăng xuất</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Bạn có muốn Đăng xuất?</label>
+                <input type="text" class="form-control"  value="{{value}}" placeholder="Gõ yes nếu muốn !">
+              </div>
+            </div>
+
+          </div>
+          <div>
+            <button [disabled]="value!=='yes'" class="btn btn-primary" (click)="logOut()">Đăng xuất</button>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
+          <h3 class="mb-4">Application Settings</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="app-check">
+                  <label class="form-check-label" for="app-check">
+                    App check
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <label class="form-check-label" for="defaultCheck2">
+                    Lorem ipsum dolor sit.
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-primary">Update</button>
+            <button class="btn btn-light">Cancel</button>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
+          <h3 class="mb-4">Notification Settings</h3>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="notification1">
+              <label class="form-check-label" for="notification1">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium accusamus, neque cupiditate
+                quis
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="notification2">
+              <label class="form-check-label" for="notification2">
+                hic nesciunt repellat perferendis voluptatum totam porro eligendi.
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="notification3">
+              <label class="form-check-label" for="notification3">
+                commodi fugiat molestiae tempora corporis. Sed dignissimos suscipit
+              </label>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-primary">Update</button>
+            <button class="btn btn-light">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>

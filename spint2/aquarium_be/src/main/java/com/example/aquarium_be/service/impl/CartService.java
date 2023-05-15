@@ -31,13 +31,14 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public void deleteCartByIdUser(Accounts accounts) {
+    public void deleteCartByIdUser(Long id) {
+        iCartRepository.deleteCartById(id);
 
     }
 
     @Override
-    public List<Cart> findAllByUser(Accounts byId) {
-        return null;
+    public List<Cart> findAllByUser(Accounts accounts) {
+        return iCartRepository.findAllByAccounts(accounts);
     }
 
     @Override

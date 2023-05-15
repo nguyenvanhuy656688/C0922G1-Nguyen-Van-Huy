@@ -17,7 +17,7 @@
               <div class=" " id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
-                    <a class="nav-link" href="" style="font-size: 17px;font-weight: bold; margin: 0">
+                    <a class="nav-link" routerLink="/" style="font-size: 17px;font-weight: bold; margin: 0">
                       Trang chủ</a></li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarBaiViet" role="button"
@@ -26,34 +26,34 @@
                       Bài viết
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarBaiViet">
-                      <li><a class="dropdown-item" href="#"><strong>Tin tức</strong></a></li>
-                      <li><a class="dropdown-item" href="#"><strong>Lời khuyên</strong></a></li>
+                      <li><a class="dropdown-item" ><strong>Tin tức</strong></a></li>
+                      <li><a class="dropdown-item" ><strong>Lời khuyên</strong></a></li>
                     </ul>
                   </li>
 
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarKhuyenMai" role="button"
+                    <a class="nav-link dropdown-toggle"  id="navbarKhuyenMai" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false"
                        style="font-size: 17px;font-weight: bold; margin: 0">
                       Khuyến mãi
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarKhuyenMai">
-                      <li><a class="dropdown-item" href="#"><strong>Giảm giá</strong> </a></li>
-                      <li><a class="dropdown-item" href="#"><strong>Tặng kèm</strong></a></li>
+                      <li><a class="dropdown-item" ><strong>Giảm giá</strong> </a></li>
+                      <li><a class="dropdown-item" ><strong>Tặng kèm</strong></a></li>
                     </ul>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarChamSocCa" role="button"
+                    <a class="nav-link dropdown-toggle" id="navbarChamSocCa" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false"
                        style="font-size: 17px;font-weight: bold; margin: 0">
                       Chăm sóc cá
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarChamSocCa">
-                      <li><a class="dropdown-item" href="#"><strong>Dưỡng cá</strong></a></li>
-                      <li><a class="dropdown-item" href="#"><strong>Trị bệnh</strong></a></li>
+                      <li><a class="dropdown-item" ><strong>Dưỡng cá</strong></a></li>
+                      <li><a class="dropdown-item" ><strong>Trị bệnh</strong></a></li>
                     </ul>
                   </li>
-                  <li class="nav-item"><a class="nav-link" href="#"
+                  <li class="nav-item"><a class="nav-link"
                                           style="font-size: 17px;font-weight: bold; margin: 0">Liên hệ</a></li>
                 </ul>
               </div>
@@ -87,8 +87,10 @@
                 </div>
                 <div class="dropdownUser" [hidden]="!isLoggedIn">
                   <div class="row">
-                    <div class="col-3 text-danger fs-3">
-                      <i class="fa-regular fa-user"></i>
+                    <div class="col-3 text-danger fs-3" style="padding:0 5px 2px 5px">
+                      <div class="img-circle1 text-center " style="margin: 0 0 22px" >
+                        <img [src]="info?.avatar" alt="Image" >
+                      </div>
                     </div>
                     <div class="col-9" style="padding: 0 0 0 15px">
                       Xin chào!<br>
@@ -96,6 +98,7 @@
                     </div>
                   </div>
                   <ul class="dropdown-content p-0 dropdown-menu" style="border-radius: 10px">
+                    <li style="border-radius: 10px" class="getstarted dropdown-item" routerLink="/info"><a  class="btn"><strong>Thông tin cá nhân</strong></a></li>
                     <li style="border-radius: 10px" class="getstarted dropdown-item"
                         routerLink="/login/change"><a class="btn"><strong>Đổi mật khẩu</strong></a></li>
                     <li style="border-radius: 10px" class="getstarted dropdown-item"><a (click)="logOut()"

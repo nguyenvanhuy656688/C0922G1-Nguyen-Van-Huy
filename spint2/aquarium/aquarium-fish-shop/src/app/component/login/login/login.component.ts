@@ -47,8 +47,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.formLogin.value).subscribe(
       data => {
-        console.log(data);
-        if (this.formLogin.value.rememberMe) {
+        if (this.formLogin.value) {
           this.tokenStorageService.saveTokenLocal(data.accessToken);
           this.tokenStorageService.saveUserLocal(data);
         } else {

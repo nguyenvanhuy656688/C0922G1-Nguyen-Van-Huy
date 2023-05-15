@@ -9,12 +9,13 @@ export class OrderProductService {
 
   constructor(private httpClient:HttpClient) { }
 
-  addBill(userId,total:number,time:string): Observable<any> {
+  addBill(userId:number,total:number,time:string): Observable<any> {
+    debugger
     let dto = {
-      userId:userId,
-      time:time,
+      accounts:userId,
+      dateOrder:time,
       total:total
     }
-    return this.httpClient.post("http://localhost:8080/api/public/bill/buy", dto);
+    return this.httpClient.post("http://localhost:8080/api/public/cart/buy", dto);
   }
 }

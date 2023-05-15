@@ -218,7 +218,8 @@ export class HomeComponent implements OnInit,OnDestroy {
           title: 'Đã thêm vào giỏ hàng thành công',
           icon: 'success',
           showConfirmButton: false,
-          timer: 1000
+          timer: 1000,
+          iconColor: "#ffc246",
         });
         this.shareService.sendClickEvent()
 

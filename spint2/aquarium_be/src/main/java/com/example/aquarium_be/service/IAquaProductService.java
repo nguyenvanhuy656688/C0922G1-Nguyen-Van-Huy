@@ -24,4 +24,8 @@ public interface IAquaProductService {
     List<AquaProduct> getListSearchResultsOption(String keyword, int id, Pageable pageable);
 
     AquaProduct findAquaProduct(Long aquaProduct);
+
+    List<AquaProduct> findAll();
+
+    void updateAquaProduct(AquaProduct aquaProduct);
 }

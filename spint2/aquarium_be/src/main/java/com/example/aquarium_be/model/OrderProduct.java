@@ -11,8 +11,8 @@ public class OrderProduct {
     @Column(nullable = false)
     private double total;
 
-    @Column(columnDefinition = "date", nullable = false)
     private String dateOrder;
+    private String code;
 
     @ManyToOne
     private Accounts accounts;
@@ -49,5 +49,13 @@ public class OrderProduct {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

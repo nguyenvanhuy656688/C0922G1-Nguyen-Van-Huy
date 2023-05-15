@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('./component/list-search/list-search.module').then(module => module.ListSearchModule)
+  },
+  {
+    path: 'info',
+    loadChildren: () => import('./component/info/info.module').then(module => module.InfoModule)
   }
 ];
 

@@ -14,7 +14,7 @@ public interface ICartService {
 
     void createCart(Cart cart1);
 
-    void deleteCartByIdUser(Accounts accounts);
+    void deleteCartByIdUser(Long accounts);
 
     List<Cart> findAllByUser(Accounts byId);
 

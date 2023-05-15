@@ -10,6 +10,7 @@ public class OrderDetail implements Serializable {
     private Long id;
     private int amount;
     private String size;
+    private double total;
     @ManyToOne
     private OrderProduct orderProduct;
     @ManyToOne
@@ -54,6 +55,14 @@ public class OrderDetail implements Serializable {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }
 

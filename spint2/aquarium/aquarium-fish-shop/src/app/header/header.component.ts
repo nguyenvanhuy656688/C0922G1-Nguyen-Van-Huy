@@ -4,6 +4,8 @@ import {ShareService} from '../service/share.service';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import {CartService} from '../service/cart.service';
+import {InfoService} from '../service/info.service';
+import {Accounts} from '../model/accounts';
 
 @Component({
   selector: 'app-header',
@@ -20,12 +22,14 @@ export class HeaderComponent implements OnInit {
   idAccount: number;
   listCart: any;
   length: number;
+  info:Accounts
 
   constructor(private tokenStorageService: TokenStorageService,
               private cartService: CartService,
               private shareService: ShareService,
-              private router: Router) {
-    this.cartService.showAllCart(this.tokenStorageService.getUser().idAccount).subscribe(data => {
+              private router: Router,
+              private infoService:InfoService) {
+    this.cartService.showAllCart(this.tokenStorageService.getUser()?.idAccount).subscribe(data => {
       {
         this.listCart = data;
         this.length = this.listCart?.length;
@@ -42,6 +46,9 @@ export class HeaderComponent implements OnInit {
       this.idAccount = this.tokenStorageService.getUser().idAccount;
     }
     this.isLoggedIn = this.username != null;
+    this.infoService.getInfo(this.tokenStorageService.getUser().idAccount).subscribe(data=>{
+      this.info = data
+    })
   }
 
 

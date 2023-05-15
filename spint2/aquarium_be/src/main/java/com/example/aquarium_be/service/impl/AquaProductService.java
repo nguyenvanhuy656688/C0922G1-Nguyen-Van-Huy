@@ -58,4 +58,14 @@ public class AquaProductService implements IAquaProductService {
         return iAquaProductRepository.findById(aquaProduct).orElse(null);
     }
 
+    @Override
+    public List<AquaProduct> findAll() {
+        return iAquaProductRepository.findAll();
+    }
+
+    @Override
+    public void updateAquaProduct(AquaProduct aquaProduct) {
+        iAquaProductRepository.save(aquaProduct);
+    }
+
 }

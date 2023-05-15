@@ -9,7 +9,7 @@ public class OrderProductDto {
     private Long id;
     private double total;
     private String dateOrder;
-    private Accounts accounts;
+    private Long accounts;
 
     public Long getId() {
         return id;
@@ -35,11 +35,11 @@ public class OrderProductDto {
         this.dateOrder = dateOrder;
     }
 
-    public Accounts getAccounts() {
+    public Long getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Accounts accounts) {
+    public void setAccounts(Long accounts) {
         this.accounts = accounts;
     }
 }

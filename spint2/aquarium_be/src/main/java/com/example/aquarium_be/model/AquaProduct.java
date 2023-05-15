@@ -18,6 +18,7 @@ public class AquaProduct {
     private String description;
     @Column(columnDefinition = "date", nullable = false)
     private String dateSubmit;
+    private int quantity;
     @ManyToOne
     AquaType aquaType;
 
@@ -77,5 +78,11 @@ public class AquaProduct {
         this.aquaType = aquaType;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

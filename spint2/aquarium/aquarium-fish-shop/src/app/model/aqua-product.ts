@@ -7,5 +7,6 @@ export interface AquaProduct {
   price:number;
   description:string;
   dateSubmit:string;
+  quantity:number;
   aquaType:AquaType;
 }

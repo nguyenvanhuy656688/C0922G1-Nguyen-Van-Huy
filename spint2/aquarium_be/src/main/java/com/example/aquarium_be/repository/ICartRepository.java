@@ -33,5 +33,10 @@ public interface ICartRepository extends JpaRepository<Cart,Long> {
 
     Cart findByAquaProductIdAndAccountsIdAndSize(Long accounts_id,Long aqua_product_id , String size);
 
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM cart WHERE cart.accounts_id =:id", nativeQuery = true)
+    void deleteCartById(@Param("id") Long id);
 
+    List<Cart> findAllByAccounts(Accounts accounts);
 }

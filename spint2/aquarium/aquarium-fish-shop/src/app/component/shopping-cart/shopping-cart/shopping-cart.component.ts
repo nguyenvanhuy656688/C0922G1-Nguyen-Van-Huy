@@ -25,6 +25,7 @@ export class ShoppingCartComponent implements OnInit {
   isPaypal = false;
   cart: Cart[] = [];
   select: any = 'Một ngón';
+  role:boolean
 
   constructor(private token: TokenStorageService,
               private cartService: CartService,
@@ -39,6 +40,12 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.token.getUser().idAccount != null){
+      this.role = true
+    }
+    if (this.token.getUser().idAccount == null){
+      this.role = false
+    }
 
     this.isLogged = this.token.isLogger();
     // this.loader();
@@ -63,6 +70,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   paypal() {
+    debugger
     this.isPaypal = true;
     let money = +((this.total + 20000) / 23485.5).toFixed(2);
     render({
@@ -87,7 +95,7 @@ export class ShoppingCartComponent implements OnInit {
   addBill() {
     let currentTime = new Date();
     let formatTime = currentTime.toLocaleString();
-    this.orderProductService.addBill(this.token.getId(), this.total, formatTime).subscribe(next => {
+    this.orderProductService.addBill(this.token.getUser().idAccount, this.total, formatTime).subscribe(next => {
       Swal.fire({
         position: 'center',
         title: 'Đã thanh toán thành công',
@@ -111,25 +119,27 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
+
+
   getValue(size: string) {
     this.total = 20000;
     if (this.cart != null) {
       this.quantity = this.cart.length;
       for (let i = 0; i < this.cart.length; i++) {
-        if (this.cart[i].size == 'Một ngón' || size == 'Một ngón') {
+        if (this.cart[i].size == 'Một ngón' ) {
           this.total += this.cart[i].aquaProduct.price * this.cart[i].quantity;
         }
-        if (this.cart[i].size == 'Hai ngón' || size == 'Hai ngón') {
-          this.total += this.cart[i].aquaProduct.price * this.cart[i].quantity + 100000 ;
+        if (this.cart[i].size == 'Hai ngón' ) {
+          this.total += (this.cart[i].aquaProduct.price + 100000) * this.cart[i].quantity  ;
         }
-        if (this.cart[i].size == 'Ba ngón' || size == 'Ba ngón') {
-          this.total += this.cart[i].aquaProduct.price * this.cart[i].quantity + 250000 ;
+        if (this.cart[i].size == 'Ba ngón' ) {
+          this.total += (this.cart[i].aquaProduct.price  + 250000) * this.cart[i].quantity  ;
         }
-        if (this.cart[i].size == 'Bốn ngón' || size == 'Bốn ngón') {
-          this.total += this.cart[i].aquaProduct.price * this.cart[i].quantity + 500000 ;
+        if (this.cart[i].size == 'Bốn ngón' ) {
+          this.total += (this.cart[i].aquaProduct.price + 500000) * this.cart[i].quantity  ;
         }
-        if (this.cart[i].size == 'Bàn tay' || size == 'Bàn tay') {
-          this.total += this.cart[i].aquaProduct.price * this.cart[i].quantity + 800000 ;
+        if (this.cart[i].size == 'Bàn tay' ) {
+          this.total += (this.cart[i].aquaProduct.price + 800000) * this.cart[i].quantity  ;
         }
       }
     }

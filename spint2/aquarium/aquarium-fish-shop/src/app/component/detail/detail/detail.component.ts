@@ -103,7 +103,7 @@ export class DetailComponent implements OnInit {
 
   addCart(id: number,value:string) {
     const quantity = parseInt(value)
-    if(this.isLogged==true){
+    if(this.isLogged==false){
       Swal.fire({
         title: 'Bạn bạn hiện tại chưa đăng nhập',
         text: 'Bạn có muốn vào trang đăng nhập không?' ,
@@ -128,7 +128,8 @@ export class DetailComponent implements OnInit {
           title: 'Đã thêm vào giỏ hàng thành công',
           icon: 'success',
           showConfirmButton: false,
-          timer: 1000
+          iconColor: "#ffc246",
+          timer: 1500
         });
         this.shareService.sendClickEvent()
       }, error => {
