@@ -1,0 +1,30 @@
+<body>
+<div id="container">
+  <div *ngIf="startI==false" style="margin-left: 40px">
+    <img src="https://thumbs.dreamstime.com/b/quiz-icon-long-shadow-vector-98635928.jpg"
+         style="width: 150px; height: 150px;text-align: center;border-radius: 5px;border: 1px solid" alt="">
+  </div>
+  <div *ngIf="startI==false"><h2>Welcome to quiz app</h2></div>
+  <br>
+
+  <div *ngIf="startI==false" (click)="start()" id="start">
+    <div style="text-align: center">Start Quiz</div>
+  </div>
+
+  <!--    Guide Section    -->
+  <div *ngIf="startI==true" id="guide">
+    <h2 style="text-align: center">Quiz Guide</h2>
+    <h4>1. You Have Only 20 Seconds For Each Questions.</h4>
+    <h4>2. Once You Select Your Answer.It Can't Be Undone.</h4>
+    <h4>3. You'll Get Points On The Basic Of Your Correct Answers.</h4>
+    <h4>4. You Can't Exit From The Quiz While You Are Playing.</h4>
+    <div id="button">
+        <button id="exit" (click)="noStart()">Exit</button>
+        <button id="continue" (click)="startQuiz()">Continue</button>
+
+    </div>
+  </div>
+
+</div>
+</body>
+

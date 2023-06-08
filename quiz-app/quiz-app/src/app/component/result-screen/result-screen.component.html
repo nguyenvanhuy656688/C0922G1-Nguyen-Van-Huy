@@ -1,0 +1,56 @@
+<h1 class="fixed-top" style="text-align: center">Your quiz is so amazing </h1>
+<br>
+<h3 class="fixed-top" style="text-align: center">Can you check your answer! </h3>
+<body>
+<div class="container">
+  <div id="start"></div>
+  <div id="guide"></div>
+  <div id="quiz" class=" col-md-6" *ngFor="let quiz of quizList; index as i">
+    <div class="">
+      <div id="quiz_header">
+        <h5 class="col-md-7">{{quiz.category}}</h5>
+        <div id="timer">
+          <h6>Time: {{quiz.time}}s</h6>
+        </div>
+      </div>
+      <!-- Quiz Questions -->
+      <div id="question">
+        <h2 id="questionNo">{{i + 1}}.</h2>
+        <h2 id="questionText" style="display: inline">{{quiz.question}}</h2>
+
+      </div>
+      <div class="row d-flex justify-content-center">
+      </div>
+      <!-- Quiz Choices -->
+      <div id="optionList" style="margin-top: 50px">
+        <h4 class="choice_que"
+            *ngFor="let answer of quizList[i]?.incorrect_answers; index as i"
+            id="option1"
+            [ngClass]="{
+        'tick-incorrect':quizList[i]?.statusAnswer == answer
+      }">
+          😂 {{ answer }}
+        </h4>
+        <h4 class="choice_que"
+            id="option2"
+            [ngClass]="{
+        'tick-correct': quizList[i].statusAnswer == quizList[i]?.correct_answer
+      }">
+          😊 {{quiz.correct_answer}}
+        </h4>
+      </div>
+      <br>
+      <!-- Answers Section -->
+      <div id="answersSection">
+        <h3>The correct answer is: {{quiz.correct_answer}}</h3>
+        <h3 id="next_question">{{quiz.difficulty}}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<div style="text-align: center">
+  <button class="btn-primary" (click)="playAgain()">Play again!</button>
+</div>
+

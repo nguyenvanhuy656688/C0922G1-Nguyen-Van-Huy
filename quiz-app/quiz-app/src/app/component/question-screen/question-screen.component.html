@@ -1,0 +1,37 @@
+<body>
+<div id="container">
+  <div id="start"></div>
+  <div id="guide"></div>
+  <div id="quiz" *ngIf="count< quizList.length ">
+    <div id="quiz_header">
+      <h5 class="col-md-7">{{quizList[count]?.category}}</h5>
+      <div id="timer">
+        <h6>Time</h6>
+        <h6 id="time">{{countdown}}</h6>
+      </div>
+    </div>
+    <!-- Quiz Questions -->
+    <div id="question">
+      <h2 id="questionNo">{{count + 1}}.</h2>
+      <h2 id="questionText" style="display: inline">{{quizList[count]?.question}}</h2>
+
+    </div>
+    <div class="row d-flex justify-content-center">
+    </div>
+    <!-- Quiz Choices -->
+    <div id="optionList" style="margin-top: 50px">
+      <button [ngClass]="{'selected': selectedAnswer === answer}" (click)="selectAnswer(answer)" class="choice_que"
+              *ngFor="let answer of quizList[count]?.incorrect_answers" id="option1">{{answer}}</button>
+      <button class="choice_que" [ngClass]="{'selected': selectedAnswer === quizList[count]?.correct_answer}"
+              (click)="selectAnswer(quizList[count]?.correct_answer)"
+              id="option2">{{quizList[count]?.correct_answer}}</button>
+    </div>
+    <br>
+    <!-- Answers Section -->
+    <div id="answersSection">
+      <h3>{{count + 1}}/{{quizList.length}} Questions</h3>
+      <h3 id="next_question" (click)="nextQuestion(20 - countdown)">Next</h3>
+    </div>
+  </div>
+</div>
+</body>
